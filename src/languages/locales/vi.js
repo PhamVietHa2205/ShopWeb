@@ -1,5 +1,5 @@
 export default {
     translation: {
-        'test': "English"
+        'test': "Tiếng Việt"
     }
 }
