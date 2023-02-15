@@ -5,7 +5,7 @@ import I18n from "../languages";
 export function Home() {
 	const { t } = useTranslation();
 
-	return <div className="col">
+	return <div>
 		<h2 className="align-center">{t('test')}</h2>
 	</div>
 }
