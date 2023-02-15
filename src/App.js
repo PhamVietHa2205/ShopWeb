@@ -4,6 +4,7 @@ import { HOME_PATH, LOG_IN, SIGN_UP } from './constants/path_local';
 import { Home } from './pages/home'
 import { LogIn } from './pages/log_in';
 import { SignUp } from './pages/sign_up';
+import './languages';
 
 function App() {
 	return (
