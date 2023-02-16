@@ -32,13 +32,13 @@ export function Home() {
 					<li className="nav-item col-2">
 						<a className="nav-link">{t('navBestSeller')}</a>
 					</li>
-					<li className="nav-item col-2">
+					<li className="nav-item col-1">
 						<a className="nav-link">{t('navHotPick')}</a>
 					</li>
-					<div className="col-4">
-						<button type="button" className={`btn btn-lg dropdown-toggle dropdown-toggle-split col-2`}
+					<div className="col dropdown">
+						<button type="button" className={`btn dropdown-toggle dropdown-toggle-split`}
 							data-bs-toggle="dropdown" aria-expanded="false">
-							Phân loại sản phẩm
+                            Phân loại
 						</button>
 						<div className="dropdown-menu">
 							{
@@ -48,6 +48,8 @@ export function Home() {
 							}
 						</div>
 					</div>
+                    <i className="fa fa-2x fa-shopping-cart col"></i>
+                    <i className="fa fa-2x fa-user col">Đăng nhập</i>
 				</ul>
 			</div>
 		</div>
