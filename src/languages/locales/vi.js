@@ -1,5 +1,9 @@
 export default {
     translation: {
-        'test': "Tiếng Việt"
+        'navHome': 'Trang chủ',
+        'navBestSeller': 'Bán chạy nhất',
+        'navHotPick': 'Hot',
+        'labelChooseLanguage': 'Chọn ngôn ngữ',
+        'btnLogin': 'Đăng nhập',
     }
 }
