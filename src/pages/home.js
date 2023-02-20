@@ -5,6 +5,7 @@ import { useTranslation } from "react-i18next"
 export function Home() {
 	const { t } = useTranslation();
 	const [language, setLanguage] = useState("vi");
+	const isLogin = localStorage.getItem('isLogin');
 
 	const handleChangeLanguage = (event) => {
 		setLanguage(event.target.value);
@@ -15,7 +16,7 @@ export function Home() {
 
 	return <div>
 		{/* header */}
-		<div className="row">
+		<div className="row pe-4">
 			<img src="/images/logo.jpg" alt='Logo Image' className="col-3" style={{ maxHeight: 120 }} />
 			<div className="col">
 				<div className="row justify-content-end bg-warning pe-4 pt-2">
@@ -26,13 +27,13 @@ export function Home() {
 					</select>
 				</div>
 				<ul className="nav row h-100 justify-content-around align-items-end">
-					<li className="nav-item col-2">
+					<li className="nav-item col">
 						<a className="nav-link">{t('navHome')}</a>
 					</li>
-					<li className="nav-item col-2">
+					<li className="nav-item col">
 						<a className="nav-link">{t('navBestSeller')}</a>
 					</li>
-					<li className="nav-item col-1">
+					<li className="nav-item col">
 						<a className="nav-link">{t('navHotPick')}</a>
 					</li>
 					<div className="col dropdown">
@@ -49,7 +50,10 @@ export function Home() {
 						</div>
 					</div>
                     <i className="fa fa-2x fa-shopping-cart col"></i>
-                    <i className="fa fa-2x fa-user col">Đăng nhập</i>
+					{
+						isLogin ? <i className="fa fa-2x fa-user col"></i>
+						: <button className="btn btn-success col">{t('btnLogin')}</button>
+					}
 				</ul>
 			</div>
 		</div>
