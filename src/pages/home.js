@@ -1,7 +1,15 @@
 import i18next from "i18next";
 import { useState } from "react";
 import { useTranslation } from "react-i18next"
-
+import TopBar from '../shared/TopBar'
+import NavBar from "../shared/NavBar";
+import Featured from "../components/Home/Featured";
+import Categories from "../components/Home/Categories";
+import Offer from "../components/Home/Offer";
+import Product from "../components/Home/Product";
+import Subscribe from "../components/Home/Subscribe";
+import Footer from "../shared/Footer";
+import ButtonToTop from "../shared/buttonToTop";
 export function Home() {
 	const { t } = useTranslation();
 	const [language, setLanguage] = useState("vi");
@@ -12,50 +20,15 @@ export function Home() {
 		i18next.changeLanguage(event.target.value);
 	}
 
-	const productCategory = ['Quần áo nam', 'Quần áo nữ', 'Quần áo trẻ em'];
-
 	return <div>
-		{/* header */}
-		<div className="row pe-4">
-			<img src="/images/logo.jpg" alt='Logo Image' className="col-3" style={{ maxHeight: 120 }} />
-			<div className="col">
-				<div className="row justify-content-end bg-warning pe-4 pt-2">
-					<label className="col-2">{t('labelChooseLanguage')}</label>
-					<select value={language} className="col-2 mr-2" onChange={handleChangeLanguage}>
-						<option value={"vi"}>Tiếng Việt</option>
-						<option value={"en"}>English</option>
-					</select>
-				</div>
-				<ul className="nav row h-100 justify-content-around align-items-end">
-					<li className="nav-item col">
-						<a className="nav-link">{t('navHome')}</a>
-					</li>
-					<li className="nav-item col">
-						<a className="nav-link">{t('navBestSeller')}</a>
-					</li>
-					<li className="nav-item col">
-						<a className="nav-link">{t('navHotPick')}</a>
-					</li>
-					<div className="col dropdown">
-						<button type="button" className={`btn dropdown-toggle dropdown-toggle-split`}
-							data-bs-toggle="dropdown" aria-expanded="false">
-                            Phân loại
-						</button>
-						<div className="dropdown-menu">
-							{
-								productCategory.map((productType) => {
-									return <a className="dropdown-item">{productType}</a>
-								})
-							}
-						</div>
-					</div>
-                    <i className="fa fa-2x fa-shopping-cart col"></i>
-					{
-						isLogin ? <i className="fa fa-2x fa-user col"></i>
-						: <button className="btn btn-success col">{t('btnLogin')}</button>
-					}
-				</ul>
-			</div>
-		</div>
+		<TopBar/>
+		<NavBar />
+		<Featured />
+		<Categories/>
+		<Offer />
+		<Product />
+		<Subscribe />
+		<Footer />
+		<ButtonToTop/>
 	</div>
 }
