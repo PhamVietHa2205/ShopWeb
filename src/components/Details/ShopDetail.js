@@ -129,9 +129,9 @@ const ShopDetail = () => {
         <div className="row px-xl-5">
             <div className="col">
                 <div className="nav nav-tabs justify-content-center border-secondary mb-4">
-                    <a className="nav-item nav-link active" data-toggle="tab" href="#tab-pane-1">Description</a>
-                    <a className="nav-item nav-link" data-toggle="tab" href="#tab-pane-2">Information</a>
-                    <a className="nav-item nav-link" data-toggle="tab" href="#tab-pane-3">Reviews (0)</a>
+                    <a className="nav-item nav-link active" data-bs-toggle="tab" href="#tab-pane-1">Description</a>
+                    <a className="nav-item nav-link" data-bs-toggle="tab" href="#tab-pane-2">Information</a>
+                    <a className="nav-item nav-link" data-bs-toggle="tab" href="#tab-pane-3">Reviews (0)</a>
                 </div>
                 <div className="tab-content">
                     <div className="tab-pane fade show active" id="tab-pane-1">

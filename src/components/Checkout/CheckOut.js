@@ -60,7 +60,7 @@ const CheckOut = () => {
                         <div className="col-md-12 form-group">
                             <div className="custom-control custom-checkbox">
                                 <input type="checkbox" className="custom-control-input" id="shipto"/>
-                                <label className="custom-control-label" for="shipto"  data-toggle="collapse" data-target="#shipping-address">Ship to different address</label>
+                                <label className="custom-control-label" for="shipto"  data-bs-toggle="collapse" data-bs-target="#shipping-address">Ship to different address</label>
                             </div>
                         </div>
                     </div>
