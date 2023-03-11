@@ -1,18 +1,19 @@
 import TopBar from "../shared/TopBar";
 import AppDrawer from "../shared/AppDrawer";
 import Footer from "../shared/Footer";
-import CheckOut from "../components/Checkout/CheckOut";
-import PageHeader from "../components/Checkout/PageHeader";
-const Checkout = () => {
+import PageHeader from "../components/Cart/PageHeader";
+import CartShop from "../components/Cart/Cart";
+const Cart = () => {
     return (
         <>
         <TopBar/>
         <AppDrawer />
         <PageHeader/>
-        <CheckOut/>
+        <CartShop/>
         <Footer />
+     
         </>
     );
 }
 
-export default Checkout;
+export default Cart;

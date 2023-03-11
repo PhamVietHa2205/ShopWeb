@@ -45,21 +45,21 @@ const NavBar = () => {
                 </button>
                 <div className="collapse navbar-collapse justify-content-between" id="navbarCollapse">
                     <div className="navbar-nav mr-auto py-0">
-                        <a href="home" className="nav-item nav-link active">Home</a>
+                        <a href="/" className="nav-item nav-link active">Home</a>
                         <a href="shop" className="nav-item nav-link">Shop</a>
                         <a href="detail" className="nav-item nav-link">Shop Detail</a>
                         <div className="nav-item dropdown">
                             <a className="nav-link dropdown-toggle" data-bs-toggle="dropdown">Pages</a>
                             <div className="dropdown-menu rounded-0 m-0">
-                                <a href="cart.html" className="dropdown-item">Shopping Cart</a>
-                                <a href="checkout.html" className="dropdown-item">Checkout</a>
+                                <a href="cart" className="dropdown-item">Shopping Cart</a>
+                                <a href="checkout" className="dropdown-item">Checkout</a>
                             </div>
                         </div>
                         <a href="detail" className="nav-item nav-link" >Contact</a>
                     </div>
                     <div className="navbar-nav ml-auto py-0">
-                        <a className="nav-item nav-link">Login</a>
-                        <a className="nav-item nav-link">Register</a>
+                        <a href="/log_in" className="nav-item nav-link">Login</a>
+                        <a href="/sign_up" className="nav-item nav-link">Register</a>
                     </div>
                 </div>
             </nav>
@@ -72,7 +72,7 @@ const NavBar = () => {
                                 <h4 className="text-light text-uppercase font-weight-medium mb-3">10% Off Your First
                                     Order</h4>
                                 <h3 className="display-4 text-white font-weight-semi-bold mb-4">Fashionable Dress</h3>
-                                <a className="btn btn-light py-2 px-3">Shop Now</a>
+                                <a href='detail' className="btn btn-light py-2 px-3">Shop Now</a>
                             </div>
                         </div>
                     </div>
@@ -83,7 +83,7 @@ const NavBar = () => {
                                 <h4 className="text-light text-uppercase font-weight-medium mb-3">10% Off Your First
                                     Order</h4>
                                 <h3 className="display-4 text-white font-weight-semi-bold mb-4">Reasonable Price</h3>
-                                <a className="btn btn-light py-2 px-3">Shop Now</a>
+                                <a href='detail' className="btn btn-light py-2 px-3">Shop Now</a>
                             </div>
                         </div>
                     </div>

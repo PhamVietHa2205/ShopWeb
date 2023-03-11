@@ -1,12 +1,14 @@
 import TopBar from "../shared/TopBar";
-import NavBar from "../shared/NavBar";
+import AppDrawer from "../shared/AppDrawer";
 import Footer from "../shared/Footer";
 import ShopDetail from "../components/Shop/ShopDetail";
+import PageHeader from "../components/Shop/PagrHeader";
 const Shop = () => {
   return (
     <>
       <TopBar />
-      <NavBar />
+      <AppDrawer />
+      <PageHeader/>
       <ShopDetail />
       <Footer />
     </>

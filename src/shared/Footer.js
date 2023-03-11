@@ -18,32 +18,32 @@ const Footer = () => {
                     <div className="col-md-4 mb-5">
                         <h5 className="font-weight-bold text-dark mb-4">Quick Links</h5>
                         <div className="d-flex flex-column justify-content-start">
-                            <a className="text-dark mb-2" href="index.html"><i className="fa fa-angle-right mr-2"></i>Home</a>
-                            <a className="text-dark mb-2" href="shop.html"><i className="fa fa-angle-right mr-2"></i>Our
+                            <a className="text-dark mb-2" href="index"><i className="fa fa-angle-right mr-2"></i>Home</a>
+                            <a className="text-dark mb-2" href="shop"><i className="fa fa-angle-right mr-2"></i>Our
                                 Shop</a>
-                            <a className="text-dark mb-2" href="detail.html"><i className="fa fa-angle-right mr-2"></i>Shop
+                            <a className="text-dark mb-2" href="detail"><i className="fa fa-angle-right mr-2"></i>Shop
                                 Detail</a>
-                            <a className="text-dark mb-2" href="cart.html"><i className="fa fa-angle-right mr-2"></i>Shopping
+                            <a className="text-dark mb-2" href="cart"><i className="fa fa-angle-right mr-2"></i>Shopping
                                 Cart</a>
-                            <a className="text-dark mb-2" href="checkout.html"><i
+                            <a className="text-dark mb-2" href="checkout"><i
                                     className="fa fa-angle-right mr-2"></i>Checkout</a>
-                            <a className="text-dark" href="contact.html"><i className="fa fa-angle-right mr-2"></i>Contact
+                            <a className="text-dark" href="shop"><i className="fa fa-angle-right mr-2"></i>Contact
                                 Us</a>
                         </div>
                     </div>
                     <div className="col-md-4 mb-5">
                         <h5 className="font-weight-bold text-dark mb-4">Quick Links</h5>
                         <div className="d-flex flex-column justify-content-start">
-                            <a className="text-dark mb-2" href="index.html"><i className="fa fa-angle-right mr-2"></i>Home</a>
-                            <a className="text-dark mb-2" href="shop.html"><i className="fa fa-angle-right mr-2"></i>Our
+                            <a className="text-dark mb-2" href="index"><i className="fa fa-angle-right mr-2"></i>Home</a>
+                            <a className="text-dark mb-2" href="shop"><i className="fa fa-angle-right mr-2"></i>Our
                                 Shop</a>
-                            <a className="text-dark mb-2" href="detail.html"><i className="fa fa-angle-right mr-2"></i>Shop
+                            <a className="text-dark mb-2" href="detail"><i className="fa fa-angle-right mr-2"></i>Shop
                                 Detail</a>
-                            <a className="text-dark mb-2" href="cart.html"><i className="fa fa-angle-right mr-2"></i>Shopping
+                            <a className="text-dark mb-2" href="cart"><i className="fa fa-angle-right mr-2"></i>Shopping
                                 Cart</a>
-                            <a className="text-dark mb-2" href="checkout.html"><i
+                            <a className="text-dark mb-2" href="checkout"><i
                                     className="fa fa-angle-right mr-2"></i>Checkout</a>
-                            <a className="text-dark" href="contact.html"><i className="fa fa-angle-right mr-2"></i>Contact
+                            <a className="text-dark" href="shop"><i className="fa fa-angle-right mr-2"></i>Contact
                                 Us</a>
                         </div>
                     </div>
