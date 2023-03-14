@@ -1,4 +1,4 @@
-import "./App.css";
+
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import {
   DETAIL,
@@ -9,6 +9,7 @@ import {
   SHOP,
   CART,
   CONTACT,
+  ADMIN
 } from "./constants/path_local";
 import { Home } from "./pages/home";
 import { LogIn } from "./pages/log_in";
@@ -19,6 +20,7 @@ import Detail from "./pages/detail";
 import Checkout from "./pages/checkout";
 import Cart from './pages/cart'
 import Contact from "./pages/contact";
+import DashBoard from "./pages/admin";
 
 function App() {
   return (
@@ -32,6 +34,7 @@ function App() {
         <Route path={SHOP} element={<Shop />}></Route>
         <Route path={CART} element={<Cart />}></Route>
         <Route path={CONTACT} element={<Contact/>}></Route>
+        <Route path={ADMIN} element={<DashBoard />}></Route>
       </Routes>
     </BrowserRouter>
   );

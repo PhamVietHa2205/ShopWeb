@@ -12,7 +12,7 @@ import 'font-awesome/css/font-awesome.min.css';
 import './asssets/css/style.css';
 import './asssets/css/style.min.css';
 import './asssets/scss/style.scss';
-
+import './asssets/css/admin-style.css'
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>

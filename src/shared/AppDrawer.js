@@ -5,7 +5,7 @@ const AppDrawer = () => {
             <div className="col-lg-3 d-none d-lg-block">
                 <a className="btn shadow-none d-flex align-items-center justify-content-between bg-primary text-white w-100"
                     data-bs-toggle="collapse" data-bs-target="#navbar-vertical"
-                    style={{height: 65, marginTop: -1, padding: 30 }}>
+                    style={{height: 65, marginTop: -1, padding: '0px 30px' }}>
                     <h6 className="m-0">Categories</h6>
                     <i className="fa fa-angle-down text-dark"></i>
                 </a>

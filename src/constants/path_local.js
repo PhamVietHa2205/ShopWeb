@@ -6,3 +6,4 @@ export const CHECKOUT = "/checkout";
 export const SHOP = "/shop";
 export const CART = "/cart";
 export const CONTACT = "/contact";
+export const ADMIN = '/admin';
