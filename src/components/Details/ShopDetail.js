@@ -34,8 +34,8 @@ const ShopDetail = () => {
                         <small className="fa fa-star"></small>
                         <small className="fa fa-star"></small>
                         <small className="fa fa-star"></small>
-                        <small className="fa fa-star-half-alt"></small>
-                        <small className="far fa-star"></small>
+                        <small className="fa fa-star-half-o"></small>
+                        <small className="fa fa-star-o"></small>
                     </div>
                     <small className="pt-1">(50 Reviews)</small>
                 </div>
@@ -117,7 +117,7 @@ const ShopDetail = () => {
                             <i className="fa fa-twitter"></i>
                         </a>
                         <a className="text-dark px-2" href="">
-                            <i className="fa fa-linkedin-in"></i>
+                            <i className="fa fa-linkedin"></i>
                         </a>
                         <a className="text-dark px-2" href="">
                             <i className="fa fa-pinterest"></i>
@@ -145,32 +145,32 @@ const ShopDetail = () => {
                         <div className="row">
                             <div className="col-md-6">
                                 <ul className="list-group list-group-flush">
-                                    <li className="list-group-item px-0">
+                                    <li className="list-group-item px-0 text-muted">
                                         Sit erat duo lorem duo ea consetetur, et eirmod takimata.
                                     </li>
-                                    <li className="list-group-item px-0">
+                                    <li className="list-group-item px-0 text-muted">
                                         Amet kasd gubergren sit sanctus et lorem eos sadipscing at.
                                     </li>
-                                    <li className="list-group-item px-0">
+                                    <li className="list-group-item px-0 text-muted">
                                         Duo amet accusam eirmod nonumy stet et et stet eirmod.
                                     </li>
-                                    <li className="list-group-item px-0">
+                                    <li className="list-group-item px-0 text-muted">
                                         Takimata ea clita labore amet ipsum erat justo voluptua. Nonumy.
                                     </li>
                                   </ul> 
                             </div>
                             <div className="col-md-6">
                                 <ul className="list-group list-group-flush">
-                                    <li className="list-group-item px-0">
+                                    <li className="list-group-item px-0 text-muted">
                                         Sit erat duo lorem duo ea consetetur, et eirmod takimata.
                                     </li>
-                                    <li className="list-group-item px-0">
+                                    <li className="list-group-item px-0 text-muted">
                                         Amet kasd gubergren sit sanctus et lorem eos sadipscing at.
                                     </li>
-                                    <li className="list-group-item px-0">
+                                    <li className="list-group-item px-0 text-muted">
                                         Duo amet accusam eirmod nonumy stet et et stet eirmod.
                                     </li>
-                                    <li className="list-group-item px-0">
+                                    <li className="list-group-item px-0 text-muted">
                                         Takimata ea clita labore amet ipsum erat justo voluptua. Nonumy.
                                     </li>
                                   </ul> 
@@ -185,12 +185,12 @@ const ShopDetail = () => {
                                     <img src={require('../../asssets/img/user.jpg')} alt="Image" className="img-fluid mr-3 mt-1" style={{width: 45}}/>
                                     <div className="media-body">
                                         <h6>John Doe<small> - <i>01 Jan 2045</i></small></h6>
-                                        <div className="text-primary mb-2">
-                                            <i className="fa fa-star"></i>
-                                            <i className="fa fa-star"></i>
-                                            <i className="fa fa-star"></i>
-                                            <i className="fa fa-star-half-stroke"></i>
-                                            <i className="fa fa-star"></i>
+                                        <div className="text-primary mb-1">
+                                            <i className="fa fa-star me-1"></i>
+                                            <i className="fa fa-star me-1"></i>
+                                            <i className="fa fa-star me-1"></i>
+                                            <i className="fa fa-star-half-o me-1"></i>
+                                            <i className="fa fa-star-o me-1"></i>
                                         </div>
                                         <p>Diam amet duo labore stet elitr ea clita ipsum, tempor labore accusam ipsum et no at. Kasd diam tempor rebum magna dolores sed sed eirmod ipsum.</p>
                                     </div>
@@ -202,11 +202,11 @@ const ShopDetail = () => {
                                 <div className="d-flex my-3">
                                     <p className="mb-0 mr-2">Your Rating * :</p>
                                     <div className="text-primary">
-                                        <i className="fa fa-star"></i>
-                                        <i className="fa fa-star"></i>
-                                        <i className="fa fa-star"></i>
-                                        <i className="fa fa-star"></i>
-                                        <i className="fa fa-star"></i>
+                                        <i className="fa fa-star-o me-1"></i>
+                                        <i className="fa fa-star-o me-1"></i>
+                                        <i className="fa fa-star-o me-1"></i>
+                                        <i className="fa fa-star-o me-1"></i>
+                                        <i className="fa fa-star-o me-1"></i>
                                     </div>
                                 </div>
                                 <form>

@@ -16,7 +16,7 @@ const ShopDetail = () => {
                 <label className="custom-control-label" for="price-all">
                   All Price
                 </label>
-                <span className="badge border font-weight-normal">1000</span>
+                <span className="badge border font-weight-normal text-muted">1000</span>
               </div>
               <div className="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
                 <input
@@ -27,7 +27,7 @@ const ShopDetail = () => {
                 <label className="custom-control-label" for="price-1">
                   $0 - $100
                 </label>
-                <span className="badge border font-weight-normal">150</span>
+                <span className="badge border font-weight-normal text-muted">150</span>
               </div>
               <div className="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
                 <input
@@ -38,7 +38,7 @@ const ShopDetail = () => {
                 <label className="custom-control-label" for="price-2">
                   $100 - $200
                 </label>
-                <span className="badge border font-weight-normal">295</span>
+                <span className="badge border font-weight-normal text-muted">295</span>
               </div>
               <div className="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
                 <input
@@ -49,7 +49,7 @@ const ShopDetail = () => {
                 <label className="custom-control-label" for="price-3">
                   $200 - $300
                 </label>
-                <span className="badge border font-weight-normal">246</span>
+                <span className="badge border font-weight-normal text-muted">246</span>
               </div>
               <div className="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
                 <input
@@ -60,7 +60,7 @@ const ShopDetail = () => {
                 <label className="custom-control-label" for="price-4">
                   $300 - $400
                 </label>
-                <span className="badge border font-weight-normal">145</span>
+                <span className="badge border font-weight-normal text-muted">145</span>
               </div>
               <div className="custom-control custom-checkbox d-flex align-items-center justify-content-between">
                 <input
@@ -71,7 +71,7 @@ const ShopDetail = () => {
                 <label className="custom-control-label" for="price-5">
                   $400 - $500
                 </label>
-                <span className="badge border font-weight-normal">168</span>
+                <span className="badge border font-weight-normal text-muted">168</span>
               </div>
             </form>
           </div>
@@ -89,7 +89,7 @@ const ShopDetail = () => {
                 <label className="custom-control-label" for="price-all">
                   All Color
                 </label>
-                <span className="badge border font-weight-normal">1000</span>
+                <span className="badge border font-weight-normal text-muted">1000</span>
               </div>
               <div className="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
                 <input
@@ -100,7 +100,7 @@ const ShopDetail = () => {
                 <label className="custom-control-label" for="color-1">
                   Black
                 </label>
-                <span className="badge border font-weight-normal">150</span>
+                <span className="badge border font-weight-normal text-muted">150</span>
               </div>
               <div className="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
                 <input
@@ -111,7 +111,7 @@ const ShopDetail = () => {
                 <label className="custom-control-label" for="color-2">
                   White
                 </label>
-                <span className="badge border font-weight-normal">295</span>
+                <span className="badge border font-weight-normal text-muted">295</span>
               </div>
               <div className="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
                 <input
@@ -122,7 +122,7 @@ const ShopDetail = () => {
                 <label className="custom-control-label" for="color-3">
                   Red
                 </label>
-                <span className="badge border font-weight-normal">246</span>
+                <span className="badge border font-weight-normal text-muted">246</span>
               </div>
               <div className="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
                 <input
@@ -133,7 +133,7 @@ const ShopDetail = () => {
                 <label className="custom-control-label" for="color-4">
                   Blue
                 </label>
-                <span className="badge border font-weight-normal">145</span>
+                <span className="badge border font-weight-normal text-muted">145</span>
               </div>
               <div className="custom-control custom-checkbox d-flex align-items-center justify-content-between">
                 <input
@@ -144,7 +144,7 @@ const ShopDetail = () => {
                 <label className="custom-control-label" for="color-5">
                   Green
                 </label>
-                <span className="badge border font-weight-normal">168</span>
+                <span className="badge border font-weight-normal text-muted">168</span>
               </div>
             </form>
           </div>
@@ -162,7 +162,7 @@ const ShopDetail = () => {
                 <label className="custom-control-label" for="size-all">
                   All Size
                 </label>
-                <span className="badge border font-weight-normal">1000</span>
+                <span className="badge border font-weight-normal text-muted">1000</span>
               </div>
               <div className="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
                 <input
@@ -173,7 +173,7 @@ const ShopDetail = () => {
                 <label className="custom-control-label" for="size-1">
                   XS
                 </label>
-                <span className="badge border font-weight-normal">150</span>
+                <span className="badge border font-weight-normal text-muted">150</span>
               </div>
               <div className="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
                 <input
@@ -184,7 +184,7 @@ const ShopDetail = () => {
                 <label className="custom-control-label" for="size-2">
                   S
                 </label>
-                <span className="badge border font-weight-normal">295</span>
+                <span className="badge border font-weight-normal text-muted">295</span>
               </div>
               <div className="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
                 <input
@@ -195,7 +195,7 @@ const ShopDetail = () => {
                 <label className="custom-control-label" for="size-3">
                   M
                 </label>
-                <span className="badge border font-weight-normal">246</span>
+                <span className="badge border font-weight-normal text-muted">246</span>
               </div>
               <div className="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
                 <input
@@ -206,7 +206,7 @@ const ShopDetail = () => {
                 <label className="custom-control-label" for="size-4">
                   L
                 </label>
-                <span className="badge border font-weight-normal">145</span>
+                <span className="badge border font-weight-normal text-muted">145</span>
               </div>
               <div className="custom-control custom-checkbox d-flex align-items-center justify-content-between">
                 <input
@@ -217,7 +217,7 @@ const ShopDetail = () => {
                 <label className="custom-control-label" for="size-5">
                   XL
                 </label>
-                <span className="badge border font-weight-normal">168</span>
+                <span className="badge border font-weight-normal text-muted">168</span>
               </div>
             </form>
           </div>

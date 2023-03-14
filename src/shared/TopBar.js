@@ -4,14 +4,14 @@ const TopBar = () => {
         <div className="row bg-secondary py-2 px-xl-5">
             <div className="col-lg-6 d-none d-lg-block">
                 <div className="d-inline-flex align-items-center">
-                    <a className="text-dark" href="">FAQs</a>
+                    <div className="text-dark" href="">FAQs</div>
                     <span className="text-muted px-2">|</span>
-                    <a className="text-dark" href="">Help</a>
+                    <div className="text-dark" href="">Help</div>
                     <span className="text-muted px-2">|</span>
-                    <a className="text-dark" href="">Support</a>
+                    <div className="text-dark" href="">Support</div>
                 </div>
             </div>
-            <div className="col-lg-6 text-center text-lg-right">
+            <div className="col-lg-6 text-end text-lg-right">
                 <div className="d-inline-flex align-items-center">
                     <a className="text-dark px-2" href="">
                         <i className="fa fa-facebook-f"></i>
@@ -20,7 +20,7 @@ const TopBar = () => {
                         <i className="fa fa-twitter"></i>
                     </a>
                     <a className="text-dark px-2" href="">
-                        <i className="fa fa-linkedin-in"></i>
+                        <i className="fa fa-linkedin"></i>
                     </a>
                     <a className="text-dark px-2" href="">
                         <i className="fa fa-instagram"></i>
@@ -40,9 +40,9 @@ const TopBar = () => {
             <div className="col-lg-6 col-6 text-left">
                 <form action="">
                     <div className="input-group">
-                        <input type="text" className="form-control" placeholder="Search for products"/>
+                        <input type="text" className="form-control me-1" placeholder="Search for products"/>
                         <div className="input-group-append">
-                            <span className="input-group-text bg-transparent text-primary">
+                            <span className="input-group-text bg-transparent text-primary rounded-0">
                                 <i className="fa fa-search"></i>
                             </span>
                         </div>
@@ -50,13 +50,13 @@ const TopBar = () => {
                 </form>
             </div>
             <div className="col-lg-3 col-6 text-right">
-                <a href="" className="btn border">
+                <a href="" className="btn border me-1">
                     <i className="fa fa-heart text-primary"></i>
-                    <span>0</span>
+                    <span> 0</span>
                 </a>
                 <a href="" className="btn border">
                     <i className="fa fa-shopping-cart text-primary"></i>
-                    <span >0</span>
+                    <span> 0</span>
                 </a>
             </div>
         </div>

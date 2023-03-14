@@ -3,7 +3,7 @@ const CartShop = () => {
         <div className="container-fluid pt-5">
         <div className="row px-xl-5">
             <div className="col-lg-8 table-responsive mb-5">
-                <table className="table table-bordered text-center mb-0">
+                <table className="table text-center mb-0 border">
                     <thead className="bg-secondary text-dark">
                         <tr>
                             <th>Products</th>

@@ -9,7 +9,8 @@ import Offer from "../components/Home/Offer";
 import Product from "../components/Home/Product";
 import Subscribe from "../components/Home/Subscribe";
 import Footer from "../shared/Footer";
-import ButtonToTop from "../shared/buttonToTop";
+import ButtonToTop from "../shared/ButtonToTop";
+import AppDrawer from "../shared/AppDrawer";
 export function Home() {
 	const { t } = useTranslation();
 	const [language, setLanguage] = useState("vi");
@@ -20,9 +21,10 @@ export function Home() {
 		i18next.changeLanguage(event.target.value);
 	}
 
-	return <div>
+	return <>
 		<TopBar/>
-		<NavBar />
+		<AppDrawer/>
+			<NavBar />
 		<Featured />
 		<Categories/>
 		<Offer />
@@ -30,5 +32,5 @@ export function Home() {
 		<Subscribe />
 		<Footer />
 		<ButtonToTop/>
-	</div>
+	</>
 }

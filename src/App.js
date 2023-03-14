@@ -7,7 +7,8 @@ import {
   SIGN_UP,
   CHECKOUT,
   SHOP,
-  CART
+  CART,
+  CONTACT,
 } from "./constants/path_local";
 import { Home } from "./pages/home";
 import { LogIn } from "./pages/log_in";
@@ -17,6 +18,7 @@ import "./languages";
 import Detail from "./pages/detail";
 import Checkout from "./pages/checkout";
 import Cart from './pages/cart'
+import Contact from "./pages/contact";
 
 function App() {
   return (
@@ -29,6 +31,7 @@ function App() {
         <Route path={CHECKOUT} element={<Checkout />}></Route>
         <Route path={SHOP} element={<Shop />}></Route>
         <Route path={CART} element={<Cart />}></Route>
+        <Route path={CONTACT} element={<Contact/>}></Route>
       </Routes>
     </BrowserRouter>
   );

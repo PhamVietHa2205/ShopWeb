@@ -1,6 +1,6 @@
 const Footer = () => {
     return(
-        <div className="container-fluid bg-secondary text-dark mt-5 pt-5">
+        <div className="container-fluid bg-secondary text-dark">
         <div className="row px-xl-5 pt-5">
             <div className="col-lg-4 col-md-12 mb-5 pr-3 pr-xl-5">
                 <a href="" className="text-decoration-none">
@@ -9,7 +9,7 @@ const Footer = () => {
                 </a>
                 <p>Dolore erat dolor sit lorem vero amet. Sed sit lorem magna, ipsum no sit erat lorem et magna ipsum
                     dolore amet erat.</p>
-                <p className="mb-2"><i className="fa fa-location text-primary mr-3"></i>123 Street, New York, USA</p>
+                <p className="mb-2"><i className="fa fa-map-marker text-primary mr-3"></i>123 Street, New York, USA</p>
                 <p className="mb-2"><i className="fa fa-envelope text-primary mr-3"></i>info@example.com</p>
                 <p className="mb-0"><i className="fa fa-phone text-primary mr-3"></i>+012 345 67890</p>
             </div>
@@ -67,14 +67,11 @@ const Footer = () => {
                 </div>
             </div>
         </div>
-        <div className="row border-top border-light mx-xl-5 py-4">
+        <div className="row mx-xl-5 py-4">
             <div className="col-md-6 px-xl-0">
                 <p className="mb-md-0 text-center text-md-left text-dark">
-                    &copy; <a className="text-dark font-weight-semi-bold" href="#">Your Site Name</a>. All Rights Reserved.
-                    Designed
-                    by
-                    <a className="text-dark font-weight-semi-bold" href="https://htmlcodex.com">HTML Codex</a>
-                    Distributed By <a href="https://themewagon.com" target="_blank">ThemeWagon</a>
+                    &copy; <a className="text-dark text-decoration-none font-weight-semi-bold" href="#">Your Site Name</a>. All Rights Reserved. Designed by
+                    <a className="text-dark font-weight-semi-bold text-decoration-none" href="https://htmlcodex.com"> HTML Codex</a>. Distributed By <a className="text-decoration-none" target="_blank">ThemeWagon</a>
                 </p>
             </div>
             <div className="col-md-6 px-xl-0 text-center text-md-right">

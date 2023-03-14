@@ -3,6 +3,7 @@ import AppDrawer from "../shared/AppDrawer";
 import Footer from "../shared/Footer";
 import ShopDetail from "../components/Details/ShopDetail";
 import PageHeader from "../components/Details/PageHeader";
+import ButtonToTop from "../shared/ButtonToTop";
 const Detail = () => {
     return (
         <>
@@ -11,6 +12,7 @@ const Detail = () => {
         <PageHeader/>
         <ShopDetail/>
         <Footer />
+        <ButtonToTop/>
         </>
     );
 }
