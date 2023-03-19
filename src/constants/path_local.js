@@ -7,3 +7,4 @@ export const SHOP = "/shop";
 export const CART = "/cart";
 export const CONTACT = "/contact";
 export const ADMIN = '/admin';
+export const SIGN_IN_ADMIN = '/admin/sign-in';
