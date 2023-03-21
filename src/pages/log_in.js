@@ -1,4 +1,4 @@
-import '../asssets/css/log-in.css'
+// import '../asssets/css/log-in.css'
 
 export function LogIn() {
 	return <section className=" styleLogin login-block">

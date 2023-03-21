@@ -1,6 +1,6 @@
-import '../asssets/css/soft-ui-dashboard.css'
-import '../asssets/css/nucleo-icons.css';
-import '../asssets/css/nucleo-svg.css';
+// import '../asssets/css/soft-ui-dashboard.css'
+// import '../asssets/css/nucleo-icons.css';
+// import '../asssets/css/nucleo-svg.css';
 const SignUp  = () => {
 	return <>
 		 <nav className="navbar navbar-expand-lg position-absolute top-0 z-index-3 w-100 shadow-none my-3 navbar-transparent mt-4">
