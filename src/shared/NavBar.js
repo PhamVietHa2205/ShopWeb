@@ -1,7 +1,7 @@
 
 const NavBar = () => {
     return (
-        <div id="header-carousel" className="carousel slide col-lg-9" data-ride="carousel">
+        <div id="header-carousel" className="carousel slide" data-ride="carousel">
         <div className="carousel-inner">
             <div className="carousel-item active" style={{height: 410}}>
                 <img className="img-fluid" src={require('../asssets/img/carousel-1.jpg')} alt="Image"/>
