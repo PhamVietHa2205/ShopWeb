@@ -1,27 +1,28 @@
+import { useTranslation } from 'react-i18next';
 
 const NavBar = () => {
+    const { t } = useTranslation();
     return (
-        <div id="header-carousel" className="carousel slide col-lg-9" data-ride="carousel">
+        <div id="header-carousel" className="carousel slide" data-ride="carousel">
         <div className="carousel-inner">
             <div className="carousel-item active" style={{height: 410}}>
-                <img className="img-fluid" src={require('../asssets/img/carousel-1.jpg')} alt="Image"/>
+                <img className="img-fluid" src={require('../assets/img/carousel-1.jpg')} alt="Image"/>
                 <div className="carousel-caption d-flex flex-column align-items-center justify-content-center">
                     <div className="p-3" style={{maxWidth: 700}}>
-                        <h4 className="text-light text-uppercase font-weight-medium mb-3">10% Off Your First
+                        <h4 className="text-light text-uppercase font-weight-medium mb-3">{t('firstOrderSale')}
                             Order</h4>
-                        <h3 className="display-4 text-white font-weight-semi-bold mb-4">Fashionable Dress</h3>
-                        <a href='detail' className="btn btn-light py-2 px-3">Shop Now</a>
+                        <h3 className="display-4 text-white font-weight-semi-bold mb-4">{t('fashionableDress')}</h3>
+                        <a href='detail' className="btn btn-light py-2 px-3">{t('shopNow')}</a>
                     </div>
                 </div>
             </div>
             <div className="carousel-item" style={{height: 410}}>
-                <img className="img-fluid" src={require('../asssets/img/carousel-2.jpg')} alt="Image"/>
+                <img className="img-fluid" src={require('../assets/img/carousel-2.jpg')} alt="Image"/>
                 <div className="carousel-caption d-flex flex-column align-items-center justify-content-center">
                     <div className="p-3" style={{maxWidth: 700}}>
-                        <h4 className="text-light text-uppercase font-weight-medium mb-3">10% Off Your First
-                            Order</h4>
-                        <h3 className="display-4 text-white font-weight-semi-bold mb-4">Reasonable Price</h3>
-                        <a href='detail' className="btn btn-light py-2 px-3">Shop Now</a>
+                        <h4 className="text-light text-uppercase font-weight-medium mb-3">{t('firstOrderSale')}</h4>
+                        <h3 className="display-4 text-white font-weight-semi-bold mb-4">{t('reasonablePrice')}</h3>
+                        <a href='detail' className="btn btn-light py-2 px-3">{t('shopNow')}</a>
                     </div>
                 </div>
             </div>

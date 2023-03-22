@@ -1,14 +1,21 @@
+import { useState } from "react";
+import { useTranslation } from "react-i18next";
+
 const TopBar = () => {
+    const { t } = useTranslation();
+    const likeCount = useState(0);
+    const itemInCartCount = useState(0);
+
     return (
         <div className="container-fluid">
         <div className="row bg-secondary py-2 px-xl-5">
             <div className="col-lg-6 d-none d-lg-block">
                 <div className="d-inline-flex align-items-center">
-                    <div className="text-dark" href="">FAQs</div>
+                    <div className="text-dark" href="">{t('faqs')}</div>
                     <span className="text-muted px-2">|</span>
-                    <div className="text-dark" href="">Help</div>
+                    <div className="text-dark" href="">{t('help')}</div>
                     <span className="text-muted px-2">|</span>
-                    <div className="text-dark" href="">Support</div>
+                    <div className="text-dark" href="">{t('support')}</div>
                 </div>
             </div>
             <div className="col-lg-6 text-end text-lg-right">
@@ -52,11 +59,11 @@ const TopBar = () => {
             <div className="col-lg-3 col-6 text-right">
                 <a href="" className="btn border me-1">
                     <i className="fa fa-heart text-primary"></i>
-                    <span> 0</span>
+                    <span> {likeCount}</span>
                 </a>
                 <a href="" className="btn border">
                     <i className="fa fa-shopping-cart text-primary"></i>
-                    <span> 0</span>
+                    <span> {itemInCartCount}</span>
                 </a>
             </div>
         </div>
