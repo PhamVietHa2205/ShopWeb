@@ -6,16 +6,16 @@ const ShopDetail = () => {
                 <div id="product-carousel" className="carousel slide" data-ride="carousel">
                     <div className="carousel-inner border">
                         <div className="carousel-item active">
-                            <img className="w-100 h-100" src={require('../../asssets/img/product-1.jpg')} alt="Image"/>
+                            <img className="w-100 h-100" src={require('../../assets/img/product-1.jpg')} alt="Image"/>
                         </div>
                         <div className="carousel-item">
-                            <img className="w-100 h-100" src={require('../../asssets/img/product-2.jpg')} alt="Image"/>
+                            <img className="w-100 h-100" src={require('../../assets/img/product-2.jpg')} alt="Image"/>
                         </div>
                         <div className="carousel-item">
-                            <img className="w-100 h-100" src={require('../../asssets/img/product-3.jpg')} alt="Image"/>
+                            <img className="w-100 h-100" src={require('../../assets/img/product-3.jpg')} alt="Image"/>
                         </div>
                         <div className="carousel-item">
-                            <img className="w-100 h-100" src={require('../../asssets/img/product-4.jpg')} alt="Image"/>
+                            <img className="w-100 h-100" src={require('../../assets/img/product-4.jpg')} alt="Image"/>
                         </div>
                     </div>
                     <a className="carousel-control-prev" href="#product-carousel" data-slide="prev">
@@ -182,7 +182,7 @@ const ShopDetail = () => {
                             <div className="col-md-6">
                                 <h4 className="mb-4">1 review for "Colorful Stylish Shirt"</h4>
                                 <div className="media mb-4">
-                                    <img src={require('../../asssets/img/user.jpg')} alt="Image" className="img-fluid mr-3 mt-1" style={{width: 45}}/>
+                                    <img src={require('../../assets/img/user.jpg')} alt="Image" className="img-fluid mr-3 mt-1" style={{width: 45}}/>
                                     <div className="media-body">
                                         <h6>John Doe<small> - <i>01 Jan 2045</i></small></h6>
                                         <div className="text-primary mb-1">

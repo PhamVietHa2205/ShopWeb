@@ -97,7 +97,7 @@ const SignInAdmin = () => {
             </div>
             <div className="col-md-8">
               <div className="oblique position-absolute top-0 h-100 d-md-block d-none me-n8">
-                <div className="oblique-image bg-cover position-absolute fixed-top ms-auto h-100 z-index-0 ms-n6" style={{ backgroundImage: `url(${require('../asssets/img/curved-images/curved6.jpg')})` }} ></div>
+                <div className="oblique-image bg-cover position-absolute fixed-top ms-auto h-100 z-index-0 ms-n6" style={{ backgroundImage: `url(${require('../assets/img/curved-images/curved6.jpg')})` }} ></div>
               </div>
             </div>
           </div>

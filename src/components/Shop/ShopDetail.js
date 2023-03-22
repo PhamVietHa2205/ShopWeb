@@ -274,7 +274,7 @@ const ShopDetail = () => {
                 <div className="card-header product-img position-relative overflow-hidden bg-transparent border p-0">
                   <img
                     className="img-fluid w-100"
-                    src={require("../../asssets/img/product-1.jpg")}
+                    src={require("../../assets/img/product-1.jpg")}
                     alt=""
                   />
                 </div>
@@ -303,7 +303,7 @@ const ShopDetail = () => {
                 <div className="card-header product-img position-relative overflow-hidden bg-transparent border p-0">
                   <img
                     className="img-fluid w-100"
-                    src={require("../../asssets/img/product-2.jpg")}
+                    src={require("../../assets/img/product-2.jpg")}
                     alt=""
                   />
                 </div>
@@ -332,7 +332,7 @@ const ShopDetail = () => {
                 <div className="card-header product-img position-relative overflow-hidden bg-transparent border p-0">
                   <img
                     className="img-fluid w-100"
-                    src={require("../../asssets/img/product-3.jpg")}
+                    src={require("../../assets/img/product-3.jpg")}
                     alt=""
                   />
                 </div>
@@ -361,7 +361,7 @@ const ShopDetail = () => {
                 <div className="card-header product-img position-relative overflow-hidden bg-transparent border p-0">
                   <img
                     className="img-fluid w-100"
-                    src={require("../../asssets/img/product-4.jpg")}
+                    src={require("../../assets/img/product-4.jpg")}
                     alt=""
                   />
                 </div>
@@ -390,7 +390,7 @@ const ShopDetail = () => {
                 <div className="card-header product-img position-relative overflow-hidden bg-transparent border p-0">
                   <img
                     className="img-fluid w-100"
-                    src={require("../../asssets/img/product-5.jpg")}
+                    src={require("../../assets/img/product-5.jpg")}
                     alt=""
                   />
                 </div>
@@ -419,7 +419,7 @@ const ShopDetail = () => {
                 <div className="card-header product-img position-relative overflow-hidden bg-transparent border p-0">
                   <img
                     className="img-fluid w-100"
-                    src={require("../../asssets/img/product-6.jpg")}
+                    src={require("../../assets/img/product-6.jpg")}
                     alt=""
                   />
                 </div>
@@ -448,7 +448,7 @@ const ShopDetail = () => {
                 <div className="card-header product-img position-relative overflow-hidden bg-transparent border p-0">
                   <img
                     className="img-fluid w-100"
-                    src={require("../../asssets/img/product-7.jpg")}
+                    src={require("../../assets/img/product-7.jpg")}
                     alt=""
                   />
                 </div>
@@ -477,7 +477,7 @@ const ShopDetail = () => {
                 <div className="card-header product-img position-relative overflow-hidden bg-transparent border p-0">
                   <img
                     className="img-fluid w-100"
-                    src={require("../../asssets/img/product-8.jpg")}
+                    src={require("../../assets/img/product-8.jpg")}
                     alt=""
                   />
                 </div>
@@ -506,7 +506,7 @@ const ShopDetail = () => {
                 <div className="card-header product-img position-relative overflow-hidden bg-transparent border p-0">
                   <img
                     className="img-fluid w-100"
-                    src={require("../../asssets/img/product-1.jpg")}
+                    src={require("../../assets/img/product-1.jpg")}
                     alt=""
                   />
                 </div>

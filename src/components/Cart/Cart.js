@@ -15,7 +15,7 @@ const CartShop = () => {
                     </thead>
                     <tbody className="align-middle">
                         <tr>
-                            <td className="align-middle"><img src={require('../../asssets/img/product-1.jpg')} alt="" style={{width: 50}}/> Colorful Stylish Shirt</td>
+                            <td className="align-middle"><img src={require('../../assets/img/product-1.jpg')} alt="" style={{width: 50}}/> Colorful Stylish Shirt</td>
                             <td className="align-middle">$150</td>
                             <td className="align-middle">
                                 <div className="input-group quantity mx-auto" style={{width: 100}}>
@@ -36,7 +36,7 @@ const CartShop = () => {
                             <td className="align-middle"><button className="btn btn-sm btn-primary"><i className="fa fa-times"></i></button></td>
                         </tr>
                         <tr>
-                            <td className="align-middle"><img src={require('../../asssets/img/product-2.jpg')} alt="" style={{width: 50}}/> Colorful Stylish Shirt</td>
+                            <td className="align-middle"><img src={require('../../assets/img/product-2.jpg')} alt="" style={{width: 50}}/> Colorful Stylish Shirt</td>
                             <td className="align-middle">$150</td>
                             <td className="align-middle">
                                 <div className="input-group quantity mx-auto" style={{width: 100}}>
@@ -57,7 +57,7 @@ const CartShop = () => {
                             <td className="align-middle"><button className="btn btn-sm btn-primary"><i className="fa fa-times"></i></button></td>
                         </tr>
                         <tr>
-                            <td className="align-middle"><img src={require('../../asssets/img/product-3.jpg')} alt="" style={{width: 50}}/> Colorful Stylish Shirt</td>
+                            <td className="align-middle"><img src={require('../../assets/img/product-3.jpg')} alt="" style={{width: 50}}/> Colorful Stylish Shirt</td>
                             <td className="align-middle">$150</td>
                             <td className="align-middle">
                                 <div className="input-group quantity mx-auto" style={{width: 100}}>
@@ -78,7 +78,7 @@ const CartShop = () => {
                             <td className="align-middle"><button className="btn btn-sm btn-primary"><i className="fa fa-times"></i></button></td>
                         </tr>
                         <tr>
-                            <td className="align-middle"><img src={require('../../asssets/img/product-4.jpg')} alt="" style={{width: 50}}/> Colorful Stylish Shirt</td>
+                            <td className="align-middle"><img src={require('../../assets/img/product-4.jpg')} alt="" style={{width: 50}}/> Colorful Stylish Shirt</td>
                             <td className="align-middle">$150</td>
                             <td className="align-middle">
                                 <div className="input-group quantity mx-auto" style={{width: 100}}>
@@ -99,7 +99,7 @@ const CartShop = () => {
                             <td className="align-middle"><button className="btn btn-sm btn-primary"><i className="fa fa-times"></i></button></td>
                         </tr>
                         <tr>
-                            <td className="align-middle"><img src={require('../../asssets/img/product-5.jpg')} alt="" style={{width: 50}}/> Colorful Stylish Shirt</td>
+                            <td className="align-middle"><img src={require('../../assets/img/product-5.jpg')} alt="" style={{width: 50}}/> Colorful Stylish Shirt</td>
                             <td className="align-middle">$150</td>
                             <td className="align-middle">
                                 <div className="input-group quantity mx-auto" style={{width: 100}}>

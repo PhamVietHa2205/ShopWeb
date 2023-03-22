@@ -24,7 +24,7 @@ export function Home() {
 	return <>
 		<TopBar/>
 		<AppDrawer/>
-			<NavBar />
+		<NavBar />
 		<Featured />
 		<Categories/>
 		<Offer />

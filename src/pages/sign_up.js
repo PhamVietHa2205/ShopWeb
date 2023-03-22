@@ -1,6 +1,6 @@
-// import '../asssets/css/soft-ui-dashboard.css'
-// import '../asssets/css/nucleo-icons.css';
-// import '../asssets/css/nucleo-svg.css';
+// import '../assets/css/soft-ui-dashboard.css'
+// import '../assets/css/nucleo-icons.css';
+// import '../assets/css/nucleo-svg.css';
 const SignUp  = () => {
 	return <>
 		 <nav className="navbar navbar-expand-lg position-absolute top-0 z-index-3 w-100 shadow-none my-3 navbar-transparent mt-4">
@@ -52,7 +52,7 @@ const SignUp  = () => {
  
   <main className="main-content  mt-0">
     <section className="min-vh-100 mb-8">
-      <div className="page-header align-items-start min-vh-50 pt-5 pb-11 m-3 border-radius-lg" style={{ backgroundImage: `url(${require('../asssets/img/curved-images/curved14.jpg')})` }}  >
+      <div className="page-header align-items-start min-vh-50 pt-5 pb-11 m-3 border-radius-lg" style={{ backgroundImage: `url(${require('../assets/img/curved-images/curved14.jpg')})` }}  >
         <span className="mask bg-gradient-dark opacity-6"></span>
         <div className="container">
           <div className="row justify-content-center">

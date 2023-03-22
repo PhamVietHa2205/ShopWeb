@@ -75,7 +75,7 @@ const Footer = () => {
                 </p>
             </div>
             <div className="col-md-6 px-xl-0 text-center text-md-right">
-                <img className="img-fluid" src={require('../asssets/img/payments.png')} alt=""/>
+                <img className="img-fluid" src={require('../assets/img/payments.png')} alt=""/>
             </div>
         </div>
     </div>
