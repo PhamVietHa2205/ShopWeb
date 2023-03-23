@@ -14,7 +14,7 @@ import { Home } from "./pages/home";
 import { LogIn } from "./pages/log_in";
 import { SignUp } from "./pages/sign_up";
 import Shop from "./pages/shop";
-import "./languages/index";
+import "./languages";
 import Detail from "./pages/detail";
 import Checkout from "./pages/checkout";
 import Cart from './pages/cart'

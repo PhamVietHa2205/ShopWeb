@@ -47,7 +47,7 @@ const TopBar = () => {
             <div className="col-lg-6 col-6 text-left">
                 <form action="">
                     <div className="input-group">
-                        <input type="text" className="form-control me-1" placeholder="Search for products"/>
+                        <input type="text" className="form-control me-1" placeholder={t('searchForProduct')}/>
                         <div className="input-group-append">
                             <span className="input-group-text bg-transparent text-primary rounded-0">
                                 <i className="fa fa-search"></i>

@@ -4,12 +4,12 @@ import vi from './locales/vi';
 import en from './locales/en';
 
 const I18n = i18next.use(initReactI18next).init({
-    lng: 'vi',
+    lng: 'en',
     resources: {
         vi: vi,
         en: en,
     },
-    defaultLocale: 'vi',
+    defaultLocale: 'en',
     react: { useSuspense: false },
 })
 
