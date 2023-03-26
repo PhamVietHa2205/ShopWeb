@@ -5,6 +5,9 @@ import PageHeader from "../components/Cart/PageHeader";
 import CartShop from "../components/Cart/Cart";
 import ButtonToTop from "../shared/ButtonToTop";
 const Cart = () => {
+    require('../assets/css/style.css');
+	require('../assets/css/style.min.css');
+	require('../assets/scss/style.scss');
     return (
         <>
         <TopBar/>

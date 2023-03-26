@@ -1,6 +1,7 @@
-// import '../assets/css/log-in.css'
 
 export function LogIn() {
+  require('../assets/css/log-in.css');
+  require('../assets/css/style.css');
 	return <section className=" styleLogin login-block">
 
     <div className="container">

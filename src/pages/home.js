@@ -11,7 +11,11 @@ import Subscribe from "../components/Home/Subscribe";
 import Footer from "../shared/Footer";
 import ButtonToTop from "../shared/ButtonToTop";
 import AppDrawer from "../shared/AppDrawer";
-export function Home() {
+
+const Home = () => {
+	require('../assets/css/style.css');
+	require('../assets/css/style.min.css');
+	require('../assets/scss/style.scss');
 	const { t } = useTranslation();
 	const [language, setLanguage] = useState("vi");
 	const isLogin = localStorage.getItem('isLogin');
@@ -34,3 +38,4 @@ export function Home() {
 		<ButtonToTop/>
 	</>
 }
+export default Home;

@@ -1,7 +1,9 @@
-// import '../assets/css/soft-ui-dashboard.css'
-// import '../assets/css/nucleo-icons.css';
-// import '../assets/css/nucleo-svg.css';
+
 const SignUp  = () => {
+  require('../assets/css/soft-ui-dashboard.css');
+	require('../assets/css/nucleo-icons.css');
+	require('../assets/css/nucleo-svg.css');
+
 	return <>
 		 <nav className="navbar navbar-expand-lg position-absolute top-0 z-index-3 w-100 shadow-none my-3 navbar-transparent mt-4">
     <div className="container">
@@ -24,7 +26,7 @@ const SignUp  = () => {
             </a>
           </li>
           <li className="nav-item">
-            <a className="nav-link me-2" href="#">
+            <a className="nav-link me-2" href="admin/profile">
               <i className="fa fa-user opacity-6  me-1"></i>
               Profile
             </a>
@@ -36,7 +38,7 @@ const SignUp  = () => {
             </a>
           </li>
           <li className="nav-item">
-            <a className="nav-link me-2" href="sign-in-admin">
+            <a className="nav-link me-2" href="admin/sign-in">
               <i className="fa fa-key opacity-6  me-1"></i>
               Sign In
             </a>

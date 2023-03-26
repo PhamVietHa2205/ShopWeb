@@ -12,7 +12,7 @@ import {
   ADMIN,
   SIGN_IN_ADMIN
 } from "./constants/path_local";
-import { Home } from "./pages/home";
+import  Home  from "./pages/home";
 import { LogIn } from "./pages/log_in";
 import  SignUp  from "./pages/sign_up";
 import Shop from "./pages/shop";

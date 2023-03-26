@@ -1,4 +1,7 @@
 const SignInAdmin = () => {
+  require('../assets/css/soft-ui-dashboard.css');
+	require('../assets/css/nucleo-icons.css');
+	require('../assets/css/nucleo-svg.css');
     return (
         <>
          <div className="container position-sticky z-index-sticky top-0">
@@ -7,7 +10,7 @@ const SignInAdmin = () => {
         <nav className="navbar navbar-expand-lg blur blur-rounded top-0 z-index-3 shadow position-absolute my-3 py-2 start-0 end-0 mx-4">
           <div className="container-fluid pe-0">
             <a className="navbar-brand font-weight-bolder ms-lg-0 ms-3 " href="../pages/dashboard.html">
-              Soft UI Dashboard
+             Trang quản lý app
             </a>
             <button className="navbar-toggler shadow-none ms-2" type="button" data-bs-toggle="collapse" data-bs-target="#navigation" aria-controls="navigation" aria-expanded="false" aria-label="Toggle navigation">
               <span className="navbar-toggler-icon mt-2">
@@ -19,36 +22,31 @@ const SignInAdmin = () => {
             <div className="collapse navbar-collapse" id="navigation">
               <ul className="navbar-nav mx-auto ms-xl-auto me-xl-7">
                 <li className="nav-item">
-                  <a className="nav-link d-flex align-items-center me-2 active" aria-current="page" href="../pages/dashboard.html">
+                  <a className="nav-link d-flex align-items-center me-2 active" aria-current="page" href="/admin">
                     <i className="fa fa-pie-chart opacity-6 text-dark me-1"></i>
                     Dashboard
                   </a>
                 </li>
+               
                 <li className="nav-item">
-                  <a className="nav-link me-2" href="../pages/profile.html">
-                    <i className="fa fa-user opacity-6 text-dark me-1"></i>
-                    Profile
-                  </a>
-                </li>
-                <li className="nav-item">
-                  <a className="nav-link me-2" href="../pages/sign-up.html">
+                  <a className="nav-link me-2" href="/sign_up">
                     <i className="fa fa-user-circle opacity-6 text-dark me-1"></i>
-                    Sign Up
+                    Đăng ký tài khoản người dùng
                   </a>
                 </li>
                 <li className="nav-item">
-                  <a className="nav-link me-2" href="../pages/sign-in.html">
+                  <a className="nav-link me-2" href="/log_in">
                     <i className="fa fa-key opacity-6 text-dark me-1"></i>
-                    Sign In
+                   Đăng nhập người dùng
                   </a>
                 </li>
               </ul>
               <li className="nav-item d-flex align-items-center">
-                <a className="btn btn-round btn-sm mb-0 btn-outline-primary me-2" target="_blank" href="https://www.creative-tim.com/builder/soft-ui?ref=navbar-dashboard">Online Builder</a>
+                <a className="btn btn-round btn-sm mb-0 btn-outline-primary me-2" target="_blank" href="/">Trang người dùng</a>
               </li>
               <ul className="navbar-nav d-lg-block d-none">
                 <li className="nav-item">
-                  <a href="https://www.creative-tim.com/product/soft-ui-dashboard" className="btn btn-sm btn-round mb-0 me-1 bg-gradient-dark">Free download</a>
+                  <a href="https://github.com/PhamVietHa2205/ShopWeb" className="btn btn-sm btn-round mb-0 me-1 bg-gradient-dark">Free download</a>
                 </li>
               </ul>
             </div>
@@ -110,24 +108,7 @@ const SignInAdmin = () => {
     <div className="container">
       <div className="row">
         <div className="col-lg-8 mb-4 mx-auto text-center">
-          <a href="javascript:;" target="_blank" className="text-secondary me-xl-5 me-3 mb-sm-0 mb-2">
-            Company
-          </a>
-          <a href="javascript:;" target="_blank" className="text-secondary me-xl-5 me-3 mb-sm-0 mb-2">
-            About Us
-          </a>
-          <a href="javascript:;" target="_blank" className="text-secondary me-xl-5 me-3 mb-sm-0 mb-2">
-            Team
-          </a>
-          <a href="javascript:;" target="_blank" className="text-secondary me-xl-5 me-3 mb-sm-0 mb-2">
-            Products
-          </a>
-          <a href="javascript:;" target="_blank" className="text-secondary me-xl-5 me-3 mb-sm-0 mb-2">
-            Blog
-          </a>
-          <a href="javascript:;" target="_blank" className="text-secondary me-xl-5 me-3 mb-sm-0 mb-2">
-            Pricing
-          </a>
+         <h4>Nhóm 5</h4>
         </div>
         <div className="col-lg-8 mx-auto text-center mb-4 mt-2">
           <a href="javascript:;" target="_blank" className="text-secondary me-xl-4 me-4">
@@ -139,10 +120,7 @@ const SignInAdmin = () => {
           <a href="javascript:;" target="_blank" className="text-secondary me-xl-4 me-4">
             <span className="text-lg fa fa-instagram"></span>
           </a>
-          <a href="javascript:;" target="_blank" className="text-secondary me-xl-4 me-4">
-            <span className="text-lg fa fa-pinterest"></span>
-          </a>
-          <a href="javascript:;" target="_blank" className="text-secondary me-xl-4 me-4">
+          <a href="https://github.com/PhamVietHa2205/ShopWeb" target="_blank" className="text-secondary me-xl-4 me-4">
             <span className="text-lg fa fa-github"></span>
           </a>
         </div>
@@ -150,9 +128,9 @@ const SignInAdmin = () => {
       <div className="row">
         <div className="col-8 mx-auto text-center mt-1">
           <p className="mb-0 text-secondary">
-            Copyright © <script>
+          Created <script>
             3/3/2023
-            </script> Soft by Creative Tim.
+            </script> by Kien Rua.
           </p>
         </div>
       </div>
