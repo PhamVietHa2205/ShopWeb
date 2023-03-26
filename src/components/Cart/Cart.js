@@ -1,4 +1,53 @@
+import { useTranslation } from 'react-i18next';
+import { formatNumber } from '../../utils/index';
+import { useState, useEffect } from 'react';
+
 const CartShop = () => {
+    const { t } = useTranslation();
+    const [totalProductPrice, setTotalProductPrice] = useState(0);
+    const [shippingFee, setShippingFee] = useState(0);
+    const listInCart = [
+        {
+            image: "product-1.jpg",
+            name: "Colorful Stylish Shirt",
+            price: 150,
+            quantity: 1,
+        },
+        {
+            image: "product-2.jpg",
+            name: "Colorful Stylish Shirt",
+            price: 150,
+            quantity: 1,
+        },
+        {
+            image: "product-3.jpg",
+            name: "Colorful Stylish Shirt",
+            price: 150,
+            quantity: 1,
+        },
+        {
+            image: "product-4.jpg",
+            name: "Colorful Stylish Shirt",
+            price: 150,
+            quantity: 1,
+        },
+        {
+            image: "product-5.jpg",
+            name: "Colorful Stylish Shirt",
+            price: 150,
+            quantity: 1,
+        }
+    ]
+
+    useEffect(() => {
+        setShippingFee(10);
+    }, []);
+
+    useEffect(() => {
+        setTotalProductPrice(listInCart.map((item) => item.price * item.quantity).reduce((first, second) => first + second, 0));
+    }, [listInCart]);
+    
+
     return (
         <div className="container-fluid pt-5">
         <div className="row px-xl-5">
@@ -6,119 +55,39 @@ const CartShop = () => {
                 <table className="table text-center mb-0 border">
                     <thead className="bg-secondary text-dark">
                         <tr>
-                            <th>Products</th>
-                            <th>Price</th>
-                            <th>Quantity</th>
-                            <th>Total</th>
-                            <th>Remove</th>
+                            <th>{t('products')}</th>
+                            <th>{t('price')}</th>
+                            <th>{t('quantity')}</th>
+                            <th>{t('total')}</th>
+                            <th>{t('remove')}</th>
                         </tr>
                     </thead>
                     <tbody className="align-middle">
-                        <tr>
-                            <td className="align-middle"><img src={require('../../assets/img/product-1.jpg')} alt="" style={{width: 50}}/> Colorful Stylish Shirt</td>
-                            <td className="align-middle">$150</td>
-                            <td className="align-middle">
-                                <div className="input-group quantity mx-auto" style={{width: 100}}>
-                                    <div className="input-group-btn">
-                                        <button className="btn btn-sm btn-primary btn-minus" >
-                                        <i className="fa fa-minus"></i>
-                                        </button>
+                        {
+                            listInCart.map((item, index) => {
+                                return <tr>
+                                <td className="align-middle"><img src={require(`../../assets/img/${item.image}`)} alt="" style={{width: 50}}/> Colorful Stylish Shirt</td>
+                                <td className="align-middle">${formatNumber(item.price, 2)}</td>
+                                <td className="align-middle">
+                                    <div className="input-group quantity mx-auto" style={{width: 100}}>
+                                        <div className="input-group-btn">
+                                            <button className="btn btn-sm btn-primary btn-minus" >
+                                            <i className="fa fa-minus"></i>
+                                            </button>
+                                        </div>
+                                        <input type="text" className="form-control form-control-sm bg-secondary text-center" value={item.quantity}/>
+                                        <div className="input-group-btn">
+                                            <button className="btn btn-sm btn-primary btn-plus">
+                                                <i className="fa fa-plus"></i>
+                                            </button>
+                                        </div>
                                     </div>
-                                    <input type="text" className="form-control form-control-sm bg-secondary text-center" value="1"/>
-                                    <div className="input-group-btn">
-                                        <button className="btn btn-sm btn-primary btn-plus">
-                                            <i className="fa fa-plus"></i>
-                                        </button>
-                                    </div>
-                                </div>
-                            </td>
-                            <td className="align-middle">$150</td>
-                            <td className="align-middle"><button className="btn btn-sm btn-primary"><i className="fa fa-times"></i></button></td>
-                        </tr>
-                        <tr>
-                            <td className="align-middle"><img src={require('../../assets/img/product-2.jpg')} alt="" style={{width: 50}}/> Colorful Stylish Shirt</td>
-                            <td className="align-middle">$150</td>
-                            <td className="align-middle">
-                                <div className="input-group quantity mx-auto" style={{width: 100}}>
-                                    <div className="input-group-btn">
-                                        <button className="btn btn-sm btn-primary btn-minus" >
-                                        <i className="fa fa-minus"></i>
-                                        </button>
-                                    </div>
-                                    <input type="text" className="form-control form-control-sm bg-secondary text-center" value="1"/>
-                                    <div className="input-group-btn">
-                                        <button className="btn btn-sm btn-primary btn-plus">
-                                            <i className="fa fa-plus"></i>
-                                        </button>
-                                    </div>
-                                </div>
-                            </td>
-                            <td className="align-middle">$150</td>
-                            <td className="align-middle"><button className="btn btn-sm btn-primary"><i className="fa fa-times"></i></button></td>
-                        </tr>
-                        <tr>
-                            <td className="align-middle"><img src={require('../../assets/img/product-3.jpg')} alt="" style={{width: 50}}/> Colorful Stylish Shirt</td>
-                            <td className="align-middle">$150</td>
-                            <td className="align-middle">
-                                <div className="input-group quantity mx-auto" style={{width: 100}}>
-                                    <div className="input-group-btn">
-                                        <button className="btn btn-sm btn-primary btn-minus" >
-                                        <i className="fa fa-minus"></i>
-                                        </button>
-                                    </div>
-                                    <input type="text" className="form-control form-control-sm bg-secondary text-center" value="1"/>
-                                    <div className="input-group-btn">
-                                        <button className="btn btn-sm btn-primary btn-plus">
-                                            <i className="fa fa-plus"></i>
-                                        </button>
-                                    </div>
-                                </div>
-                            </td>
-                            <td className="align-middle">$150</td>
-                            <td className="align-middle"><button className="btn btn-sm btn-primary"><i className="fa fa-times"></i></button></td>
-                        </tr>
-                        <tr>
-                            <td className="align-middle"><img src={require('../../assets/img/product-4.jpg')} alt="" style={{width: 50}}/> Colorful Stylish Shirt</td>
-                            <td className="align-middle">$150</td>
-                            <td className="align-middle">
-                                <div className="input-group quantity mx-auto" style={{width: 100}}>
-                                    <div className="input-group-btn">
-                                        <button className="btn btn-sm btn-primary btn-minus" >
-                                        <i className="fa fa-minus"></i>
-                                        </button>
-                                    </div>
-                                    <input type="text" className="form-control form-control-sm bg-secondary text-center" value="1"/>
-                                    <div className="input-group-btn">
-                                        <button className="btn btn-sm btn-primary btn-plus">
-                                            <i className="fa fa-plus"></i>
-                                        </button>
-                                    </div>
-                                </div>
-                            </td>
-                            <td className="align-middle">$150</td>
-                            <td className="align-middle"><button className="btn btn-sm btn-primary"><i className="fa fa-times"></i></button></td>
-                        </tr>
-                        <tr>
-                            <td className="align-middle"><img src={require('../../assets/img/product-5.jpg')} alt="" style={{width: 50}}/> Colorful Stylish Shirt</td>
-                            <td className="align-middle">$150</td>
-                            <td className="align-middle">
-                                <div className="input-group quantity mx-auto" style={{width: 100}}>
-                                    <div className="input-group-btn">
-                                        <button className="btn btn-sm btn-primary btn-minus" >
-                                        <i className="fa fa-minus"></i>
-                                        </button>
-                                    </div>
-                                    <input type="text" className="form-control form-control-sm bg-secondary text-center" value="1"/>
-                                    <div className="input-group-btn">
-                                        <button className="btn btn-sm btn-primary btn-plus">
-                                            <i className="fa fa-plus"></i>
-                                        </button>
-                                    </div>
-                                </div>
-                            </td>
-                            <td className="align-middle">$150</td>
-                            <td className="align-middle"><button className="btn btn-sm btn-primary"><i className="fa fa-times"></i></button></td>
-                        </tr>
+                                </td>
+                                <td className="align-middle">${formatNumber(item.quantity * item.price, 2)}</td>
+                                <td className="align-middle"><button className="btn btn-sm btn-primary"><i className="fa fa-times"></i></button></td>
+                            </tr>
+                            })
+                        }
                     </tbody>
                 </table>
             </div>
@@ -127,30 +96,30 @@ const CartShop = () => {
                     <div className="input-group">
                         <input type="text" className="form-control p-4" placeholder="Coupon Code"/>
                         <div className="input-group-append">
-                            <button className="btn btn-primary">Apply Coupon</button>
+                            <button className="btn btn-primary">{t('applyCoupon')}</button>
                         </div>
                     </div>
                 </form>
                 <div className="card border-secondary mb-5">
                     <div className="card-header bg-secondary border-0">
-                        <h4 className="font-weight-semi-bold m-0">Cart Summary</h4>
+                        <h4 className="font-weight-semi-bold m-0">{t('cartSummary')}</h4>
                     </div>
                     <div className="card-body">
                         <div className="d-flex justify-content-between mb-3 pt-1">
-                            <h6 className="font-weight-medium">Subtotal</h6>
-                            <h6 className="font-weight-medium">$150</h6>
+                            <h6 className="font-weight-medium">{t('subTotal')}</h6>
+                            <h6 className="font-weight-medium">${totalProductPrice}</h6>
                         </div>
                         <div className="d-flex justify-content-between">
-                            <h6 className="font-weight-medium">Shipping</h6>
-                            <h6 className="font-weight-medium">$10</h6>
+                            <h6 className="font-weight-medium">{t('shipping')}</h6>
+                            <h6 className="font-weight-medium">${shippingFee}</h6>
                         </div>
                     </div>
                     <div className="card-footer border-secondary bg-transparent">
                         <div className="d-flex justify-content-between mt-2">
-                            <h5 className="font-weight-bold">Total</h5>
-                            <h5 className="font-weight-bold">$160</h5>
+                            <h5 className="font-weight-bold">{t('total')}</h5>
+                            <h5 className="font-weight-bold">${totalProductPrice + shippingFee}</h5>
                         </div>
-                        <button className="btn btn-block btn-primary my-3 py-3">Proceed To Checkout</button>
+                        <button className="btn btn-block btn-primary my-3 py-3">{t('proceedToCheckout')}</button>
                     </div>
                 </div>
             </div>

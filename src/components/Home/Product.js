@@ -1,5 +1,5 @@
 import { useTranslation } from 'react-i18next';
-import { formatNumber } from '../../utils';
+import { formatNumber } from '../../utils/index';
 
 const Product = () => {
     const { t } = useTranslation();

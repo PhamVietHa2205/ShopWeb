@@ -1,0 +1,8 @@
+.Custom-rating img {
+	max-width: none !important;
+}
+
+.back-to-top {
+	display: flex;
+	right: 10px;
+}
