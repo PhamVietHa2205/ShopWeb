@@ -6,3 +6,7 @@
 	display: flex;
 	right: 10px;
 }
+
+::-webkit-scrollbar {
+	width: 10px;
+}

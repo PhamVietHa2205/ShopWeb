@@ -4,7 +4,7 @@ import { useState, useEffect } from 'react';
 
 const CartShop = () => {
     const { t } = useTranslation();
-    const [totalProductPrice, setTotalProductPrice] = useState(0);
+    const [subTotalPrice, setSubTotalPrice] = useState(0);
     const [shippingFee, setShippingFee] = useState(0);
     const listInCart = [
         {
@@ -44,7 +44,7 @@ const CartShop = () => {
     }, []);
 
     useEffect(() => {
-        setTotalProductPrice(listInCart.map((item) => item.price * item.quantity).reduce((first, second) => first + second, 0));
+        setSubTotalPrice(listInCart.map((item) => item.price * item.quantity).reduce((first, second) => first + second, 0));
     }, [listInCart]);
     
 
@@ -107,7 +107,7 @@ const CartShop = () => {
                     <div className="card-body">
                         <div className="d-flex justify-content-between mb-3 pt-1">
                             <h6 className="font-weight-medium">{t('subTotal')}</h6>
-                            <h6 className="font-weight-medium">${totalProductPrice}</h6>
+                            <h6 className="font-weight-medium">${subTotalPrice}</h6>
                         </div>
                         <div className="d-flex justify-content-between">
                             <h6 className="font-weight-medium">{t('shipping')}</h6>
@@ -117,7 +117,7 @@ const CartShop = () => {
                     <div className="card-footer border-secondary bg-transparent">
                         <div className="d-flex justify-content-between mt-2">
                             <h5 className="font-weight-bold">{t('total')}</h5>
-                            <h5 className="font-weight-bold">${totalProductPrice + shippingFee}</h5>
+                            <h5 className="font-weight-bold">${subTotalPrice + shippingFee}</h5>
                         </div>
                         <button className="btn btn-block btn-primary my-3 py-3">{t('proceedToCheckout')}</button>
                     </div>

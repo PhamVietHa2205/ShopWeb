@@ -1,188 +1,147 @@
+import { useTranslation } from "react-i18next"
+import { useState, useEffect } from 'react';
+
 const CheckOut = () => {
+    const { t } = useTranslation();
+    const [listProduct, setListProduct] = useState([]);
+    const [subTotalPrice, setSubTotalPrice] = useState(0);
+    const [shippingFee, setShippingFee] = useState(0);
+    const [totalProductPrice, setTotalProductPrice] = useState(0);
+    const listInCart = [
+        {
+            image: "product-1.jpg",
+            name: "Colorful Stylish Shirt",
+            price: 150,
+            quantity: 1,
+        },
+        {
+            image: "product-2.jpg",
+            name: "Colorful Stylish Shirt",
+            price: 150,
+            quantity: 1,
+        },
+        {
+            image: "product-3.jpg",
+            name: "Colorful Stylish Shirt",
+            price: 150,
+            quantity: 1,
+        },
+        {
+            image: "product-4.jpg",
+            name: "Colorful Stylish Shirt",
+            price: 150,
+            quantity: 1,
+        },
+        {
+            image: "product-5.jpg",
+            name: "Colorful Stylish Shirt",
+            price: 150,
+            quantity: 1,
+        }
+    ]
+
+    useEffect(() => {
+        setListProduct(listInCart);
+        setShippingFee(10);
+        setSubTotalPrice(listInCart.map((item) => item.price).reduce((first, second) => first + second, 0));
+        setTotalProductPrice(listInCart.map((item) => item.price).reduce((first, second) => first + second, 10));
+    }, [listInCart]);
+
     return (
         <div className="container-fluid pt-5">
-        <div className="row px-xl-5">
-            <div className="col-lg-8">
-                <div className="mb-4">
-                    <h4 className="font-weight-semi-bold mb-4">Billing Address</h4>
-                    <div className="row">
-                        <div className="col-md-6 form-group">
-                            <label>First Name</label>
-                            <input className="form-control" type="text" placeholder="John"/>
-                        </div>
-                        <div className="col-md-6 form-group">
-                            <label>Last Name</label>
-                            <input className="form-control" type="text" placeholder="Doe"/>
-                        </div>
-                        <div className="col-md-6 form-group">
-                            <label>E-mail</label>
-                            <input className="form-control" type="text" placeholder="example@email.com"/>
-                        </div>
-                        <div className="col-md-6 form-group">
-                            <label>Mobile No</label>
-                            <input className="form-control" type="text" placeholder="+123 456 789"/>
-                        </div>
-                        <div className="col-md-6 form-group">
-                            <label>Address Line 1</label>
-                            <input className="form-control" type="text" placeholder="123 Street"/>
-                        </div>
-                        <div className="col-md-6 form-group">
-                            <label>Address Line 2</label>
-                            <input className="form-control" type="text" placeholder="123 Street"/>
-                        </div>
-                        <div className="col-md-6 form-group">
-                            <label>Country</label>
-                            <select className="custom-select">
-                                <option selected>United States</option>
-                                <option>Afghanistan</option>
-                                <option>Albania</option>
-                                <option>Algeria</option>
-                            </select>
-                        </div>
-                        <div className="col-md-6 form-group">
-                            <label>City</label>
-                            <input className="form-control" type="text" placeholder="New York"/>
-                        </div>
-                        <div className="col-md-6 form-group">
-                            <label>State</label>
-                            <input className="form-control" type="text" placeholder="New York"/>
-                        </div>
-                        <div className="col-md-6 form-group">
-                            <label>ZIP Code</label>
-                            <input className="form-control" type="text" placeholder="123"/>
-                        </div>
-                        <div className="col-md-12 form-group">
-                            <div className="custom-control custom-checkbox">
-                                <input type="checkbox" className="custom-control-input" id="newaccount"/>
-                                <label className="custom-control-label" for="newaccount">Create an account</label>
+            <div className="row px-xl-5">
+                <div className="col-lg-8">
+                    <div className="mb-4">
+                        <h4 className="font-weight-semi-bold mb-4">{t('billingAddress')}</h4>
+                        <div className="row">
+                            <div className="col-md-6 form-group">
+                                <label>{t('firstName')}</label>
+                                <input className="form-control" type="text" />
                             </div>
-                        </div>
-                        <div className="col-md-12 form-group">
-                            <div className="custom-control custom-checkbox">
-                                <input type="checkbox" className="custom-control-input" id="shipto"/>
-                                <label className="custom-control-label" for="shipto"  data-bs-toggle="collapse" data-bs-target="#shipping-address">Ship to different address</label>
+                            <div className="col-md-6 form-group">
+                                <label>{t('lastName')}</label>
+                                <input className="form-control" type="text" />
                             </div>
+                            <div className="col-md-6 form-group">
+                                <label>{t('email')}</label>
+                                <input className="form-control" type="text" />
+                            </div>
+                            <div className="col-md-6 form-group">
+                                <label>{t('phoneNumber')}</label>
+                                <input className="form-control" type="text" />
+                            </div>
+                            <div className="col-md-6 form-group">
+                                <label>{t('address')}</label>
+                                <input className="form-control" type="text" />
+                            </div>
+                            <span className="col-md-6" action="">
+                                <label>{t('addCoupon')}</label>
+                                <div className="input-group">
+                                    <input type="text" className="form-control" />
+                                </div>
+                            </span>
                         </div>
                     </div>
                 </div>
-                <div className="collapse mb-4" id="shipping-address">
-                    <h4 className="font-weight-semi-bold mb-4">Shipping Address</h4>
-                    <div className="row">
-                        <div className="col-md-6 form-group">
-                            <label>First Name</label>
-                            <input className="form-control" type="text" placeholder="John"/>
+                <div className="col-lg-4">
+                    <div className="card border-secondary mb-5">
+                        <div className="card-header bg-secondary border-0">
+                            <h4 className="font-weight-semi-bold m-0">{t('orderTotal')}</h4>
                         </div>
-                        <div className="col-md-6 form-group">
-                            <label>Last Name</label>
-                            <input className="form-control" type="text" placeholder="Doe"/>
-                        </div>
-                        <div className="col-md-6 form-group">
-                            <label>E-mail</label>
-                            <input className="form-control" type="text" placeholder="example@email.com"/>
-                        </div>
-                        <div className="col-md-6 form-group">
-                            <label>Mobile No</label>
-                            <input className="form-control" type="text" placeholder="+123 456 789"/>
-                        </div>
-                        <div className="col-md-6 form-group">
-                            <label>Address Line 1</label>
-                            <input className="form-control" type="text" placeholder="123 Street"/>
-                        </div>
-                        <div className="col-md-6 form-group">
-                            <label>Address Line 2</label>
-                            <input className="form-control" type="text" placeholder="123 Street"/>
-                        </div>
-                        <div className="col-md-6 form-group">
-                            <label>Country</label>
-                            <select className="custom-select">
-                                <option selected>United States</option>
-                                <option>Afghanistan</option>
-                                <option>Albania</option>
-                                <option>Algeria</option>
-                            </select>
-                        </div>
-                        <div className="col-md-6 form-group">
-                            <label>City</label>
-                            <input className="form-control" type="text" placeholder="New York"/>
-                        </div>
-                        <div className="col-md-6 form-group">
-                            <label>State</label>
-                            <input className="form-control" type="text" placeholder="New York"/>
-                        </div>
-                        <div className="col-md-6 form-group">
-                            <label>ZIP Code</label>
-                            <input className="form-control" type="text" placeholder="123"/>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div className="col-lg-4">
-                <div className="card border-secondary mb-5">
-                    <div className="card-header bg-secondary border-0">
-                        <h4 className="font-weight-semi-bold m-0">Order Total</h4>
-                    </div>
-                    <div className="card-body">
-                        <h5 className="font-weight-medium mb-3">Products</h5>
-                        <div className="d-flex justify-content-between">
-                            <p>Colorful Stylish Shirt 1</p>
-                            <p>$150</p>
-                        </div>
-                        <div className="d-flex justify-content-between">
-                            <p>Colorful Stylish Shirt 2</p>
-                            <p>$150</p>
-                        </div>
-                        <div className="d-flex justify-content-between">
-                            <p>Colorful Stylish Shirt 3</p>
-                            <p>$150</p>
-                        </div>
-                        <hr className="mt-0"/>
-                        <div className="d-flex justify-content-between mb-3 pt-1">
-                            <h6 className="font-weight-medium">Subtotal</h6>
-                            <h6 className="font-weight-medium">$150</h6>
-                        </div>
-                        <div className="d-flex justify-content-between">
-                            <h6 className="font-weight-medium">Shipping</h6>
-                            <h6 className="font-weight-medium">$10</h6>
-                        </div>
-                    </div>
-                    <div className="card-footer border-secondary bg-transparent">
-                        <div className="d-flex justify-content-between mt-2">
-                            <h5 className="font-weight-bold">Total</h5>
-                            <h5 className="font-weight-bold">$160</h5>
-                        </div>
-                    </div>
-                </div>
-                <div className="card border-secondary mb-5">
-                    <div className="card-header bg-secondary border-0">
-                        <h4 className="font-weight-semi-bold m-0">Payment</h4>
-                    </div>
-                    <div className="card-body">
-                        <div className="form-group">
-                            <div className="custom-control custom-radio">
-                                <input type="radio" className="custom-control-input" name="payment" id="paypal"/>
-                                <label className="custom-control-label" for="paypal">Paypal</label>
+                        <div className="card-body">
+                            <h5 className="font-weight-medium mb-3">{t('products')}</h5>
+                            <div className="mb-2" style={{maxHeight: "200px", overflow: "auto"}}>
+                            {
+                                listInCart.map((item) => {
+                                    return <div className="d-flex justify-content-between">
+                                    <p>{item.name}</p>
+                                    <p>${item.price}</p>
+                                </div>
+                                })
+                            }
+                            </div>
+                            <hr className="mt-0" />
+                            <div className="d-flex justify-content-between mb-3 pt-1">
+                                <h6 className="font-weight-medium">{t('subTotal')}</h6>
+                                <h6 className="font-weight-medium">${subTotalPrice}</h6>
+                            </div>
+                            <div className="d-flex justify-content-between">
+                                <h6 className="font-weight-medium">{t('shippingFee')}</h6>
+                                <h6 className="font-weight-medium">${shippingFee}</h6>
                             </div>
                         </div>
-                        <div className="form-group">
-                            <div className="custom-control custom-radio">
-                                <input type="radio" className="custom-control-input" name="payment" id="directcheck"/>
-                                <label className="custom-control-label" for="directcheck">Direct Check</label>
-                            </div>
-                        </div>
-                        <div className="">
-                            <div className="custom-control custom-radio">
-                                <input type="radio" className="custom-control-input" name="payment" id="banktransfer"/>
-                                <label className="custom-control-label" for="banktransfer">Bank Transfer</label>
+                        <div className="card-footer border-secondary bg-transparent">
+                            <div className="d-flex justify-content-between mt-2">
+                                <h5 className="font-weight-bold">{t('total')}</h5>
+                                <h5 className="font-weight-bold">${subTotalPrice + shippingFee}</h5>
                             </div>
                         </div>
                     </div>
-                    <div className="card-footer border-secondary bg-transparent">
-                        <button className="btn btn-lg btn-block btn-primary font-weight-bold my-3 py-3">Place Order</button>
+                    <div className="card border-secondary mb-5">
+                        <div className="card-header bg-secondary border-0">
+                            <h4 className="font-weight-semi-bold m-0">{t('payment')}</h4>
+                        </div>
+                        <div className="card-body">
+                            <div className="form-group">
+                                <div className="custom-control custom-radio">
+                                    <input type="radio" className="custom-control-input" name="payment" id="paypal" />
+                                    <label className="custom-control-label" for="paypal">{t('paypal')}</label>
+                                </div>
+                            </div>
+                            <div className="">
+                                <div className="custom-control custom-radio">
+                                    <input type="radio" className="custom-control-input" name="payment" id="banktransfer" />
+                                    <label className="custom-control-label" for="banktransfer">{t('bankTransfer')}</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div className="card-footer border-secondary bg-transparent">
+                            <button className="btn btn-lg btn-block btn-primary font-weight-bold my-3 py-3">{t('placeOrder')}</button>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
     )
 }
 export default CheckOut;
