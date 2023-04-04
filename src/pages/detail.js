@@ -2,14 +2,14 @@ import TopBar from "../shared/TopBar";
 import AppDrawer from "../shared/AppDrawer";
 import Footer from "../shared/Footer";
 import ShopDetail from "../components/Details/ShopDetail";
-import PageHeader from "../components/Details/PageHeader";
+import PageHeader from "../components/PageHeader";
 import ButtonToTop from "../shared/ButtonToTop";
 const Detail = () => {
     return (
         <>
         <TopBar/>
         <AppDrawer />
-        <PageHeader/>
+        <PageHeader title={'shopDetail'}/>
         <ShopDetail/>
         <Footer />
         <ButtonToTop/>

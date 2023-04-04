@@ -1,5 +1,5 @@
 import TopBar from "../shared/TopBar";
-import PageHeader from "../components/Contact/PageHeader";
+import PageHeader from "../components/PageHeader";
 import Footer from "../shared/Footer";
 import ContactDetail from "../components/Contact/ContactDetail";
 import ButtonToTop from "../shared/ButtonToTop";
@@ -10,7 +10,7 @@ const Contact = () => {
             <>
             <TopBar/>
             <AppDrawer />
-            <PageHeader/>
+            <PageHeader title={'contact'}/>
             <ContactDetail/>
             <Footer />
             <ButtonToTop/>

@@ -1,72 +1,65 @@
+import { useTranslation } from 'react-i18next';
+import { WEB_SHOP_INFO } from '../constants/key_local';
+
 export function LogIn() {
-	return <section class="login-block">
-    <div class="container">
-	<div class="row">
-		<div class="col-md-4 login-sec">
-		    <h2 class="text-center">Login Now</h2>
-		    <form class="login-form">
-  <div class="form-group">
-    <label for="exampleInputEmail1" class="text-uppercase">Username</label>
-    <input type="text" class="form-control" placeholder=""/>
-    
-  </div>
-  <div class="form-group">
-    <label for="exampleInputPassword1" class="text-uppercase">Password</label>
-    <input type="password" class="form-control" placeholder=""/>
-  </div>
-  
-  
-    <div class="form-check">
-    <label class="form-check-label">
-      <input type="checkbox" class="form-check-input"/>
-      <small>Remember Me</small>
-    </label>
-    <button type="submit" class="btn btn-login float-right">Submit</button>
-  </div>
-  
-</form>
-<div class="copy-text">Created with <i class="fa fa-heart"></i> by <a href="http://grafreez.com">Grafreez.com</a></div>
+	const { t } = useTranslation();
+	return <section className="login-block">
+		<div className="container">
+			<div className="row">
+				<div className="col-md-4 login-sec">
+					<h2 className="text-center">{t('loginNow')}</h2>
+					<form className="login-form">
+						<div className="form-group">
+							<label for="exampleInputEmail1" className="text-uppercase">{t('username')}</label>
+							<input type="text" className="form-control" placeholder="" />
+
+						</div>
+						<div className="form-group">
+							<label for="exampleInputPassword1" className="text-uppercase">{t('password')}</label>
+							<input type="password" className="form-control" placeholder="" />
+						</div>
+
+
+						<div className="form-check">
+							<label className="form-check-label">
+								<input type="checkbox" className="form-check-input" />
+								<small>{t('rememberMe')}</small>
+							</label>
+							<button type="submit" className="btn btn-login float-right">{t('submit')}</button>
+						</div>
+
+					</form>
+					<div className="copy-text">{t('createdWith')}<i className="fa fa-heart"></i> {t('by')} <a href="http://grafreez.com">{WEB_SHOP_INFO.DESIGNER}</a></div>
+				</div>
+				<div className="col-md-8 banner-sec">
+					<div id="carouselExampleIndicators" className="carousel slide" data-bs-circle="true" data-bs-ride="carousel">
+						<ol className="carousel-indicators">
+							<li data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" className="active"></li>
+							<li data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1"></li>
+						</ol>
+						<div className="carousel-inner" role="listbox">
+							<div className="carousel-item active" data-bs-interval="3000">
+								<img className="d-block img-fluid" src="https://static.pexels.com/photos/33972/pexels-photo.jpg" alt="First slide" />
+								<div className="carousel-caption d-none d-md-block">
+									<div className="banner-text">
+										<h2>{t('welcomeToShop')}</h2>
+										<p>{t('welcomeToShopDescription')}</p>
+									</div>
+								</div>
+							</div>
+							<div className="carousel-item" data-bs-interval="3000">
+								<img className="d-block img-fluid" src="https://images.pexels.com/photos/7097/people-coffee-tea-meeting.jpg" alt="First slide" />
+								<div className="carousel-caption d-none d-md-block">
+									<div className="banner-text">
+										<h2>{t('beCautious')}</h2>
+										<p>{t('beCautiousDescription')}</p>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
 		</div>
-		<div class="col-md-8 banner-sec">
-            <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
-                 <ol class="carousel-indicators">
-                    <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
-                    <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
-                    <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
-                  </ol>
-            <div class="carousel-inner" role="listbox">
-    <div class="carousel-item active">
-      <img class="d-block img-fluid" src="https://static.pexels.com/photos/33972/pexels-photo.jpg" alt="First slide"/>
-      <div class="carousel-caption d-none d-md-block">
-        <div class="banner-text">
-            <h2>This is Heaven</h2>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation</p>
-        </div>	
-  </div>
-    </div>
-    <div class="carousel-item">
-      <img class="d-block img-fluid" src="https://images.pexels.com/photos/7097/people-coffee-tea-meeting.jpg" alt="First slide"/>
-      <div class="carousel-caption d-none d-md-block">
-        <div class="banner-text">
-            <h2>This is Heaven</h2>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation</p>
-        </div>	
-    </div>
-    </div>
-    <div class="carousel-item">
-      <img class="d-block img-fluid" src="https://images.pexels.com/photos/872957/pexels-photo-872957.jpeg" alt="First slide"/>
-      <div class="carousel-caption d-none d-md-block">
-        <div class="banner-text">
-            <h2>This is Heaven</h2>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation</p>
-        </div>	
-    </div>
-  </div>
-            </div>	   
-		    
-		</div>
-	</div>
-</div>
-</div>
-</section>
+	</section>
 }

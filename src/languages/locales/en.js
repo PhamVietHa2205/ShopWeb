@@ -107,5 +107,17 @@ export default {
         "paypal": "Paypal",
         "bankTransfer": "Bank Transfer",
         "placeOrder": "Place Order",
+        "loginNow": "Login Now",
+        "username": "Username",
+        "password": "Password",
+        "rememberMe": "Remember Me",
+        "submit": "Submit",
+        "createdWith": "Created With",
+        "by": "by",
+        "welcomeToShop": "Welcome to our shop web",
+        "welcomeToShopDescription": "This website is created for everyone to trade with satisfaction. You can find the best things suit you here",
+        "beCautious": "Be Cautious",
+        "beCautiousDescription": "Even when we are trying to check products carefully, you still can be disappointed about the quality. In this case, please send us reports to help preventing bad actions",
+           
     }
 }
