@@ -1,7 +1,7 @@
 import { useTranslation } from 'react-i18next';
 import { useEffect, useState } from "react";
 import { formatNumber } from '../../utils/index';
-import Rating from 'react-rating';
+var Rating = require('react-rating');
 
 const ShopDetail = () => {
     const { t } = useTranslation();
@@ -92,7 +92,7 @@ const ShopDetail = () => {
                 <div className="col-lg-7 pb-5">
                     <h3 className="font-weight-semi-bold">{productName}</h3>
                     <div className="d-flex mb-3">
-                        <Rating name="rating"
+                        <Rating
                             className='me-3'
                             initialRating={productRate}
                             emptySymbol={<i className='fa fa-star-o'></i>}
@@ -110,7 +110,7 @@ const ShopDetail = () => {
                                 listSize.map((item, index) => {
                                     return <div className="custom-control custom-radio custom-control-inline">
                                         <input type="radio" className="custom-control-input" id={item} name="size" />
-                                        <label className="custom-control-label text-uppercase" for="size-1">{item}</label>
+                                        <label className="custom-control-label text-uppercase" htmlFor="size-1">{item}</label>
                                     </div>
                                 })
                             }
@@ -123,7 +123,7 @@ const ShopDetail = () => {
                                 listColor.map((item, index) => {
                                     return <div className="custom-control custom-radio custom-control-inline">
                                         <input type="radio" className="custom-control-input" id="item" name="color" />
-                                        <label className="custom-control-label text-capitalize" for="color-1">{item}</label>
+                                        <label className="custom-control-label text-capitalize" htmlFor="color-1">{item}</label>
                                     </div>
                                 })
                             }
@@ -213,15 +213,15 @@ const ShopDetail = () => {
                                                 className='form-group me-3'
                                                 initialRating={yourRate}
                                                 value={yourRate}
-                                                onChange={(event, newValue) => setYourRate(newValue)}
+                                                onChange={(event: any, newValue: any) => setYourRate(newValue)}
                                                 emptySymbol={<i className='fa fa-star-o'></i>}
                                                 fullSymbol={<i className='fa fa-star'></i>}
                                                 readonly
                                             />
                                         </div>
                                         <div className="form-group">
-                                            <label for="message">{t('yourReview')} *</label>
-                                            <textarea id="message" cols="30" rows="5" className="form-control"></textarea>
+                                            <label htmlFor="message">{t('yourReview')} *</label>
+                                            <textarea id="message" cols={30} rows={5} className="form-control"></textarea>
                                         </div>
                                         <div className="form-group mb-0">
                                             <input type="submit" value="Leave Your Review" className="btn btn-primary px-3" />

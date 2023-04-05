@@ -2,7 +2,7 @@ import TopBar from "../shared/TopBar";
 import AppDrawer from "../shared/AppDrawer";
 import Footer from "../shared/Footer";
 import CheckOut from "../components/Checkout/CheckOut";
-import PageHeader from "../components/PageHeader";
+import PageHeader from "../shared/PageHeader";
 import ButtonToTop from "../shared/ButtonToTop";
 const Checkout = () => {
     return (

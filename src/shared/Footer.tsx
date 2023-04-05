@@ -36,11 +36,11 @@ const Footer = () => {
                         <form action="">
                             <div className="form-group">
                                 <input type="text" className="form-control border-0 py-4" placeholder={t('yourName')}
-                                    required="required" />
+                                    required/>
                             </div>
                             <div className="form-group">
                                 <input type="email" className="form-control border-0 py-4" placeholder={t('yourEmail')}
-                                    required="required" />
+                                    required/>
                             </div>
                             <div>
                                 <button className="btn btn-primary btn-block border-0 py-3" type="submit">{t('subscribeNow')}</button>

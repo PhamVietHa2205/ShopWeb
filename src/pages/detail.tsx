@@ -1,20 +1,20 @@
 import TopBar from "../shared/TopBar";
 import AppDrawer from "../shared/AppDrawer";
 import Footer from "../shared/Footer";
-import PageHeader from "../components/PageHeader";
-import CartShop from "../components/Cart/Cart";
+import ShopDetail from "../components/Details/ShopDetail";
+import PageHeader from "../shared/PageHeader";
 import ButtonToTop from "../shared/ButtonToTop";
-const Cart = () => {
+const Detail = () => {
     return (
         <>
         <TopBar/>
         <AppDrawer />
-        <PageHeader title={'cart'}/>
-        <CartShop/>
+        <PageHeader title={'shopDetail'}/>
+        <ShopDetail/>
         <Footer />
         <ButtonToTop/>
         </>
     );
 }
 
-export default Cart;
+export default Detail;

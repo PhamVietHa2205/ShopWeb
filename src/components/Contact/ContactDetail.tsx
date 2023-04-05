@@ -14,25 +14,25 @@ const ContactDetail = () => {
 					<div className="col-lg-7 mb-5">
 						<div className="contact-form">
 							<div id="success"></div>
-							<form name="sentMessage" id="contactForm" novalidate="novalidate">
+							<form name="sentMessage" id="contactForm" noValidate>
 								<div className="control-group">
 									<input type="text" className="form-control" id="name" placeholder={t('yourName')}
-										required="required" data-validation-required-message="Please enter your name" />
+										required data-validation-required-message="Please enter your name" />
 									<p className="help-block text-danger"></p>
 								</div>
 								<div className="control-group">
 									<input type="email" className="form-control" id="email" placeholder={t('yourEmail')}
-										required="required" data-validation-required-message="Please enter your email" />
+										required data-validation-required-message="Please enter your email" />
 									<p className="help-block text-danger"></p>
 								</div>
 								<div className="control-group">
 									<input type="text" className="form-control" id="subject" placeholder={t('subject')}
-										required="required" data-validation-required-message="Please enter a subject" />
+										required data-validation-required-message="Please enter a subject" />
 									<p className="help-block text-danger"></p>
 								</div>
 								<div className="control-group">
-									<textarea className="form-control" rows="6" id="message" placeholder={t('message')}
-										required="required"
+									<textarea className="form-control" rows={6} id="message" placeholder={t('message')}
+										required
 										data-validation-required-message={t('messageBlankValidate')}></textarea>
 									<p className="help-block text-danger"></p>
 								</div>

@@ -10,12 +10,12 @@ export function LogIn() {
 					<h2 className="text-center">{t('loginNow')}</h2>
 					<form className="login-form">
 						<div className="form-group">
-							<label for="exampleInputEmail1" className="text-uppercase">{t('username')}</label>
+							<label htmlFor="exampleInputEmail1" className="text-uppercase">{t('username')}</label>
 							<input type="text" className="form-control" placeholder="" />
 
 						</div>
 						<div className="form-group">
-							<label for="exampleInputPassword1" className="text-uppercase">{t('password')}</label>
+							<label htmlFor="exampleInputPassword1" className="text-uppercase">{t('password')}</label>
 							<input type="password" className="form-control" placeholder="" />
 						</div>
 

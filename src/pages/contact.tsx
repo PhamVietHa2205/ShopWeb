@@ -1,5 +1,5 @@
 import TopBar from "../shared/TopBar";
-import PageHeader from "../components/PageHeader";
+import PageHeader from "../shared/PageHeader";
 import Footer from "../shared/Footer";
 import ContactDetail from "../components/Contact/ContactDetail";
 import ButtonToTop from "../shared/ButtonToTop";

@@ -9,8 +9,6 @@ const I18n = i18next.use(initReactI18next).init({
         vi: vi,
         en: en,
     },
-    defaultLocale: 'en',
-    react: { useSuspense: false },
 })
 
 export default I18n;

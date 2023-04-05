@@ -30,7 +30,7 @@ const  Categories = () => {
         }
     ];
 
-    const getCategoryImage = (type) => {
+    const getCategoryImage = (type: any) => {
         switch (type) {
             case CATEGORY_TYPE.MEN_DRESSES: 
                 return "img/cat-1.jpg";

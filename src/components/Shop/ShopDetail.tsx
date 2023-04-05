@@ -13,7 +13,7 @@ const ShopDetail = () => {
                   checked
                   id="price-all"
                 />
-                <label className="custom-control-label" for="price-all">
+                <label className="custom-control-label" htmlFor="price-all">
                   All Price
                 </label>
                 <span className="badge border font-weight-normal text-muted">1000</span>
@@ -24,7 +24,7 @@ const ShopDetail = () => {
                   className="custom-control-input"
                   id="price-1"
                 />
-                <label className="custom-control-label" for="price-1">
+                <label className="custom-control-label" htmlFor="price-1">
                   $0 - $100
                 </label>
                 <span className="badge border font-weight-normal text-muted">150</span>
@@ -35,7 +35,7 @@ const ShopDetail = () => {
                   className="custom-control-input"
                   id="price-2"
                 />
-                <label className="custom-control-label" for="price-2">
+                <label className="custom-control-label" htmlFor="price-2">
                   $100 - $200
                 </label>
                 <span className="badge border font-weight-normal text-muted">295</span>
@@ -46,7 +46,7 @@ const ShopDetail = () => {
                   className="custom-control-input"
                   id="price-3"
                 />
-                <label className="custom-control-label" for="price-3">
+                <label className="custom-control-label" htmlFor="price-3">
                   $200 - $300
                 </label>
                 <span className="badge border font-weight-normal text-muted">246</span>
@@ -57,7 +57,7 @@ const ShopDetail = () => {
                   className="custom-control-input"
                   id="price-4"
                 />
-                <label className="custom-control-label" for="price-4">
+                <label className="custom-control-label" htmlFor="price-4">
                   $300 - $400
                 </label>
                 <span className="badge border font-weight-normal text-muted">145</span>
@@ -68,7 +68,7 @@ const ShopDetail = () => {
                   className="custom-control-input"
                   id="price-5"
                 />
-                <label className="custom-control-label" for="price-5">
+                <label className="custom-control-label" htmlFor="price-5">
                   $400 - $500
                 </label>
                 <span className="badge border font-weight-normal text-muted">168</span>
@@ -86,7 +86,7 @@ const ShopDetail = () => {
                   checked
                   id="color-all"
                 />
-                <label className="custom-control-label" for="price-all">
+                <label className="custom-control-label" htmlFor="price-all">
                   All Color
                 </label>
                 <span className="badge border font-weight-normal text-muted">1000</span>
@@ -97,7 +97,7 @@ const ShopDetail = () => {
                   className="custom-control-input"
                   id="color-1"
                 />
-                <label className="custom-control-label" for="color-1">
+                <label className="custom-control-label" htmlFor="color-1">
                   Black
                 </label>
                 <span className="badge border font-weight-normal text-muted">150</span>
@@ -108,7 +108,7 @@ const ShopDetail = () => {
                   className="custom-control-input"
                   id="color-2"
                 />
-                <label className="custom-control-label" for="color-2">
+                <label className="custom-control-label" htmlFor="color-2">
                   White
                 </label>
                 <span className="badge border font-weight-normal text-muted">295</span>
@@ -119,7 +119,7 @@ const ShopDetail = () => {
                   className="custom-control-input"
                   id="color-3"
                 />
-                <label className="custom-control-label" for="color-3">
+                <label className="custom-control-label" htmlFor="color-3">
                   Red
                 </label>
                 <span className="badge border font-weight-normal text-muted">246</span>
@@ -130,7 +130,7 @@ const ShopDetail = () => {
                   className="custom-control-input"
                   id="color-4"
                 />
-                <label className="custom-control-label" for="color-4">
+                <label className="custom-control-label" htmlFor="color-4">
                   Blue
                 </label>
                 <span className="badge border font-weight-normal text-muted">145</span>
@@ -141,7 +141,7 @@ const ShopDetail = () => {
                   className="custom-control-input"
                   id="color-5"
                 />
-                <label className="custom-control-label" for="color-5">
+                <label className="custom-control-label" htmlFor="color-5">
                   Green
                 </label>
                 <span className="badge border font-weight-normal text-muted">168</span>
@@ -159,7 +159,7 @@ const ShopDetail = () => {
                   checked
                   id="size-all"
                 />
-                <label className="custom-control-label" for="size-all">
+                <label className="custom-control-label" htmlFor="size-all">
                   All Size
                 </label>
                 <span className="badge border font-weight-normal text-muted">1000</span>
@@ -170,7 +170,7 @@ const ShopDetail = () => {
                   className="custom-control-input"
                   id="size-1"
                 />
-                <label className="custom-control-label" for="size-1">
+                <label className="custom-control-label" htmlFor="size-1">
                   XS
                 </label>
                 <span className="badge border font-weight-normal text-muted">150</span>
@@ -181,7 +181,7 @@ const ShopDetail = () => {
                   className="custom-control-input"
                   id="size-2"
                 />
-                <label className="custom-control-label" for="size-2">
+                <label className="custom-control-label" htmlFor="size-2">
                   S
                 </label>
                 <span className="badge border font-weight-normal text-muted">295</span>
@@ -192,7 +192,7 @@ const ShopDetail = () => {
                   className="custom-control-input"
                   id="size-3"
                 />
-                <label className="custom-control-label" for="size-3">
+                <label className="custom-control-label" htmlFor="size-3">
                   M
                 </label>
                 <span className="badge border font-weight-normal text-muted">246</span>
@@ -203,7 +203,7 @@ const ShopDetail = () => {
                   className="custom-control-input"
                   id="size-4"
                 />
-                <label className="custom-control-label" for="size-4">
+                <label className="custom-control-label" htmlFor="size-4">
                   L
                 </label>
                 <span className="badge border font-weight-normal text-muted">145</span>
@@ -214,7 +214,7 @@ const ShopDetail = () => {
                   className="custom-control-input"
                   id="size-5"
                 />
-                <label className="custom-control-label" for="size-5">
+                <label className="custom-control-label" htmlFor="size-5">
                   XL
                 </label>
                 <span className="badge border font-weight-normal text-muted">168</span>

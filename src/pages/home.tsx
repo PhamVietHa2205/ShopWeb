@@ -2,7 +2,6 @@ import i18next from "i18next";
 import { useState } from "react";
 import { useTranslation } from "react-i18next"
 import TopBar from '../shared/TopBar'
-import NavBar from "../shared/NavBar";
 import Featured from "../components/Home/Featured";
 import Categories from "../components/Home/Categories";
 import Offer from "../components/Home/Offer";
@@ -16,7 +15,7 @@ export function Home() {
 	const [language, setLanguage] = useState("vi");
 	const isLogin = localStorage.getItem('isLogin');
 
-	const handleChangeLanguage = (event) => {
+	const handleChangeLanguage = (event: any) => {
 		setLanguage(event.target.value);
 		i18next.changeLanguage(event.target.value);
 	}

@@ -74,7 +74,7 @@ const CheckOut = () => {
                                 <label>{t('address')}</label>
                                 <input className="form-control" type="text" />
                             </div>
-                            <span className="col-md-6" action="">
+                            <span className="col-md-6">
                                 <label>{t('addCoupon')}</label>
                                 <div className="input-group">
                                     <input type="text" className="form-control" />
@@ -125,13 +125,13 @@ const CheckOut = () => {
                             <div className="form-group">
                                 <div className="custom-control custom-radio">
                                     <input type="radio" className="custom-control-input" name="payment" id="paypal" />
-                                    <label className="custom-control-label" for="paypal">{t('paypal')}</label>
+                                    <label className="custom-control-label" htmlFor="paypal">{t('paypal')}</label>
                                 </div>
                             </div>
                             <div className="">
                                 <div className="custom-control custom-radio">
                                     <input type="radio" className="custom-control-input" name="payment" id="banktransfer" />
-                                    <label className="custom-control-label" for="banktransfer">{t('bankTransfer')}</label>
+                                    <label className="custom-control-label" htmlFor="banktransfer">{t('bankTransfer')}</label>
                                 </div>
                             </div>
                         </div>
