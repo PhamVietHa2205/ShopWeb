@@ -2,10 +2,11 @@
     "compilerOptions": {
       "outDir": "./dist/",
       "noImplicitAny": true,
-      "module": "ESNext",
-      "target": "es5",
+      "watch": true,
+      "module": "CommonJS",
+      "removeComments": true,
+      "target": "es6",
       "jsx": "react-jsx",
       "allowJs": true,
-      "moduleResolution": "node",
     }
   }

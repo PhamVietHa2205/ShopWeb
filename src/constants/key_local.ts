@@ -17,3 +17,7 @@ export const WEB_SHOP_INFO = {
     DESIGNER: "Noob Team",
     DISTRIBUTER: "Hà nè:))"
 }
+
+export const REDUX_ACTION = {
+    TEST: "test",
+}

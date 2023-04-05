@@ -1,10 +1,13 @@
 import { useTranslation } from 'react-i18next';
 import { useEffect, useState } from "react";
 import { formatNumber } from '../../utils/index';
+import { useSelector } from 'react-redux';
 var Rating = require('react-rating');
 
 const ShopDetail = () => {
     const { t } = useTranslation();
+    const commonRedux = useSelector((state: any) => state.common);
+    console.log('data', commonRedux.test);
     const [reviewCount, setReviewCount] = useState(0);
     const [price, setPrice] = useState(1);
     const [productName, setProductName] = useState("");
