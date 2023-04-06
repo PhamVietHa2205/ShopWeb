@@ -1,6 +1,10 @@
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
 
+interface ITopBarProps {
+
+}
+
 const TopBar = () => {
     const { t } = useTranslation();
     const [likeCount, setLikeCount] = useState(0);

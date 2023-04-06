@@ -4,6 +4,7 @@ import Footer from "../shared/Footer";
 import PageHeader from "../shared/PageHeader";
 import CartShop from "../components/Cart/Cart";
 import ButtonToTop from "../shared/ButtonToTop";
+
 const Cart = () => {
     return (
         <>

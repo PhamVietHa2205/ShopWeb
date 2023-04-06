@@ -1,5 +1,9 @@
 import { useTranslation } from 'react-i18next';
 
+interface INavBarProps {
+
+}
+
 const NavBar = () => {
     const { t } = useTranslation();
     return (

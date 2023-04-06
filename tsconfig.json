@@ -1,7 +1,7 @@
 {
     "compilerOptions": {
       "outDir": "./dist/",
-      "noImplicitAny": true,
+      "noImplicitAny": false,
       "watch": true,
       "module": "CommonJS",
       "removeComments": true,

@@ -1,15 +1,6 @@
 import "./App.css";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import {
-  DETAIL,
-  HOME_PATH,
-  LOG_IN,
-  SIGN_UP,
-  CHECKOUT,
-  SHOP,
-  CART,
-  CONTACT,
-} from "./constants/path_local";
+import { RouteUrl } from "./constants/path_local";
 import { Home } from "./pages/home";
 import { LogIn } from "./pages/log_in";
 import { SignUp } from "./pages/sign_up";
@@ -27,14 +18,14 @@ function App() {
     <Provider store={store}>
       <BrowserRouter>
         <Routes>
-          <Route path={HOME_PATH} element={<Home />}></Route>
-          <Route path={LOG_IN} element={<LogIn />}></Route>
-          <Route path={SIGN_UP} element={<SignUp />}></Route>
-          <Route path={DETAIL} element={<Detail />}></Route>
-          <Route path={CHECKOUT} element={<Checkout />}></Route>
-          <Route path={SHOP} element={<Shop />}></Route>
-          <Route path={CART} element={<Cart />}></Route>
-          <Route path={CONTACT} element={<Contact />}></Route>
+          <Route path={RouteUrl.HOME_PATH} element={<Home />}></Route>
+          <Route path={RouteUrl.LOG_IN} element={<LogIn />}></Route>
+          <Route path={RouteUrl.SIGN_UP} element={<SignUp />}></Route>
+          <Route path={RouteUrl.DETAIL} element={<Detail />}></Route>
+          <Route path={RouteUrl.CHECKOUT} element={<Checkout />}></Route>
+          <Route path={RouteUrl.SHOP} element={<Shop />}></Route>
+          <Route path={RouteUrl.CART} element={<Cart />}></Route>
+          <Route path={RouteUrl.CONTACT} element={<Contact />}></Route>
         </Routes>
       </BrowserRouter>
     </Provider>

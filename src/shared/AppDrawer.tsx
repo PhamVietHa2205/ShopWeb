@@ -1,8 +1,19 @@
 import { useTranslation } from "react-i18next";
 import NavBar from "./NavBar";
+import { useNavigate } from "react-router-dom";
+import { RouteUrl } from "../constants/path_local";
+
+interface IAppDrawerProps {
+    
+}
 
 const AppDrawer = () => {
     const { t } = useTranslation();
+    const navigate = useNavigate();
+
+    const goToPage = (url: string) => {
+        navigate(url);
+    }
 
     return (
         <>
@@ -50,20 +61,20 @@ const AppDrawer = () => {
                     </button>
                     <div className="collapse navbar-collapse justify-content-between" id="navbarCollapse">
                         <div className="navbar-nav mr-auto py-0">
-                            <a href="/" className="nav-item nav-link active">{t('home')}</a>
-                            <a href="shop" className="nav-item nav-link">{t('shop')}</a>
-                            <a href="detail" className="nav-item nav-link">{t('shopDetail')}</a>
+                            <a onClick={() => goToPage(RouteUrl.HOME_PATH)} className="nav-item nav-link active">{t('home')}</a>
+                            <a onClick={() => goToPage(RouteUrl.SHOP)} className="nav-item nav-link">{t('shop')}</a>
+                            <a onClick={() => goToPage(RouteUrl.DETAIL)} className="nav-item nav-link">{t('shopDetail')}</a>
                             <div className="nav-item dropdown">
-                                <a className="btn btn-link nav-link dropdown-toggle" data-bs-toggle="dropdown">Pages</a>
+                                <a className="btn btn-link nav-link dropdown-toggle" data-bs-toggle="dropdown">{t('pages')}</a>
                                 <div className="dropdown-menu rounded-0 m-0">
-                                    <a href="cart" className="dropdown-item">{t('shoppingCart')}</a>
-                                    <a href="checkout" className="dropdown-item">{t('checkout')}</a>
+                                    <a onClick={() => goToPage(RouteUrl.CART)} className="dropdown-item">{t('shoppingCart')}</a>
+                                    <a onClick={() => goToPage(RouteUrl.CHECKOUT)} className="dropdown-item">{t('checkout')}</a>
                                 </div>
                             </div>
-                            <a href="/contact" className="nav-item nav-link" >{t('contact')}</a>
+                            <a onClick={() => goToPage(RouteUrl.CONTACT)} className="nav-item nav-link" >{t('contact')}</a>
                         </div>
                         <div className="navbar-nav ml-auto py-0">
-                            <a href="/log_in" className="nav-item nav-link">{t('login')}</a>
+                            <a onClick={() => goToPage(RouteUrl.LOG_IN)} className="nav-item nav-link">{t('login')}</a>
                             <a className="nav-item nav-link">{t('register')}</a>
                         </div>
                     </div>

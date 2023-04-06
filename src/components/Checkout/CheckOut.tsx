@@ -1,6 +1,10 @@
 import { useTranslation } from "react-i18next"
 import { useState, useEffect } from 'react';
 
+interface ICheckOutProps {
+    
+}
+
 const CheckOut = () => {
     const { t } = useTranslation();
     const [listProduct, setListProduct] = useState([]);

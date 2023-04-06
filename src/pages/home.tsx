@@ -12,6 +12,7 @@ import ButtonToTop from "../shared/ButtonToTop";
 import AppDrawer from "../shared/AppDrawer";
 import { useDispatch, useSelector } from "react-redux";
 import { testReducer } from "../redux/reducers/common-reducer";
+
 export function Home() {
 	const { t } = useTranslation();
 	const [language, setLanguage] = useState("vi");

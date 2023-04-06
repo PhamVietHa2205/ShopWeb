@@ -1,6 +1,10 @@
 import Backdrop from '@mui/material/Backdrop';
 
-const Loading = (props: any) => {
+interface ILoadingProps {
+    loading: boolean,
+}
+
+const Loading = (props: ILoadingProps) => {
     const { loading } = props;
 
     return (

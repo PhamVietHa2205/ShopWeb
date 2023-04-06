@@ -1,5 +1,9 @@
 import { useTranslation } from 'react-i18next';
 
+interface IOfferProps {
+    
+}
+
 const Offer = () => {
     const { t } = useTranslation();
 

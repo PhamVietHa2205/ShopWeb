@@ -1,6 +1,10 @@
 import { useTranslation } from "react-i18next"
 
-const PageHeader = (props: any) => {
+interface IPageHeaderProps {
+	title: string,
+}
+
+const PageHeader = (props: IPageHeaderProps) => {
 	const { title } = props;
 	const { t } = useTranslation();
 

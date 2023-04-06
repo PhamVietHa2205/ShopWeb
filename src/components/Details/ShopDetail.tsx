@@ -2,12 +2,15 @@ import { useTranslation } from 'react-i18next';
 import { useEffect, useState } from "react";
 import { formatNumber } from '../../utils/index';
 import { useSelector } from 'react-redux';
-var Rating = require('react-rating');
+import Rating from '@mui/material/Rating';
 
-const ShopDetail = () => {
+interface IShopDetailProps {
+
+}
+
+const ShopDetail = (props: IShopDetailProps) => {
     const { t } = useTranslation();
     const commonRedux = useSelector((state: any) => state.common);
-    console.log('data', commonRedux.test);
     const [reviewCount, setReviewCount] = useState(0);
     const [price, setPrice] = useState(1);
     const [productName, setProductName] = useState("");
@@ -76,7 +79,7 @@ const ShopDetail = () => {
                         <div className="carousel-inner border">
                             {
                                 listImage ? listImage.map((item, index) => {
-                                    return <div className={`carousel-item ${index === 0 ? "active" : "0"}`}>
+                                    return <div className={`carousel-item ${index === 0 ? "active" : "0"}`} key={index}>
                                         <img className="w-100 h-100" src={require(`../../assets/img/${item}`)} alt={item} />
                                     </div>
                                 })
@@ -97,10 +100,8 @@ const ShopDetail = () => {
                     <div className="d-flex mb-3">
                         <Rating
                             className='me-3'
-                            initialRating={productRate}
-                            emptySymbol={<i className='fa fa-star-o'></i>}
-                            fullSymbol={<i className='fa fa-star'></i>}
-                            readonly
+                            defaultValue={productRate}
+                            readOnly
                         />
                         <small className="pt-1">{`${reviewCount} ${t('reviews')}`}</small>
                     </div>
@@ -195,10 +196,8 @@ const ShopDetail = () => {
                                                     <h6>{review.name}<small> - <i>{review.time}</i></small></h6>
                                                     <Rating
                                                         className='me-3'
-                                                        initialRating={review.rate}
-                                                        emptySymbol={<i className='fa fa-star-o'></i>}
-                                                        fullSymbol={<i className='fa fa-star'></i>}
-                                                        readonly
+                                                        defaultValue={review.rate}
+                                                        readOnly
                                                     />
                                                     <p>{review.comment}</p>
                                                 </div>
@@ -212,14 +211,11 @@ const ShopDetail = () => {
                                         <small>{t('requiredFormWarning')} *</small>
                                         <div className="d-flex my-3">
                                             <p className="mb-0 mr-2">{t('yourRating')} * :</p>
-                                            <Rating name="rating"
+                                            <Rating
                                                 className='form-group me-3'
-                                                initialRating={yourRate}
+                                                defaultValue={yourRate}
                                                 value={yourRate}
                                                 onChange={(event: any, newValue: any) => setYourRate(newValue)}
-                                                emptySymbol={<i className='fa fa-star-o'></i>}
-                                                fullSymbol={<i className='fa fa-star'></i>}
-                                                readonly
                                             />
                                         </div>
                                         <div className="form-group">
@@ -227,7 +223,7 @@ const ShopDetail = () => {
                                             <textarea id="message" cols={30} rows={5} className="form-control"></textarea>
                                         </div>
                                         <div className="form-group mb-0">
-                                            <input type="submit" value="Leave Your Review" className="btn btn-primary px-3" />
+                                            <input type="submit" value={t('leaveYourReview')} className="btn btn-primary px-3" readOnly/>
                                         </div>
                                     </form>
                                 </div>

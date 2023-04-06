@@ -1,5 +1,9 @@
 import { useTranslation } from "react-i18next";
 
+interface IFeaturedProps {
+    
+}
+
 const Featured = () => {
     const { t } = useTranslation();
     

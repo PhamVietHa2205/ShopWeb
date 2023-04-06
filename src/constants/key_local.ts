@@ -21,3 +21,9 @@ export const WEB_SHOP_INFO = {
 export const REDUX_ACTION = {
     TEST: "test",
 }
+
+export const TypeSort = {
+    LATEST: "latest",
+    POPULARITY: "popularity",
+    BEST_RATING: "bestRating",
+}

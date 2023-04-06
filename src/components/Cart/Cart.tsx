@@ -2,6 +2,10 @@ import { useTranslation } from 'react-i18next';
 import { formatNumber } from '../../utils/index';
 import { useState, useEffect } from 'react';
 
+interface ICartShopProps {
+    
+}
+
 const CartShop = () => {
     const { t } = useTranslation();
     const [subTotalPrice, setSubTotalPrice] = useState(0);

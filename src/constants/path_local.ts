@@ -1,8 +1,10 @@
-export const HOME_PATH = "/";
-export const LOG_IN = "/log_in";
-export const SIGN_UP = "/sign_up";
-export const DETAIL = "/detail";
-export const CHECKOUT = "/checkout";
-export const SHOP = "/shop";
-export const CART = "/cart";
-export const CONTACT = "/contact";
+export const RouteUrl = {
+    HOME_PATH: "/",
+    LOG_IN: "/log_in",
+    SIGN_UP: "/sign_up",
+    DETAIL: "/detail",
+    CHECKOUT: "/checkout",
+    SHOP: "/shop",
+    CART: "/cart",
+    CONTACT: "/contact",
+}

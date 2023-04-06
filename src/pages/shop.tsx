@@ -4,6 +4,7 @@ import Footer from "../shared/Footer";
 import ShopDetail from "../components/Shop/ShopDetail";
 import PageHeader from "../shared/PageHeader";
 import ButtonToTop from "../shared/ButtonToTop";
+
 const Shop = () => {
   return (
     <>

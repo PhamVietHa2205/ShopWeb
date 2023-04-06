@@ -13,8 +13,8 @@ const commonReducer = createSlice({
 	name: REDUX_ACTION.TEST,
 	initialState: initState,
 	reducers: {
-		testReducer: (state: any, action: PayloadAction) => {
-			state = {...state, test: action.payload}
+		testReducer: (state: any, action: PayloadAction<string>) => {
+			state.test = action.payload
 		}
 	}
 })

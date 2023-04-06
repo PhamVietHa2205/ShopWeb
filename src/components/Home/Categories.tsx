@@ -1,6 +1,10 @@
 import { useTranslation } from 'react-i18next';
 import { CATEGORY_TYPE } from '../../constants/key_local';
 
+interface ICategoriesProps {
+    
+}
+
 const  Categories = () => {
     const { t } = useTranslation();
     const listOfProduct = [
@@ -54,7 +58,7 @@ const  Categories = () => {
         <div className="row px-xl-5 pb-3">
             {
                 listOfProduct.map((item, index) => {
-                    return <div className="col-lg-4 col-md-6 pb-1">
+                    return <div className="col-lg-4 col-md-6 pb-1" key={index}>
                     <div className="cat-item d-flex flex-column border mb-4" style={{padding: 30}}>
                         <p className="text-right">{`${item.count} ${t('products')}`}</p>
                         <a href="" className="cat-img position-relative overflow-hidden mb-3">

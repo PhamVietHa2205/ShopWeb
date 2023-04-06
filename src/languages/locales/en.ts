@@ -115,6 +115,25 @@ export default {
         "welcomeToShopDescription": "This website is created for everyone to trade with satisfaction. You can find the best things suit you here",
         "beCautious": "Be Cautious",
         "beCautiousDescription": "Even when we are trying to check products carefully, you still can be disappointed about the quality. In this case, please send us reports to help preventing bad actions",
-           
+        "pages": "Pages",
+        "leaveYourReview": "Leave Your Review",
+        "filterByPrice": "Filter by price",
+        "allPrice": "All Price",
+        "filterByColor": "Filter by color",
+        "allColor": "All Color",
+        "black": "Black",
+        "white": "White",
+        "red": "Red",
+        "blue": "Blue",
+        "green": "Green",
+        "filterBySize": "Filter by size",
+        "allSize": "All Size",
+        "searchByName": "Search by name",
+        "sortBy": "Sort by",
+        "latest": "Latest",
+        "popularity": "Popularity",
+        "bestRating": "Best Rating",
+        "previous": "Previous",
+        "next": "Next"
     }
 }

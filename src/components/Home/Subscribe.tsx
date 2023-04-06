@@ -1,5 +1,9 @@
 import { useTranslation } from "react-i18next";
 
+interface ISubscribeProps {
+    
+}
+
 const Subscribe = () => {
     const { t } = useTranslation();
 

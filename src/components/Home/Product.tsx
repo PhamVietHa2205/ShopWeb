@@ -1,6 +1,10 @@
 import { useTranslation } from 'react-i18next';
 import { formatNumber } from '../../utils/index';
 
+interface IProductProps {
+    
+}
+
 const Product = () => {
     const { t } = useTranslation();
     const listTrendyProduct = [
@@ -62,7 +66,7 @@ const Product = () => {
         <div className="row px-xl-5 pb-3">
             {
                 listTrendyProduct.map((item, index) => {
-                    return <div className="col-lg-3 col-md-6 col-sm-12 pb-1">
+                    return <div className="col-lg-3 col-md-6 col-sm-12 pb-1" key={index}>
                     <div className="card product-item border-0 mb-4">
                         <div className="card-header product-img position-relative overflow-hidden bg-transparent border p-0">
                             <img className="img-fluid w-100" src={require(`../../assets/img/${item.image}`)}  alt=""/>
