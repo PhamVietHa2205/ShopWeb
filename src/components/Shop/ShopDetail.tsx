@@ -184,7 +184,7 @@ const ShopDetail = () => {
 							})
 						}
 						<div className="col-12 pb-1">
-							<PaginationPage totalItem={listProduct.length} currentPage={1} changePage={setCurrentPage}/>
+							<PaginationPage totalItem={listProduct.length} currentPage={currentPage} changePage={setCurrentPage}/>
 						</div>
 					</div>
 				</div>

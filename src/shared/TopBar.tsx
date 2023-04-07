@@ -1,14 +1,24 @@
+import { changeLanguage } from "i18next";
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
+import { Language } from "../constants/key_local";
 
 interface ITopBarProps {
 
 }
 
 const TopBar = () => {
-    const { t } = useTranslation();
+    const { t, i18n } = useTranslation();
     const [likeCount, setLikeCount] = useState(0);
     const [itemInCartCount, setItemInCartCount] = useState(0);
+
+    const handleChangeLanguage = (lang: string) => {
+		i18n.changeLanguage(lang ?? "en");
+	}
+
+    const getClassActive = (lang: string) => {
+        return i18n.language === lang ? "text-primary" : "text-dark";
+    }
 
     return (
         <div className="container-fluid">
@@ -24,6 +34,9 @@ const TopBar = () => {
             </div>
             <div className="col-lg-6 text-end text-lg-right">
                 <div className="d-inline-flex align-items-center">
+                    <a href="#" className={`nav-item nav-link pr-2 ${getClassActive(Language.ENGLISH)}`} onClick={() => changeLanguage(Language.ENGLISH)}>{t('english')}</a>
+                    <span className="text-dark px-2">|</span>
+                    <a href="#" className={`nav-item nav-link pr-2 ${getClassActive(Language.VIETNAMESE)}`} onClick={() => changeLanguage(Language.VIETNAMESE)}>{t('vietnamese')}</a>
                     <a className="text-dark px-2">
                         <i className="fa fa-facebook-f"></i>
                     </a>

@@ -1,5 +1,5 @@
 export const RouteUrl = {
-    HOME_PATH: "/",
+    HOME_PATH: "/home",
     LOG_IN: "/log_in",
     SIGN_UP: "/sign_up",
     DETAIL: "/detail",
