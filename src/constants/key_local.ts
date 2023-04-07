@@ -27,3 +27,8 @@ export const TypeSort = {
     POPULARITY: "popularity",
     BEST_RATING: "bestRating",
 }
+
+export const Language = {
+    ENGLISH: "en",
+    VIETNAMESE: "vi",
+}

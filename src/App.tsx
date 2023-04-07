@@ -18,6 +18,7 @@ function App() {
     <Provider store={store}>
       <BrowserRouter>
         <Routes>
+          <Route path="/" element={<Home />}></Route>
           <Route path={RouteUrl.HOME_PATH} element={<Home />}></Route>
           <Route path={RouteUrl.LOG_IN} element={<LogIn />}></Route>
           <Route path={RouteUrl.SIGN_UP} element={<SignUp />}></Route>

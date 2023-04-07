@@ -15,16 +15,8 @@ import { testReducer } from "../redux/reducers/common-reducer";
 
 export function Home() {
 	const { t } = useTranslation();
-	const [language, setLanguage] = useState("vi");
 	const isLogin = localStorage.getItem('isLogin');
 	const commonRedux = useSelector((state: any) => state.common);
-	const dispatch = useDispatch();
-	dispatch(testReducer("kkk"));
-
-	const handleChangeLanguage = (event: any) => {
-		setLanguage(event.target.value);
-		i18next.changeLanguage(event.target.value);
-	}
 
 	return <>
 		<TopBar/>

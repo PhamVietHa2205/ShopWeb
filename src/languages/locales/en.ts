@@ -1,6 +1,7 @@
 export default {
     translation: {
         "english": "English",
+        "vietnamese": "Vietnamese",
         "faqs": "FAQs",
         "help": "Help",
         "support": "Support",
