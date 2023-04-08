@@ -3,6 +3,8 @@ import { WEB_SHOP_INFO } from '../constants/key_local';
 
 export function LogIn() {
 	const { t } = useTranslation();
+	require('./../assets/css/log-in.css')
+	require('./../assets/css/style.css')
 	return <section className="login-block">
 		<div className="container">
 			<div className="row">

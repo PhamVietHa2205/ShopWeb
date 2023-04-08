@@ -9,10 +9,10 @@ import 'bootstrap/dist/css/bootstrap.css';
 import 'bootstrap/dist/js/bootstrap.js';
 import "bootstrap/dist/js/bootstrap.bundle.min";
 import 'font-awesome/css/font-awesome.min.css';
-import './assets/css/style.css';
-import './assets/css/style.min.css';
-import './assets/scss/style.scss';
-import './assets/css/newStyle.css'
+// import './assets/css/style.css';
+// import './assets/css/style.min.css';
+// import './assets/scss/style.scss';
+// import './assets/css/newStyle.css'
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(

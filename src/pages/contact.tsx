@@ -6,6 +6,10 @@ import ButtonToTop from "../shared/ButtonToTop";
 import AppDrawer from "../shared/AppDrawer";
 
 const Contact = () => {
+    require('./../assets/css/style.css');
+	require('./../assets/css/style.min.css');
+	require('./../assets/scss/style.scss');
+	require('./../assets/css/newStyle.css');
         return (
             <>
             <TopBar/>
