@@ -4,6 +4,8 @@ import { RouteUrl } from "./constants/path_local";
 import { Home } from "./pages/home";
 import { LogIn } from "./pages/log_in";
 import { SignUp } from "./pages/sign_up";
+import { Admin } from "./pages/admin";
+import { SignInAdmin } from "./pages/sign_in_admin";
 import Shop from "./pages/shop";
 import "./languages";
 import Detail from "./pages/detail";
@@ -27,6 +29,8 @@ function App() {
           <Route path={RouteUrl.SHOP} element={<Shop />}></Route>
           <Route path={RouteUrl.CART} element={<Cart />}></Route>
           <Route path={RouteUrl.CONTACT} element={<Contact />}></Route>
+          <Route path={RouteUrl.ADMIN} element={<Admin />}></Route>
+          <Route path={RouteUrl.SIGN_IN_ADMIN} element={<SignInAdmin />}></Route>
         </Routes>
       </BrowserRouter>
     </Provider>

@@ -17,7 +17,10 @@ export function Home() {
 	const { t } = useTranslation();
 	const isLogin = localStorage.getItem('isLogin');
 	const commonRedux = useSelector((state: any) => state.common);
-
+	require('./../assets/css/style.css');
+	require('./../assets/css/style.min.css');
+	require('./../assets/scss/style.scss');
+	require('./../assets/css/newStyle.css');
 	return <>
 		<TopBar/>
 		<AppDrawer/>

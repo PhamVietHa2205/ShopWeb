@@ -7,4 +7,6 @@ export const RouteUrl = {
     SHOP: "/shop",
     CART: "/cart",
     CONTACT: "/contact",
+    ADMIN: "/admin",
+    SIGN_IN_ADMIN: "/sign_in",
 }
