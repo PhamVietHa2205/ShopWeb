@@ -8,5 +8,9 @@ export const RouteUrl = {
     CART: "/cart",
     CONTACT: "/contact",
     ADMIN: "/admin",
+    ADMIN_USER: "/admin/user",
+    ADMIN_ORDER: "/admin/order",
+    ADMIN_PRODUCT: "/admin/product",
     SIGN_IN_ADMIN: "/sign_in",
+
 }
