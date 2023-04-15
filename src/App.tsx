@@ -5,6 +5,9 @@ import { Home } from "./pages/home";
 import { LogIn } from "./pages/log_in";
 import { SignUp } from "./pages/sign_up";
 import { Admin } from "./pages/admin";
+import { UserManager } from "./pages/admin_user";
+import { ProductManager } from "./pages/admin_product";
+import { OrderManager } from "./pages/admin_order";
 import { SignInAdmin } from "./pages/sign_in_admin";
 import Shop from "./pages/shop";
 import "./languages";
@@ -31,6 +34,9 @@ function App() {
           <Route path={RouteUrl.CONTACT} element={<Contact />}></Route>
           <Route path={RouteUrl.ADMIN} element={<Admin />}></Route>
           <Route path={RouteUrl.SIGN_IN_ADMIN} element={<SignInAdmin />}></Route>
+          <Route path={RouteUrl.ADMIN_USER} element={<UserManager />}></Route>
+          <Route path={RouteUrl.ADMIN_PRODUCT} element={<ProductManager />}></Route>
+          <Route path={RouteUrl.ADMIN_ORDER} element={<OrderManager />}></Route>
         </Routes>
       </BrowserRouter>
     </Provider>
