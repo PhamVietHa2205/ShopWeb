@@ -1,1 +1,3 @@
-export const GET_USER_DATA = "";
+export const ApiPath = {
+    API_LOGIN: "login",
+}

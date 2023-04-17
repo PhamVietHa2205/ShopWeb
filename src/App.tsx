@@ -17,13 +17,15 @@ import Cart from './pages/cart'
 import Contact from "./pages/contact";
 import { store } from './redux/index';
 import { Provider } from 'react-redux';
+import { ToastContainer } from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css';
 
 function App() {
   return (
     <Provider store={store}>
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<Home />}></Route>
+          <Route path="/" element={<LogIn />}></Route>
           <Route path={RouteUrl.HOME_PATH} element={<Home />}></Route>
           <Route path={RouteUrl.LOG_IN} element={<LogIn />}></Route>
           <Route path={RouteUrl.SIGN_UP} element={<SignUp />}></Route>
@@ -38,6 +40,7 @@ function App() {
           <Route path={RouteUrl.ADMIN_PRODUCT} element={<ProductManager />}></Route>
           <Route path={RouteUrl.ADMIN_ORDER} element={<OrderManager />}></Route>
         </Routes>
+        <ToastContainer theme="colored"/>
       </BrowserRouter>
     </Provider>
   );

@@ -1,8 +1,8 @@
-import { combineReducers, configureStore } from '@reduxjs/toolkit'
-import commonReducer from './reducers/common-reducer';
+import { configureStore } from '@reduxjs/toolkit'
+import userReducer from './reducers/user-reducer';
 
 export const store = configureStore({
 	reducer: {
-		common: commonReducer
+		user: userReducer,
 	}
 });
