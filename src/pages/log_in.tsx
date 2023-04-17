@@ -1,24 +1,56 @@
 import { useTranslation } from 'react-i18next';
-import { WEB_SHOP_INFO } from '../constants/key_local';
+import { HttpCode, WEB_SHOP_INFO } from '../constants/key_local';
+import authorApi from '../api/author-api';
+import { ILoginResponse } from '../interfaces/author-interface';
+import * as Notify from "../shared/Notify";
+import { useDispatch } from 'react-redux';
+import { updateUser } from '../redux/reducers/user-reducer';
+import { RouteUrl } from '../constants/path_local';
+import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 export function LogIn() {
-	const { t } = useTranslation();
 	require('./../assets/css/log-in.css')
 	require('./../assets/css/style.css')
+
+	const { t } = useTranslation();
+	const dispatch = useDispatch();
+	const [email, setEmail] = useState("");
+	const [password, setPassword] = useState("");
+
+	const handleSubmit = (e: any) => {
+		e.preventDefault();
+		const params = {
+			email: email,
+			password: password,
+		}
+
+		authorApi.login(params).then((res: any) => {
+			const data: ILoginResponse = res?.data;
+			if (res?.status === HttpCode.OK) {
+				Notify.success(data?.message);
+				dispatch(updateUser(data.payload));
+				window.location.pathname = RouteUrl.HOME_PATH;
+			} else {
+				Notify.error(data?.message)
+			}
+		});
+	}
+
 	return <section className="login-block">
 		<div className="container">
 			<div className="row">
 				<div className="col-md-4 login-sec">
 					<h2 className="text-center">{t('loginNow')}</h2>
-					<form className="login-form">
+					<form className="login-form" onSubmit={handleSubmit}>
 						<div className="form-group">
-							<label htmlFor="exampleInputEmail1" className="text-uppercase">{t('username')}</label>
-							<input type="text" className="form-control" placeholder="" />
+							<label htmlFor="email" className="text-uppercase">{t('username')}</label>
+							<input type="text" className="form-control" onChange={(e) => setEmail(e?.target?.value)} placeholder="" />
 
 						</div>
 						<div className="form-group">
-							<label htmlFor="exampleInputPassword1" className="text-uppercase">{t('password')}</label>
-							<input type="password" className="form-control" placeholder="" />
+							<label htmlFor="password" className="text-uppercase">{t('password')}</label>
+							<input type="password" className="form-control" onChange={(e) => setPassword(e?.target?.value)} placeholder="" />
 						</div>
 
 

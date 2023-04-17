@@ -11,16 +11,13 @@ import Footer from "../shared/Footer";
 import ButtonToTop from "../shared/ButtonToTop";
 import AppDrawer from "../shared/AppDrawer";
 import { useDispatch, useSelector } from "react-redux";
-import { testReducer } from "../redux/reducers/common-reducer";
 
 export function Home() {
-	const { t } = useTranslation();
-	const isLogin = localStorage.getItem('isLogin');
-	const commonRedux = useSelector((state: any) => state.common);
 	require('./../assets/css/style.css');
 	require('./../assets/css/style.min.css');
 	require('./../assets/scss/style.scss');
 	require('./../assets/css/newStyle.css');
+	
 	return <>
 		<TopBar/>
 		<AppDrawer/>

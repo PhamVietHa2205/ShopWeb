@@ -32,3 +32,14 @@ export const Language = {
     ENGLISH: "en",
     VIETNAMESE: "vi",
 }
+
+export const LocalStorageKey = {
+    TOKEN: "token",
+    USER_INFO: "user-info",
+}
+
+export const HttpCode = {
+    OK: 200,
+    UNAUTHORIZED: 401,
+    BAD_REQUEST: 400,
+}
