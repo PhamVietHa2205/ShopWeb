@@ -18,6 +18,10 @@ export const WEB_SHOP_INFO = {
     DISTRIBUTER: "Hà nè:))"
 }
 
+export const DefaultAssets = {
+    AVATAR_IMG_LINK: "https://th.bing.com/th/id/OIP.hRK810QEOJAS0bl486VjPAHaHa?w=203&h=203&c=7&r=0&o=5&dpr=1.5&pid=1.7",
+}
+
 export const REDUX_ACTION = {
     TEST: "test",
 }
@@ -35,6 +39,7 @@ export const Language = {
 
 export const LocalStorageKey = {
     TOKEN: "token",
+    LOGIN: "login",
     USER_INFO: "user-info",
 }
 

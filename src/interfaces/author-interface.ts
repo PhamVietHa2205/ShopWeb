@@ -1,8 +1,12 @@
 export interface ILoginResponse {
     code: number,
     message: string,
-    payload: IUserInformation,
+    payload: ILoginPayLoad,
+}
+
+export interface ILoginPayLoad {
     token: string,
+    user: IUserInformation,
 }
 
 export interface IUserInformation {

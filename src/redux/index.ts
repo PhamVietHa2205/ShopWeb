@@ -3,6 +3,8 @@ import userReducer from './reducers/user-reducer';
 
 export const store = configureStore({
 	reducer: {
-		user: userReducer,
+		userInfo: userReducer,
 	}
 });
+
+export type RootState = ReturnType<typeof store.getState>;

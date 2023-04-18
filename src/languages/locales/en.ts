@@ -26,6 +26,7 @@ export default {
         "checkout": "Checkout",
         "contact": "Contact",
         "login": "Login",
+        "logout": "Logout",
         "register": "Register",
         "firstOrderSale": "10% Off Your First",
         "fashionableDress": "Fashionable Dress",

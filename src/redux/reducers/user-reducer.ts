@@ -1,8 +1,8 @@
 import { createReducer, createSlice, PayloadAction } from "@reduxjs/toolkit"
-import { REDUX_ACTION } from "../../constants/key_local"
+import { LocalStorageKey, REDUX_ACTION } from "../../constants/key_local"
 import { IUserInformation } from "../../interfaces/author-interface";
 
-const initState: IUserInformation = {
+let initState: IUserInformation = {
 	id: "",
 	email: "",
 	fullname: "",
@@ -12,6 +12,10 @@ const initState: IUserInformation = {
 	role: "",
 	numberShop: 0,
 };
+
+if (typeof window !== 'undefined') {
+    initState = JSON.parse(localStorage.getItem(LocalStorageKey.USER_INFO));
+}
 
 const userReducer = createSlice({
 	name: REDUX_ACTION.TEST,

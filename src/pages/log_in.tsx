@@ -1,5 +1,5 @@
 import { useTranslation } from 'react-i18next';
-import { HttpCode, WEB_SHOP_INFO } from '../constants/key_local';
+import { HttpCode, LocalStorageKey, WEB_SHOP_INFO } from '../constants/key_local';
 import authorApi from '../api/author-api';
 import { ILoginResponse } from '../interfaces/author-interface';
 import * as Notify from "../shared/Notify";
@@ -29,7 +29,9 @@ export function LogIn() {
 			const data: ILoginResponse = res?.data;
 			if (res?.status === HttpCode.OK) {
 				Notify.success(data?.message);
-				dispatch(updateUser(data.payload));
+				localStorage.setItem(LocalStorageKey.USER_INFO, JSON.stringify(data?.payload?.user));
+				localStorage.setItem(LocalStorageKey.LOGIN, "true");
+				dispatch(updateUser(data?.payload?.user));
 				window.location.pathname = RouteUrl.HOME_PATH;
 			} else {
 				Notify.error(data?.message)
