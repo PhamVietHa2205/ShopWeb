@@ -2,6 +2,11 @@ import { useTranslation } from "react-i18next";
 import NavBar from "./NavBar";
 import { useNavigate } from "react-router-dom";
 import { RouteUrl } from "../constants/path_local";
+import { useSelector } from "react-redux";
+import { RootState } from "../redux";
+import { DefaultAssets, LocalStorageKey } from "../constants/key_local";
+import { useEffect, useState } from "react";
+import { IUserInformation } from "../interfaces/author-interface";
 
 interface IAppDrawerProps {
     
@@ -10,6 +15,17 @@ interface IAppDrawerProps {
 const AppDrawer = () => {
     const { t } = useTranslation();
     const navigate = useNavigate();
+    const userInfo: IUserInformation = useSelector((state: RootState) => state.userInfo);
+    const [isLogin, setIsLogin] = useState(false);
+
+    useEffect(() => {
+        setIsLogin(localStorage.getItem(LocalStorageKey.LOGIN) ? true : false);
+    }, []);
+
+    const logout = () => {
+        localStorage.clear();
+        window.location.pathname = RouteUrl.LOG_IN;
+    }
 
     const goToPage = (url: string) => {
         navigate(url);
@@ -79,7 +95,14 @@ const AppDrawer = () => {
                             <a href="#" onClick={() => goToPage(RouteUrl.CONTACT)} className={`nav-item nav-link ${getClassActive(RouteUrl.CONTACT)}`}>{t('contact')}</a>
                         </div>
                         <div className="navbar-nav ml-auto py-0">
-                            <a href="#" onClick={() => goToPage(RouteUrl.LOG_IN)} className="nav-item nav-link">{t('login')}</a>
+                            {
+                                isLogin &&
+                                <>
+                                    <img src={userInfo?.avatar ?? DefaultAssets.AVATAR_IMG_LINK} style={{width: 30, height: 30, padding: "auto"}} className="bg-info rounded-circle align-self-center"></img>
+                                    <div className="nav-link">{userInfo?.fullname}</div>
+                                </>
+                            }
+                            <a href="#" onClick={() => goToPage(RouteUrl.LOG_IN)} className="nav-item nav-link">{t(isLogin ? "logout" : "login")}</a>
                             <a href="#" className="nav-item nav-link">{t('register')}</a>
                         </div>
                     </div>
