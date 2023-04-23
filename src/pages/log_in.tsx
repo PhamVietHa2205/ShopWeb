@@ -8,6 +8,7 @@ import { updateUser } from '../redux/reducers/user-reducer';
 import { RouteUrl } from '../constants/path_local';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import Loading from '../shared/Loading';
 
 export function LogIn() {
 	require('./../assets/css/log-in.css')
@@ -17,6 +18,7 @@ export function LogIn() {
 	const dispatch = useDispatch();
 	const [email, setEmail] = useState("");
 	const [password, setPassword] = useState("");
+	const [isLoading, setIsLoading] = useState(false);
 
 	const handleSubmit = (e: any) => {
 		e.preventDefault();
@@ -24,8 +26,9 @@ export function LogIn() {
 			email: email,
 			password: password,
 		}
-
+		setIsLoading(true);
 		authorApi.login(params).then((res: any) => {
+			setIsLoading(false);
 			const data: ILoginResponse = res?.data;
 			if (res?.status === HttpCode.OK) {
 				Notify.success(data?.message);
@@ -39,7 +42,8 @@ export function LogIn() {
 		});
 	}
 
-	return <section className="login-block">
+	return <>
+	<section className="login-block">
 		<div className="container">
 			<div className="row">
 				<div className="col-md-4 login-sec">
@@ -98,4 +102,6 @@ export function LogIn() {
 			</div>
 		</div>
 	</section>
+	<Loading loading={isLoading}/>
+	</>
 }

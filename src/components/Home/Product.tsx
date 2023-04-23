@@ -1,5 +1,12 @@
+import { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
+import { IProductHotPayLoad, IProductHotResponse } from '../../interfaces/product-interface';
 import { formatNumber } from '../../utils/index';
+import productApi from '../../api/product-api';
+import { DefaultAssets, HttpCode } from '../../constants/key_local';
+import * as Notify from "../../shared/Notify";
+import { RouteUrl } from '../../constants/path_local';
+import { useNavigate } from 'react-router-dom';
 
 interface IProductProps {
     
@@ -7,56 +14,27 @@ interface IProductProps {
 
 const Product = () => {
     const { t } = useTranslation();
-    const listTrendyProduct = [
-        {
-            name: "Colorful Stylish Shirt",
-            image: "product-1.jpg",
-            prePrice: 123,
-            saledPrice: 123,
-        },
-        {
-            name: "Colorful Stylish Shirt",
-            image: "product-2.jpg",
-            prePrice: 123,
-            saledPrice: 123,
-        },
-        {
-            name: "Colorful Stylish Shirt",
-            image: "product-3.jpg",
-            prePrice: 123,
-            saledPrice: 123,
-        },
-        {
-            name: "Colorful Stylish Shirt",
-            image: "product-4.jpg",
-            prePrice: 123,
-            saledPrice: 123,
-        },
-        {
-            name: "Colorful Stylish Shirt",
-            image: "product-5.jpg",
-            prePrice: 123,
-            saledPrice: 123,
-        },
-        {
-            name: "Colorful Stylish Shirt",
-            image: "product-6.jpg",
-            prePrice: 123,
-            saledPrice: 123,
-        },
-        {
-            name: "Colorful Stylish Shirt",
-            image: "product-7.jpg",
-            prePrice: 123,
-            saledPrice: 123,
-        },
-        {
-            name: "Colorful Stylish Shirt",
-            image: "product-8.jpg",
-            prePrice: 123,
-            saledPrice: 123,
-        }
-    ]
+    const [hotProductList, setHotProductList] = useState([]);
+    const navigate = useNavigate();
+
+    useEffect(() => {
+        productApi.getHotProductList({}).then((res) => {
+            let data: IProductHotResponse = res?.data;
+            if (res?.status === HttpCode.OK) {
+                setHotProductList(data?.payload);
+            } else {
+                Notify.error(data?.message);
+            }
+        })
+    }, []);
+
+    const handleViewDetail = (id: string) => {
+        navigate(RouteUrl.DETAIL, {state: {id: id}});
+    }
+
+    const handleAddToCart = () => {
+        //To Do
+    }
 
     return (
         <div className="container-fluid pt-5">
@@ -65,23 +43,23 @@ const Product = () => {
         </div>
         <div className="row px-xl-5 pb-3">
             {
-                listTrendyProduct.map((item, index) => {
+                hotProductList.map((item: IProductHotPayLoad, index) => {
                     return <div className="col-lg-3 col-md-6 col-sm-12 pb-1" key={index}>
                     <div className="card product-item border-0 mb-4">
                         <div className="card-header product-img position-relative overflow-hidden bg-transparent border p-0">
-                            <img className="img-fluid w-100" src={require(`../../assets/img/${item.image}`)}  alt=""/>
+                            <img className="img-fluid w-100" src={item.images[0] ?? DefaultAssets.PRODUCT_IMAGE_LINK }  alt=""/>
                         </div>
                         <div className="card-body border-left border-right text-center p-0 pt-4 pb-3">
                             <h6 className="text-truncate mb-3">{item.name}</h6>
                             <div className="d-flex justify-content-center">
-                                <h6>${formatNumber(item.prePrice, 2)}</h6>
-                                <h6 className="text-muted ml-2"><del>${formatNumber(item.saledPrice, 2)}</del></h6>
+                                <h6>{formatNumber(Number(item.price), 2)} VND</h6>
                             </div>
                         </div>
                         <div className="card-footer d-flex justify-content-between bg-light border">
-                            <a href="" className="btn btn-sm text-dark p-0"><i className="fa fa-eye text-primary mr-1"></i>{t('viewDetail')}</a>
-                            <a href="" className="btn btn-sm text-dark p-0"><i
-                                    className="fa fa-shopping-cart text-primary mr-1"></i>{t('addToCart')}</a>
+                            <a href="#" className="btn btn-sm text-dark p-0" onClick={() => handleViewDetail(item.id)}><i className="fa fa-eye text-primary mr-1"></i>{t('viewDetail')}</a>
+                            <a href="#" className="btn btn-sm text-dark p-0"><i
+                                className="fa fa-shopping-cart text-primary mr-1"
+                                onClick={() => handleAddToCart()}></i>{t('addToCart')}</a>
                         </div>
                     </div>
                 </div>

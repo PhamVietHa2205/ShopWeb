@@ -11,6 +11,7 @@ import Footer from "../shared/Footer";
 import ButtonToTop from "../shared/ButtonToTop";
 import AppDrawer from "../shared/AppDrawer";
 import { useDispatch, useSelector } from "react-redux";
+import Loading from "../shared/Loading";
 
 export function Home() {
 	require('./../assets/css/style.css');
@@ -22,7 +23,6 @@ export function Home() {
 		<TopBar/>
 		<AppDrawer/>
 		<Featured />
-		<Categories/>
 		<Offer />
 		<Product />
 		<Subscribe />

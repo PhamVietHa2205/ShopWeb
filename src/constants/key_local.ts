@@ -20,6 +20,7 @@ export const WEB_SHOP_INFO = {
 
 export const DefaultAssets = {
     AVATAR_IMG_LINK: "https://th.bing.com/th/id/OIP.hRK810QEOJAS0bl486VjPAHaHa?w=203&h=203&c=7&r=0&o=5&dpr=1.5&pid=1.7",
+    PRODUCT_IMAGE_LINK: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSstkTLhD3UkEn8tfRH_ABEmV_syqMZZOs4tQ&usqp=CAU",
 }
 
 export const REDUX_ACTION = {
