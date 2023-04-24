@@ -34,6 +34,7 @@ export function LogIn() {
 				Notify.success(data?.message);
 				localStorage.setItem(LocalStorageKey.USER_INFO, JSON.stringify(data?.payload?.user));
 				localStorage.setItem(LocalStorageKey.LOGIN, "true");
+				localStorage.setItem(LocalStorageKey.TOKEN, data?.payload?.token);
 				dispatch(updateUser(data?.payload?.user));
 				window.location.pathname = RouteUrl.HOME_PATH;
 			} else {

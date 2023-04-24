@@ -1,24 +1,30 @@
 import { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { IProductHotPayLoad, IProductHotResponse } from '../../interfaces/product-interface';
+import { ICartEditRequest, ICartProduct, IProductHotPayLoad, IProductHotResponse } from '../../interfaces/product-interface';
 import { formatNumber } from '../../utils/index';
 import productApi from '../../api/product-api';
 import { DefaultAssets, HttpCode } from '../../constants/key_local';
 import * as Notify from "../../shared/Notify";
 import { RouteUrl } from '../../constants/path_local';
 import { useNavigate } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+import { RootState } from '../../redux';
 
 interface IProductProps {
-    
+    setLoading: any;
 }
 
-const Product = () => {
+const Product = (props: IProductProps) => {
+    const { setLoading } = props;
     const { t } = useTranslation();
     const [hotProductList, setHotProductList] = useState([]);
+    const cart = useSelector((state: RootState) => state.cart);
     const navigate = useNavigate();
 
     useEffect(() => {
+        setLoading(true);
         productApi.getHotProductList({}).then((res) => {
+            setLoading(false);
             let data: IProductHotResponse = res?.data;
             if (res?.status === HttpCode.OK) {
                 setHotProductList(data?.payload);
@@ -30,10 +36,37 @@ const Product = () => {
 
     const handleViewDetail = (id: string) => {
         navigate(RouteUrl.DETAIL, {state: {id: id}});
+        window.scrollTo(0, 0);
     }
 
-    const handleAddToCart = () => {
-        //To Do
+    const handleAddToCart = (id: string) => {
+        setLoading(true);
+        let params: ICartEditRequest;
+        if (cart && cart?.some((item: ICartProduct) => item.id === id)) {
+            params = {
+                detail: [...cart.map((item: ICartProduct) => {
+                    return {idProduct: item.id, quantity: item.id === id ? (item.quantity + 1) : item.quantity}
+                })]
+            };
+        } else {
+            if (cart)
+            params = {
+                detail: [...cart.map((item: ICartProduct) => {
+                    return {idProduct: item.id, quantity: item.quantity}
+                }), {idProduct: id, quantity: 1}]
+            };
+            else params = {
+                detail: [{idProduct: id, quantity: 1}]
+            }
+        };
+
+        productApi.editCart(params).then((res) => {
+            setLoading(false);
+            if (res?.status === HttpCode.OK) {
+            } else {
+                Notify.error(res?.data?.message)
+            }
+        })
     }
 
     return (
@@ -56,10 +89,8 @@ const Product = () => {
                             </div>
                         </div>
                         <div className="card-footer d-flex justify-content-between bg-light border">
-                            <a href="#" className="btn btn-sm text-dark p-0" onClick={() => handleViewDetail(item.id)}><i className="fa fa-eye text-primary mr-1"></i>{t('viewDetail')}</a>
-                            <a href="#" className="btn btn-sm text-dark p-0"><i
-                                className="fa fa-shopping-cart text-primary mr-1"
-                                onClick={() => handleAddToCart()}></i>{t('addToCart')}</a>
+                            <a className="btn btn-sm text-dark p-0" onClick={() => handleViewDetail(item.id)}><i className="fa fa-eye text-primary mr-1"></i>{t('viewDetail')}</a>
+                            <a className="btn btn-sm text-dark p-0" onClick={() => handleAddToCart(item.id)}><i className="fa fa-shopping-cart text-primary mr-1"></i>{t('addToCart')}</a>
                         </div>
                     </div>
                 </div>

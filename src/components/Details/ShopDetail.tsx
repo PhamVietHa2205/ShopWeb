@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { formatNumber } from '../../utils/index';
 import { useSelector } from 'react-redux';
 import Rating from '@mui/material/Rating';
+import { useLocation } from 'react-router-dom';
 
 interface IShopDetailProps {
 
@@ -21,6 +22,8 @@ const ShopDetail = (props: IShopDetailProps) => {
     const [productRate, setProductRate] = useState(0);
     const [yourRate, setYourRate] = useState(0);
     const [yourComment, setYourComment] = useState("");
+    const { state } = useLocation();
+    const { id } = state;
 
     const listReviews = [
         {

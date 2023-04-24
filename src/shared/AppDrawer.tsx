@@ -102,7 +102,7 @@ const AppDrawer = () => {
                                     <div className="nav-link">{userInfo?.fullname}</div>
                                 </>
                             }
-                            <a href="#" onClick={() => goToPage(RouteUrl.LOG_IN)} className="nav-item nav-link">{t(isLogin ? "logout" : "login")}</a>
+                            <a href="#" onClick={() => logout()} className="nav-item nav-link">{t(isLogin ? "logout" : "login")}</a>
                             <a href="#" className="nav-item nav-link">{t('register')}</a>
                         </div>
                     </div>
