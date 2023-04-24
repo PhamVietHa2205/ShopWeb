@@ -3,7 +3,7 @@ import { colorList, defaultPairPrice, defaultSize } from "../../mock/shopFilter"
 import { TypeSort } from "../../constants/key_local";
 import { formatNumber } from "../../utils";
 import PaginationPage from "../../shared/Pagination";
-import { useState } from "react";
+import { memo, useState } from "react";
 
 interface IShopDetailProps {
 
@@ -192,4 +192,4 @@ const ShopDetail = () => {
 		</div>
 	);
 };
-export default ShopDetail;
+export default memo(ShopDetail);

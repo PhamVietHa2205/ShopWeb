@@ -1,3 +1,4 @@
+import { memo } from 'react';
 import { useTranslation } from 'react-i18next';
 
 interface IOfferProps {
@@ -34,4 +35,4 @@ const Offer = () => {
 </div>
    )
 }
-export default Offer;
+export default memo(Offer);

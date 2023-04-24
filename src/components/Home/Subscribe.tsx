@@ -1,3 +1,4 @@
+import { memo } from "react";
 import { useTranslation } from "react-i18next";
 
 interface ISubscribeProps {
@@ -28,4 +29,4 @@ const Subscribe = () => {
     </div>
     )
 }
-export default Subscribe;
+export default memo(Subscribe);

@@ -1,3 +1,4 @@
+import { memo } from 'react';
 import { useTranslation } from 'react-i18next';
 import Pagination from "react-js-pagination";
 
@@ -29,4 +30,4 @@ const PaginationPage = (props: IPaginationProps) => {
     />
 }
 
-export default PaginationPage;
+export default memo(PaginationPage);

@@ -1,5 +1,5 @@
 import { changeLanguage } from "i18next";
-import { useState } from "react";
+import { memo, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { Language, LocalStorageKey } from "../constants/key_local";
 import { useSelector } from "react-redux";
@@ -85,4 +85,4 @@ const TopBar = () => {
     );
 }
 
-export default TopBar;
+export default memo(TopBar);

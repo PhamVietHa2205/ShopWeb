@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, memo } from 'react';
 const UserStatistic = () => {
     const userTable = [
         {
@@ -200,4 +200,4 @@ const UserStatistic = () => {
         </div>
     )
 }
-export default UserStatistic
+export default memo(UserStatistic);

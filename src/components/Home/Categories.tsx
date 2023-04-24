@@ -1,5 +1,6 @@
 import { useTranslation } from 'react-i18next';
 import { CATEGORY_TYPE } from '../../constants/key_local';
+import { memo } from 'react';
 
 interface ICategoriesProps {
     
@@ -73,4 +74,4 @@ const  Categories = () => {
     </div>
     )
 }
-export default Categories;
+export default memo(Categories);

@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { memo, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { ICartEditRequest, ICartProduct, IProductHotPayLoad, IProductHotResponse } from '../../interfaces/product-interface';
 import { formatNumber } from '../../utils/index';
@@ -100,4 +100,4 @@ const Product = (props: IProductProps) => {
     </div>
     )
 }
-export default Product;
+export default memo(Product);

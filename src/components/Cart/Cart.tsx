@@ -1,6 +1,6 @@
 import { useTranslation } from 'react-i18next';
 import { formatNumber } from '../../utils/index';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, memo } from 'react';
 
 interface ICartShopProps {
     
@@ -131,4 +131,4 @@ const CartShop = () => {
     </div>
     )
 }
-export default CartShop
+export default memo(CartShop)

@@ -1,3 +1,5 @@
+import { memo } from "react";
+
 const ProfitStatistics = () => {
     return (
         <>
@@ -94,4 +96,4 @@ const ProfitStatistics = () => {
         </>
     )
 }
-export default ProfitStatistics;
+export default memo(ProfitStatistics);
