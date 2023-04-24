@@ -1,4 +1,6 @@
 export const ApiPath = {
     API_LOGIN: "login",
-    API__HOT_PRODUCTS: "product-hot",
+    API_HOT_PRODUCTS: "product-hot",
+    API_GET_CART: "buyer/get-cart",
+    API_EDIT_CART: "buyer/edit-cart",
 }

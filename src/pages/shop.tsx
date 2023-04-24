@@ -6,10 +6,7 @@ import PageHeader from "../shared/PageHeader";
 import ButtonToTop from "../shared/ButtonToTop";
 
 const Shop = () => {
-  require('./../assets/css/style.css');
-	require('./../assets/css/style.min.css');
-	require('./../assets/scss/style.scss');
-	require('./../assets/css/newStyle.css');
+
   return (
     <>
       <TopBar />

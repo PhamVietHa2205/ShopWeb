@@ -18,7 +18,7 @@ if (typeof window !== 'undefined') {
 }
 
 const userReducer = createSlice({
-	name: REDUX_ACTION.TEST,
+	name: REDUX_ACTION.USER,
 	initialState: initState,
 	reducers: {
 		updateUser: (state: any, action: PayloadAction<IUserInformation>) => {

@@ -24,7 +24,8 @@ export const DefaultAssets = {
 }
 
 export const REDUX_ACTION = {
-    TEST: "test",
+    USER: "user",
+    CART: "cart",
 }
 
 export const TypeSort = {
@@ -42,6 +43,7 @@ export const LocalStorageKey = {
     TOKEN: "token",
     LOGIN: "login",
     USER_INFO: "user-info",
+    CART: "cart",
 }
 
 export const HttpCode = {

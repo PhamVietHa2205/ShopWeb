@@ -1,7 +1,9 @@
 import { changeLanguage } from "i18next";
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
-import { Language } from "../constants/key_local";
+import { Language, LocalStorageKey } from "../constants/key_local";
+import { useSelector } from "react-redux";
+import { RootState } from "../redux";
 
 interface ITopBarProps {
 
@@ -9,8 +11,7 @@ interface ITopBarProps {
 
 const TopBar = () => {
     const { t, i18n } = useTranslation();
-    const [likeCount, setLikeCount] = useState(0);
-    const [itemInCartCount, setItemInCartCount] = useState(0);
+    const cart = useSelector((state: RootState) => state.cart);
 
     const handleChangeLanguage = (lang: string) => {
 		i18n.changeLanguage(lang ?? "en");
@@ -34,9 +35,9 @@ const TopBar = () => {
             </div>
             <div className="col-lg-6 text-end text-lg-right">
                 <div className="d-inline-flex align-items-center">
-                    <a href="#" className={`nav-item nav-link pr-2 ${getClassActive(Language.ENGLISH)}`} onClick={() => changeLanguage(Language.ENGLISH)}>{t('english')}</a>
+                    <a href="#" className={`nav-item nav-link pr-2 ${getClassActive(Language.ENGLISH)}`} onClick={() => handleChangeLanguage(Language.ENGLISH)}>{t('english')}</a>
                     <span className="text-dark px-2">|</span>
-                    <a href="#" className={`nav-item nav-link pr-2 ${getClassActive(Language.VIETNAMESE)}`} onClick={() => changeLanguage(Language.VIETNAMESE)}>{t('vietnamese')}</a>
+                    <a href="#" className={`nav-item nav-link pr-2 ${getClassActive(Language.VIETNAMESE)}`} onClick={() => handleChangeLanguage(Language.VIETNAMESE)}>{t('vietnamese')}</a>
                     <a className="text-dark px-2">
                         <i className="fa fa-facebook-f"></i>
                     </a>
@@ -74,13 +75,9 @@ const TopBar = () => {
                 </form>
             </div>
             <div className="col-lg-3 col-6 text-right">
-                <a className="btn border me-1">
-                    <i className="fa fa-heart text-primary"></i>
-                    <span> {likeCount}</span>
-                </a>
                 <a className="btn border">
+                    <sup>{cart?.length ?? 0} </sup>
                     <i className="fa fa-shopping-cart text-primary"></i>
-                    <span> {itemInCartCount}</span>
                 </a>
             </div>
         </div>
