@@ -1,4 +1,5 @@
 import Backdrop from '@mui/material/Backdrop';
+import { memo } from 'react';
 
 interface ILoadingProps {
     loading: boolean,
@@ -15,4 +16,4 @@ const Loading = (props: ILoadingProps) => {
         </Backdrop>
     );
 }
-export default Loading;
+export default memo(Loading);

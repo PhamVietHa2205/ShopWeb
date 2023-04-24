@@ -5,7 +5,7 @@ import { RouteUrl } from "../constants/path_local";
 import { useSelector } from "react-redux";
 import { RootState } from "../redux";
 import { DefaultAssets, LocalStorageKey } from "../constants/key_local";
-import { useEffect, useState } from "react";
+import { memo, useEffect, useState } from "react";
 import { IUserInformation } from "../interfaces/author-interface";
 
 interface IAppDrawerProps {
@@ -114,4 +114,4 @@ const AppDrawer = () => {
             </>
     )
 }
-export default AppDrawer;
+export default memo(AppDrawer);

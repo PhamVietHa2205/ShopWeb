@@ -1,3 +1,5 @@
+import { memo } from "react";
+
 const Introduce = () => {
     return (
         <>
@@ -48,4 +50,4 @@ const Introduce = () => {
         </>
     )
 }
-export default Introduce;
+export default memo(Introduce);

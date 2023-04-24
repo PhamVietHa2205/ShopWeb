@@ -1,5 +1,5 @@
 import { useTranslation } from "react-i18next"
-import { useState, useEffect } from 'react';
+import { useState, useEffect, memo } from 'react';
 
 interface ICheckOutProps {
     
@@ -148,4 +148,4 @@ const CheckOut = () => {
         </div>
     )
 }
-export default CheckOut;
+export default memo(CheckOut);

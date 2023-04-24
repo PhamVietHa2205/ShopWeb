@@ -1,3 +1,4 @@
+import { memo } from "react";
 import { useTranslation } from "react-i18next";
 
 interface IFeaturedProps {
@@ -38,4 +39,4 @@ const Featured = () => {
 </div>
    )
 }
-export default Featured;
+export default memo(Featured);

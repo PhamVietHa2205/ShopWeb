@@ -1,5 +1,5 @@
 import { useTranslation } from 'react-i18next';
-import { useEffect, useState } from "react";
+import { memo, useEffect, useState } from "react";
 import { formatNumber } from '../../utils/index';
 import { useSelector } from 'react-redux';
 import Rating from '@mui/material/Rating';
@@ -238,4 +238,4 @@ const ShopDetail = (props: IShopDetailProps) => {
         </div>
     )
 }
-export default ShopDetail;
+export default memo(ShopDetail);

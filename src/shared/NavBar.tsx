@@ -1,3 +1,4 @@
+import { memo } from 'react';
 import { useTranslation } from 'react-i18next';
 
 interface INavBarProps {
@@ -45,4 +46,4 @@ const NavBar = () => {
     );
 }
 
-export default NavBar;
+export default memo(NavBar);

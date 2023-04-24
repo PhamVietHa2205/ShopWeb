@@ -1,5 +1,6 @@
 import { useTranslation } from 'react-i18next';
 import { WEB_SHOP_INFO } from '../constants/key_local';
+import { memo } from 'react';
 
 interface IFooterProps {
     
@@ -68,4 +69,4 @@ const Footer = () => {
     </div>
     )
 }
-export default Footer;
+export default memo(Footer);

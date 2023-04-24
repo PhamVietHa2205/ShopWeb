@@ -1,3 +1,4 @@
+import { memo } from "react";
 import { useTranslation } from "react-i18next"
 
 interface IPageHeaderProps {
@@ -21,4 +22,4 @@ const PageHeader = (props: IPageHeaderProps) => {
 		</div>
 	)
 }
-export default PageHeader
+export default memo(PageHeader);
