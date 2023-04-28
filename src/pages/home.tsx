@@ -35,7 +35,7 @@ export function Home() {
 			}
 		})
 		return () => {
-			localStorage.setItem(LocalStorageKey.CART, cart?.toString() ?? "")
+			localStorage.setItem(LocalStorageKey.CART, JSON.stringify(cart))
 		}
 	}, []);
 	
