@@ -1,15 +1,16 @@
 import { useTranslation } from 'react-i18next';
 import { memo, useEffect, useState } from "react";
 import { formatNumber } from '../../utils/index';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import Rating from '@mui/material/Rating';
 import { useLocation } from 'react-router-dom';
 import productApi from '../../api/product-api';
-import { HttpCode } from '../../constants/key_local';
+import { HttpCode, LocalStorageKey } from '../../constants/key_local';
 import * as Notify from "../../shared/Notify";
-import { ICartEditRequest, ICartProduct, IComment, IDetailProduct, IDetailProductResponse, IPostCommentResponse } from '../../interfaces/product-interface';
+import { ICartEditRequest, ICartProduct, ICartResponse, IComment, IDetailProduct, IDetailProductResponse, IPostCommentResponse } from '../../interfaces/product-interface';
 import { colorList, defaultSize } from '../../mock/shopFilter';
 import { RootState } from '../../redux';
+import { updateCart } from '../../redux/reducers/cart-reducer';
 
 interface IShopDetailProps {
     setLoading: any,
@@ -27,6 +28,7 @@ const ShopDetail = (props: IShopDetailProps) => {
     const { id } = state;
     const [product, setProduct] = useState<IDetailProduct>();
     const cart = useSelector((state: RootState) => state.cart);
+    const dispatch = useDispatch();
 
     useEffect(() => {
         getDetailProduct();
@@ -69,7 +71,22 @@ const ShopDetail = (props: IShopDetailProps) => {
                 Notify.error(res?.data?.message)
             }
         })
-        getDetailProduct();
+        getCart();
+    }
+
+    const getCart = () => {
+        productApi.getCart({}).then((res) => {
+			if (res?.status === HttpCode.OK) {
+				let data: ICartResponse = res?.data;
+				dispatch(updateCart(data?.payload));
+                localStorage.setItem(LocalStorageKey.CART, JSON.stringify(cart))
+			} else {
+				Notify.error(res?.data?.message);
+			}
+		})
+		return () => {
+			localStorage.setItem(LocalStorageKey.CART, JSON.stringify(cart))
+		}
     }
 
     const getDetailProduct = () => {

@@ -24,7 +24,7 @@ export interface ICartProduct {
 	name: string,
 	id: string,
 	price: string,
-	id_shop: string,
+	id_product: string,
 	quantity: number,
 	image: string,
 }
