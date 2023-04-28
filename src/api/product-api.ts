@@ -10,5 +10,11 @@ export default {
 	},
 	editCart(param: any) {
 		return ClientService.put(ApiPath.API_EDIT_CART, param);
-	}
+	},
+	getDetailProduct(param: any) {
+		return ClientService.get(ApiPath.API_GET_DETAIL_PRODUCT + `/${param?.id}`, param);
+	},
+	postComment(param: any) {
+		return ClientService.post(ApiPath.API_POST_COMMENT, param);
+	},
 }

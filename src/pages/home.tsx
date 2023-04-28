@@ -29,25 +29,26 @@ export function Home() {
 			if (res?.status === HttpCode.OK) {
 				let data: ICartResponse = res?.data;
 				dispatch(updateCart(data?.payload));
-				localStorage.setItem(LocalStorageKey.CART, JSON.stringify(data?.payload));
+
+				localStorage.setItem(LocalStorageKey.CART, data.payload ? JSON.stringify(data?.payload) : '');
 			} else {
 				Notify.error(res?.data?.message);
 			}
 		})
 		return () => {
-			localStorage.setItem(LocalStorageKey.CART, cart?.toString() ?? "")
+			localStorage.setItem(LocalStorageKey.CART, JSON.stringify(cart))
 		}
 	}, []);
-	
+
 	return <>
-		<TopBar/>
-		<AppDrawer/>
+		<TopBar />
+		<AppDrawer />
 		<Featured />
 		<Offer />
-		<Product setLoading={setIsLoading}/>
+		<Product setLoading={setIsLoading} />
 		<Subscribe />
 		<Footer />
-		<ButtonToTop/>
-		<Loading loading={isLoading}/>
+		<ButtonToTop />
+		<Loading loading={isLoading} />
 	</>
 }

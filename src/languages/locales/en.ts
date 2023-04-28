@@ -25,6 +25,7 @@ export default {
         "shoppingCart": "Shopping Cart",
         "checkout": "Checkout",
         "contact": "Contact",
+        "changePassword": "Change Password",
         "login": "Login",
         "logout": "Logout",
         "register": "Register",
@@ -136,6 +137,14 @@ export default {
         "popularity": "Popularity",
         "bestRating": "Best Rating",
         "previous": "Previous",
-        "next": "Next"
+        "next": "Next",
+        "plsChooseRate": "Please Choose Rate",
+        "plsFillYourReview": "Please Fill Your Review",
+        "success": "Success",
+        "createProduct": "Create Product",
+        "productList": "Product List",
+        "action": "Action",
+        "order": "Order",
+        "save": "Save",
     }
 }

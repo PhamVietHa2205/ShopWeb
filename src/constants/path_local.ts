@@ -11,6 +11,14 @@ export const RouteUrl = {
     ADMIN_USER: "/admin/user",
     ADMIN_ORDER: "/admin/order",
     ADMIN_PRODUCT: "/admin/product",
+    ADMIN_SHOP: "/admin/shop",
+    ADMIN_COMMENT: "/admin/comment",
     SIGN_IN_ADMIN: "/sign_in",
+    PROFILE_ADMIN: "/admin/profile",
+    SELLER_HOME: '/seller_home',
+    SELLER_PRODUCT_LIST: '/seller/product_list',
+    SELLER_CREATE_PRODUCT: '/seller/create_product',
+    SELLER_ORDER_LIST: '/seller/order_list',
+    CHANGE_PASSWORD: 'change_password',
 
 }
