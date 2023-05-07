@@ -1,11 +1,16 @@
 import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
 import { RouteUrl } from "../../constants/path_local";
-
+import { useSelector } from "react-redux";
+import { RootState } from "../../redux";
+import { DefaultAssets, LocalStorageKey } from "../../constants/key_local";
+import { memo, useEffect, useState } from "react";
+import { IUserInformation } from "../../interfaces/author-interface";
 const Header = () => {
     const { t } = useTranslation();
     const navigate = useNavigate();
-
+    const userInfo: IUserInformation = useSelector((state: RootState) => state.userInfo);
+    const [isLogin, setIsLogin] = useState(false);
     const goToPage = (url: string) => {
         navigate(url);
     }
@@ -15,13 +20,21 @@ const Header = () => {
         return window.location.pathname.includes(url) ? "active" : "";
     }
 
+    useEffect(() => {
+        setIsLogin(localStorage.getItem(LocalStorageKey.LOGIN) ? true : false);
+    }, []);
+
+    const logout = () => {
+        localStorage.clear();
+        window.location.pathname = RouteUrl.SIGN_IN_ADMIN;
+    }
     return (
         <>
-                 <nav className="navbar navbar-main navbar-expand-lg px-0 mx-4 shadow-none border-radius-xl" id="navbarBlur" navbar-scroll="true">
+            <nav className="navbar navbar-main navbar-expand-lg px-0 mx-4 shadow-none border-radius-xl" id="navbarBlur" navbar-scroll="true">
                 <div className="container-fluid py-1 px-3">
                     <nav aria-label="breadcrumb">
                         <ol className="breadcrumb bg-transparent mb-0 pb-0 pt-1 px-0 me-sm-6 me-5">
-                            <li className="breadcrumb-item text-sm"><a className="opacity-5 text-dark" href="javascript:;">Pages</a></li>
+                            <li className="breadcrumb-item text-sm"><a className="opacity-5 text-dark" href="#">Pages</a></li>
                             <li className="breadcrumb-item text-sm text-dark active" aria-current="page">Dashboard</li>
                         </ol>
                         <h6 className="font-weight-bolder mb-0">Dashboard</h6>
@@ -37,72 +50,37 @@ const Header = () => {
                             <li className="nav-item d-flex align-items-center">
                                 <a className="btn btn-outline-primary btn-sm mb-0 me-3" target="_blank" href="/">Trang người dùng</a>
                             </li>
-                            <li className="nav-item d-flex align-items-center">
-                                <a href="javascript:;" className="nav-link text-body font-weight-bold px-0">
-                                    <i className="fa fa-user me-sm-1"></i>
-                                    <span className="d-sm-inline d-none">Sign In</span>
+                            <li className="nav-item  px-3 align-items-center">
+                                <a href="# " id="dropdownMenuButton" data-bs-toggle="dropdown" className="nav-link d-flex text-body font-weight-bold px-0">
+                                    {
+                                        isLogin &&
+                                        <>
+                                            <img src={userInfo?.avatar ?? DefaultAssets.AVATAR_IMG_LINK} className="avatar avatar-sm  me-3 "></img>
+                                            <div className="nav-link">{userInfo?.fullname}</div>
+                                        </>
+                                    }
                                 </a>
-                            </li>
-                            <li className="nav-item d-xl-none ps-3 d-flex align-items-center">
-                                <a href="javascript:;" className="nav-link text-body p-0" id="iconNavbarSidenav">
-                                    <div className="sidenav-toggler-inner">
-                                        <i className="sidenav-toggler-line"></i>
-                                        <i className="sidenav-toggler-line"></i>
-                                        <i className="sidenav-toggler-line"></i>
-                                    </div>
-                                </a>
-                            </li>
-                            <li className="nav-item px-3 d-flex align-items-center">
-                                <a href="javascript:;" className="nav-link text-body p-0">
-                                    <i className="fa fa-cog fixed-plugin-button-nav cursor-pointer"></i>
-                                </a>
-                            </li>
-                            <li className="nav-item dropdown pe-2 d-flex align-items-center">
-                                <a href="javascript:;" className="nav-link text-body p-0" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
-                                    <i className="fa fa-bell cursor-pointer"></i>
-                                </a>
-                                <ul className="dropdown-menu  dropdown-menu-end  px-2 py-3 me-sm-n4" aria-labelledby="dropdownMenuButton">
+                                <ul className="dropdown-menu  dropdown-menu-end mt-0  px-2  me-sm-3" aria-labelledby="dropdownMenuButton">
                                     <li className="mb-2">
-                                        <a className="dropdown-item border-radius-md" href="javascript:;">
-                                            <div className="d-flex py-1">
-                                                <div className="my-auto">
+                                        <a className="dropdown-item border-radius-md" href="#">
+                                            <div className="d-flex align-items-center py-1">
+                                                <div className="my-auto justify-content-center ">
                                                     <img src={require("../../assets/img/team-2.jpg")} className="avatar avatar-sm  me-3 " />
                                                 </div>
-                                                <div className="d-flex flex-column justify-content-center">
-                                                    <h6 className="text-sm font-weight-normal mb-1">
-                                                        <span className="font-weight-bold">New message</span> from Laur
-                                                    </h6>
-                                                    <p className="text-xs text-secondary mb-0 ">
-                                                        <i className="fa fa-clock me-1"></i>
-                                                        13 minutes ago
-                                                    </p>
-                                                </div>
+                                                <h6 className="text-sm font-weight-normal mb-1">
+                                                    <span className="font-weight-bold">Profile</span> from Laur
+                                                </h6>
+
+
                                             </div>
                                         </a>
                                     </li>
-                                    <li className="mb-2">
-                                        <a className="dropdown-item border-radius-md" href="javascript:;">
-                                            <div className="d-flex py-1">
-                                                <div className="my-auto">
-                                                    <img src={require("../../assets/img/small-logos/logo-spotify.svg")} className="avatar avatar-sm bg-gradient-dark  me-3 " />
-                                                </div>
-                                                <div className="d-flex flex-column justify-content-center">
-                                                    <h6 className="text-sm font-weight-normal mb-1">
-                                                        <span className="font-weight-bold">New album</span> by Travis Scott
-                                                    </h6>
-                                                    <p className="text-xs text-secondary mb-0 ">
-                                                        <i className="fa fa-clock me-1"></i>
-                                                        1 day
-                                                    </p>
-                                                </div>
-                                            </div>
-                                        </a>
-                                    </li>
+
                                     <li>
-                                        <a className="dropdown-item border-radius-md" href="javascript:;">
-                                            <div className="d-flex py-1">
+                                        <a className="dropdown-item border-radius-md" href="#" onClick={() => logout()}>
+                                            <div className="d-flex align-items-center py-1 ">
                                                 <div className="avatar avatar-sm bg-gradient-secondary  me-3  my-auto">
-                                                    
+
                                                     <svg width="12px" height="12px" viewBox="0 0 43 36" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink">
                                                         <title>credit-card</title>
                                                         <g stroke="none" strokeWidth="1" fill="none" fillRule="evenodd">
@@ -117,25 +95,33 @@ const Header = () => {
                                                         </g>
                                                     </svg>
                                                 </div>
-                                                <div className="d-flex flex-column justify-content-center">
-                                                    <h6 className="text-sm font-weight-normal mb-1">
-                                                        Payment successfully completed
-                                                    </h6>
-                                                    <p className="text-xs text-secondary mb-0 ">
-                                                        <i className="fa fa-clock me-1"></i>
-                                                        2 days
-                                                    </p>
-                                                </div>
+                                                <h6 className="text-sm font-weight-normal mb-1">
+                                                    Log out
+                                                </h6>
+
+
                                             </div>
                                         </a>
                                     </li>
                                 </ul>
                             </li>
+
+                            {/* <li className="nav-item px-3 d-flex align-items-center">
+                                <a href="#" className="nav-link text-body p-0">
+                                    <i className="fa fa-cog fixed-plugin-button-nav cursor-pointer"></i>
+                                </a>
+                            </li> */}
+                            <li className="nav-item dropdown pe-2 d-flex align-items-center">
+                                <a href="#" className="nav-link text-body p-0" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
+                                    <i className="fa fa-bell cursor-pointer"></i>
+                                </a>
+
+                            </li>
                         </ul>
                     </div>
                 </div>
             </nav>
-            </>
+        </>
     )
 }
-export default Header;
+export default memo(Header);

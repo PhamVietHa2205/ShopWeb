@@ -1,21 +1,20 @@
 import TopBar from "../shared/TopBar";
 import PageHeader from "../shared/PageHeader";
 import Footer from "../shared/Footer";
-import ContactDetail from "../components/Contact/ContactDetail";
 import ButtonToTop from "../shared/ButtonToTop";
 import AppDrawer from "../shared/AppDrawer";
-
-const Contact = () => {
+import Form from "../components/ChangePassWord/Form";
+const ChangePassword = () => {
     return (
         <>
             <TopBar />
             <AppDrawer />
-            <PageHeader title={'contact'} />
-            <ContactDetail />
+            <PageHeader title={'changePassword'} />
+            <Form />
             <Footer />
             <ButtonToTop />
         </>
     );
 }
 
-export default Contact;
+export default ChangePassword;

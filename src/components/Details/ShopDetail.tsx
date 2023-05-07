@@ -40,7 +40,7 @@ const ShopDetail = (props: IShopDetailProps) => {
 
     const decreaseCount = () => {
         if (productCount > 0)
-        setProductCount(productCount - 1);
+            setProductCount(productCount - 1);
     }
 
     const handleAddToCart = () => {
@@ -49,18 +49,18 @@ const ShopDetail = (props: IShopDetailProps) => {
         if (cart && cart?.some((item: ICartProduct) => item.id === id)) {
             params = {
                 detail: [...cart.map((item: ICartProduct) => {
-                    return {idProduct: item.id, quantity: item.id === id ? productCount : item.quantity}
+                    return { idProduct: item.id, quantity: item.id === id ? productCount : item.quantity }
                 })]
             };
         } else {
             if (cart)
-            params = {
-                detail: [...cart.map((item: ICartProduct) => {
-                    return {idProduct: item.id, quantity: item.quantity}
-                }), {idProduct: id, quantity: productCount}]
-            };
+                params = {
+                    detail: [...cart.map((item: ICartProduct) => {
+                        return { idProduct: item.id, quantity: item.quantity }
+                    }), { idProduct: id, quantity: productCount }]
+                };
             else params = {
-                detail: [{idProduct: id, quantity: productCount}]
+                detail: [{ idProduct: id, quantity: productCount }]
             }
         };
 
@@ -76,17 +76,17 @@ const ShopDetail = (props: IShopDetailProps) => {
 
     const getCart = () => {
         productApi.getCart({}).then((res) => {
-			if (res?.status === HttpCode.OK) {
-				let data: ICartResponse = res?.data;
-				dispatch(updateCart(data?.payload));
+            if (res?.status === HttpCode.OK) {
+                let data: ICartResponse = res?.data;
+                dispatch(updateCart(data?.payload));
                 localStorage.setItem(LocalStorageKey.CART, JSON.stringify(cart))
-			} else {
-				Notify.error(res?.data?.message);
-			}
-		})
-		return () => {
-			localStorage.setItem(LocalStorageKey.CART, JSON.stringify(cart))
-		}
+            } else {
+                Notify.error(res?.data?.message);
+            }
+        })
+        return () => {
+            localStorage.setItem(LocalStorageKey.CART, JSON.stringify(cart))
+        }
     }
 
     const getDetailProduct = () => {
@@ -136,7 +136,7 @@ const ShopDetail = (props: IShopDetailProps) => {
     //     });
     //     getDetailProduct();
     // }
-    
+
     return (
         <div className="container-fluid py-5">
             <div className="row px-xl-5">
@@ -241,7 +241,7 @@ const ShopDetail = (props: IShopDetailProps) => {
                     <div className="tab-content">
                         <div className="tab-pane active show" id="review-tab">
                             <div className="row">
-                                <div className="col border-bottom" style={{minHeight: 200}}>
+                                <div className="col border-bottom" style={{ minHeight: 200 }}>
                                     <h4 className="mb-4">{`${rate} ${t('reviewsFor')} "${product?.nameProduct}"`}</h4>
                                     {
                                         product?.comments?.map((comment: IComment, index) => {
