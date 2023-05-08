@@ -3,12 +3,13 @@ import { useTranslation } from 'react-i18next';
 import { ICartEditRequest, ICartProduct, IProductHotPayLoad, IProductHotResponse } from '../../interfaces/product-interface';
 import { formatNumber } from '../../utils/index';
 import productApi from '../../api/product-api';
-import { DefaultAssets, HttpCode } from '../../constants/key_local';
+import { DefaultAssets, HttpCode, LocalStorageKey } from '../../constants/key_local';
 import * as Notify from "../../shared/Notify";
 import { RouteUrl } from '../../constants/path_local';
 import { useNavigate } from 'react-router-dom';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../../redux';
+import { updateCart } from '../../redux/reducers/cart-reducer';
 
 interface IProductProps {
     setLoading: any;
@@ -20,6 +21,7 @@ const Product = (props: IProductProps) => {
     const [hotProductList, setHotProductList] = useState([]);
     const cart = useSelector((state: RootState) => state.cart);
     const navigate = useNavigate();
+    const dispatch = useDispatch();
 
     useEffect(() => {
         setLoading(true);
@@ -63,6 +65,8 @@ const Product = (props: IProductProps) => {
         productApi.editCart(params).then((res) => {
             setLoading(false);
             if (res?.status === HttpCode.OK) {
+                dispatch(updateCart([...cart, res?.data?.payload]));
+                localStorage.setItem(LocalStorageKey.CART, JSON.stringify([...cart, res?.data?.payload]));
             } else {
                 Notify.error(res?.data?.message)
             }
