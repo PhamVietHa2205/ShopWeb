@@ -46,17 +46,17 @@ const ShopDetail = (props: IShopDetailProps) => {
     const handleAddToCart = () => {
         setLoading(true);
         let params: ICartEditRequest;
-        if (cart && cart?.some((item: ICartProduct) => item.id === id)) {
+        if (cart && cart?.some((item: ICartProduct) => item.id_product === id)) {
             params = {
                 detail: [...cart.map((item: ICartProduct) => {
-                    return { idProduct: item.id, quantity: item.id === id ? productCount : item.quantity }
+                    return { idProduct: item.id_product, quantity: item.id_product === id ? productCount : item.quantity }
                 })]
             };
         } else {
             if (cart)
                 params = {
                     detail: [...cart.map((item: ICartProduct) => {
-                        return { idProduct: item.id, quantity: item.quantity }
+                        return { idProduct: item.id_product, quantity: item.quantity }
                     }), { idProduct: id, quantity: productCount }]
                 };
             else params = {
