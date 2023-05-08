@@ -30,12 +30,13 @@ export function LogIn() {
 		authorApi.login(params).then((res: any) => {
 			setIsLoading(false);
 			const data: ILoginResponse = res?.data;
+			console.log('data', data)
 			if (res?.status === HttpCode.OK) {
 				Notify.success(data?.message);
 				localStorage.setItem(LocalStorageKey.USER_INFO, JSON.stringify(data?.payload?.user));
-				localStorage.setItem(LocalStorageKey.LOGIN, "true");
-				localStorage.setItem(LocalStorageKey.TOKEN, data?.payload?.token);
 				dispatch(updateUser(data?.payload?.user));
+				localStorage.setItem(LocalStorageKey.TOKEN, data?.payload?.token);
+				localStorage.setItem(LocalStorageKey.LOGIN, "true");
 				window.location.pathname = RouteUrl.HOME_PATH;
 			} else {
 				Notify.error(data?.message)
