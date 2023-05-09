@@ -19,7 +19,7 @@ const Product = (props: IProductProps) => {
     const { setLoading } = props;
     const { t } = useTranslation();
     const [hotProductList, setHotProductList] = useState([]);
-    const cart = useSelector((state: RootState) => state.cart);
+    const cart = useSelector((state: RootState) => state.cart?.cartList);
     const navigate = useNavigate();
     const dispatch = useDispatch();
 
@@ -44,14 +44,14 @@ const Product = (props: IProductProps) => {
     const handleAddToCart = (id: string) => {
         setLoading(true);
         let params: ICartEditRequest;
-        if (cart.length > 0 && cart?.some((item: ICartProduct) => item.id_product === id)) {
+        if (cart && cart?.some((item: ICartProduct) => item.id_product === id)) {
             params = {
                 detail: [...cart.map((item: ICartProduct) => {
                     return {idProduct: item.id_product, quantity: item.id_product === id ? (item.quantity + 1) : item.quantity}
                 })]
             };
         } else {
-            if (cart.length > 0)
+            if (cart)
             params = {
                 detail: [...cart.map((item: ICartProduct) => {
                     return {idProduct: item.id_product, quantity: item.quantity}

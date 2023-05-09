@@ -11,7 +11,7 @@ interface ITopBarProps {
 
 const TopBar = () => {
     const { t, i18n } = useTranslation();
-    const cart = useSelector((state: RootState) => state.cart);
+    const cart = useSelector((state: RootState) => state.cart?.cartList);
 
     const handleChangeLanguage = (lang: string) => {
 		i18n.changeLanguage(lang ?? "en");

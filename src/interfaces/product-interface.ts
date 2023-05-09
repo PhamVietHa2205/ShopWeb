@@ -14,6 +14,10 @@ export interface IProductHotPayLoad {
 	images: string[],
 }
 
+export interface ICartInformation {
+	cartList: ICartProduct[];
+}
+
 export interface ICartResponse {
 	code: number,
 	message: string,

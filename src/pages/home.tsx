@@ -22,7 +22,7 @@ import { RootState } from "../redux";
 export function Home() {
 	const [isLoading, setIsLoading] = useState(false);
 	const dispatch = useDispatch();
-	const cart: ICartProduct[] = useSelector((state: RootState) => state.cart);
+	const cart: ICartProduct[] = useSelector((state: RootState) => state.cart?.cartList);
 
 	useEffect(() => {
 		productApi.getCart({}).then((res) => {

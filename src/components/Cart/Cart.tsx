@@ -1,55 +1,45 @@
 import { useTranslation } from 'react-i18next';
 import { formatNumber } from '../../utils/index';
 import { useState, useEffect, memo } from 'react';
+import productApi from '../../api/product-api';
+import { DefaultAssets, HttpCode } from '../../constants/key_local';
+import { ICartResponse, ICartProduct } from '../../interfaces/product-interface';
+import { useDispatch, useSelector } from 'react-redux';
+import { updateCart } from '../../redux/reducers/cart-reducer';
+import * as Notify from "../../shared/Notify";
+import { RootState } from '../../redux';
+
 
 interface ICartShopProps {
-    
+    setLoading: any,
 }
 
-const CartShop = () => {
+const CartShop = (props: ICartShopProps) => {
+    const { setLoading } = props;
     const { t } = useTranslation();
     const [subTotalPrice, setSubTotalPrice] = useState(0);
     const [shippingFee, setShippingFee] = useState(0);
-    const listInCart = [
-        {
-            image: "product-1.jpg",
-            name: "Colorful Stylish Shirt",
-            price: 150,
-            quantity: 1,
-        },
-        {
-            image: "product-2.jpg",
-            name: "Colorful Stylish Shirt",
-            price: 150,
-            quantity: 1,
-        },
-        {
-            image: "product-3.jpg",
-            name: "Colorful Stylish Shirt",
-            price: 150,
-            quantity: 1,
-        },
-        {
-            image: "product-4.jpg",
-            name: "Colorful Stylish Shirt",
-            price: 150,
-            quantity: 1,
-        },
-        {
-            image: "product-5.jpg",
-            name: "Colorful Stylish Shirt",
-            price: 150,
-            quantity: 1,
-        }
-    ]
+    const dispatch = useDispatch();
+    const cart = useSelector((state: RootState) => state?.cart?.cartList);
 
     useEffect(() => {
         setShippingFee(10);
+        setLoading(true);
+        productApi.getCart({}).then((res) => {
+            setLoading(false);
+            if (res?.status === HttpCode.OK && res?.data?.code !== -1) {
+                let data: ICartResponse = res?.data;
+                dispatch(updateCart(data?.payload));
+            } else {
+                Notify.error(res?.data?.message);
+            }
+        })
     }, []);
 
     useEffect(() => {
-        setSubTotalPrice(listInCart.map((item) => item.price * item.quantity).reduce((first, second) => first + second, 0));
-    }, [listInCart]);
+        if (cart)
+        setSubTotalPrice(cart.map((item) => Number(item.price) * item.quantity).reduce((first, second) => first + second, 0));
+    }, [cart]);
     
 
     return (
@@ -68,10 +58,10 @@ const CartShop = () => {
                     </thead>
                     <tbody className="align-middle">
                         {
-                            listInCart.map((item, index) => {
-                                return <tr>
-                                <td className="align-middle"><img src={require(`../../assets/img/${item.image}`)} alt="" style={{width: 50}}/> Colorful Stylish Shirt</td>
-                                <td className="align-middle">${formatNumber(item.price, 2)}</td>
+                            cart && cart.map((item: ICartProduct, index) => {
+                                return item && <tr>
+                                <td className="align-middle"><img src={item?.image ?? DefaultAssets.PRODUCT_IMAGE_LINK} alt={item.name} style={{width: 50}}/> Colorful Stylish Shirt</td>
+                                <td className="align-middle">${formatNumber(Number(item.price), 2)}</td>
                                 <td className="align-middle">
                                     <div className="input-group quantity mx-auto" style={{width: 100}}>
                                         <div className="input-group-btn">
@@ -87,7 +77,7 @@ const CartShop = () => {
                                         </div>
                                     </div>
                                 </td>
-                                <td className="align-middle">${formatNumber(item.quantity * item.price, 2)}</td>
+                                <td className="align-middle">${formatNumber(item.quantity * Number(item.price), 2)}</td>
                                 <td className="align-middle"><button className="btn btn-sm btn-primary"><i className="fa fa-times"></i></button></td>
                             </tr>
                             })
