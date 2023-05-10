@@ -19,7 +19,7 @@ const Product = (props: IProductProps) => {
     const { setLoading } = props;
     const { t } = useTranslation();
     const [hotProductList, setHotProductList] = useState([]);
-    const cart = useSelector((state: RootState) => state.cart);
+    const cart = useSelector((state: RootState) => state.cart?.cartList);
     const navigate = useNavigate();
     const dispatch = useDispatch();
 
@@ -44,17 +44,17 @@ const Product = (props: IProductProps) => {
     const handleAddToCart = (id: string) => {
         setLoading(true);
         let params: ICartEditRequest;
-        if (cart && cart?.some((item: ICartProduct) => item.id === id)) {
+        if (cart && cart?.some((item: ICartProduct) => item.id_product === id)) {
             params = {
                 detail: [...cart.map((item: ICartProduct) => {
-                    return {idProduct: item.id, quantity: item.id === id ? (item.quantity + 1) : item.quantity}
+                    return {idProduct: item.id_product, quantity: item.id_product === id ? (item.quantity + 1) : item.quantity}
                 })]
             };
         } else {
             if (cart)
             params = {
                 detail: [...cart.map((item: ICartProduct) => {
-                    return {idProduct: item.id, quantity: item.quantity}
+                    return {idProduct: item.id_product, quantity: item.quantity}
                 }), {idProduct: id, quantity: 1}]
             };
             else params = {
@@ -80,7 +80,7 @@ const Product = (props: IProductProps) => {
         </div>
         <div className="row px-xl-5 pb-3">
             {
-                hotProductList.map((item: IProductHotPayLoad, index) => {
+                hotProductList && hotProductList.map((item: IProductHotPayLoad, index) => {
                     return <div className="col-lg-3 col-md-6 col-sm-12 pb-1" key={index}>
                     <div className="card product-item border-0 mb-4">
                         <div className="card-header product-img position-relative overflow-hidden bg-transparent border p-0">

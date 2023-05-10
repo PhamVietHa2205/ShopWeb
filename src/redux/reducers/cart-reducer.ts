@@ -1,12 +1,15 @@
 import { createReducer, createSlice, PayloadAction } from "@reduxjs/toolkit"
 import { LocalStorageKey, REDUX_ACTION } from "../../constants/key_local"
 import { IUserInformation } from "../../interfaces/author-interface";
-import { ICartProduct } from "../../interfaces/product-interface";
+import { ICartInformation, ICartProduct } from "../../interfaces/product-interface";
 
-let initState: ICartProduct[];
+let initState: ICartInformation = {
+	cartList: [],
+};
+
 
 if (typeof window !== 'undefined') {
-    initState = JSON.parse(localStorage.getItem(LocalStorageKey.CART) || "[]");
+    initState.cartList = JSON.parse(localStorage.getItem(LocalStorageKey.CART) ?? "[]");
 }
 
 const cartReducer = createSlice({
@@ -14,7 +17,7 @@ const cartReducer = createSlice({
 	initialState: initState,
 	reducers: {
 		updateCart: (state: any, action: PayloadAction<ICartProduct[]>) => {
-			state = action.payload
+			state.cartList = [...action.payload]
 		}
 	}
 })

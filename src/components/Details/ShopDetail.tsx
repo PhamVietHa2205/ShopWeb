@@ -27,7 +27,7 @@ const ShopDetail = (props: IShopDetailProps) => {
     const { state } = useLocation();
     const { id } = state;
     const [product, setProduct] = useState<IDetailProduct>();
-    const cart = useSelector((state: RootState) => state.cart);
+    const cart = useSelector((state: RootState) => state.cart?.cartList);
     const dispatch = useDispatch();
 
     useEffect(() => {
@@ -46,17 +46,17 @@ const ShopDetail = (props: IShopDetailProps) => {
     const handleAddToCart = () => {
         setLoading(true);
         let params: ICartEditRequest;
-        if (cart && cart?.some((item: ICartProduct) => item.id === id)) {
+        if (cart && cart?.some((item: ICartProduct) => item.id_product === id)) {
             params = {
                 detail: [...cart.map((item: ICartProduct) => {
-                    return { idProduct: item.id, quantity: item.id === id ? productCount : item.quantity }
+                    return { idProduct: item.id_product, quantity: item.id_product === id ? productCount : item.quantity }
                 })]
             };
         } else {
             if (cart)
                 params = {
                     detail: [...cart.map((item: ICartProduct) => {
-                        return { idProduct: item.id, quantity: item.quantity }
+                        return { idProduct: item.id_product, quantity: item.quantity }
                     }), { idProduct: id, quantity: productCount }]
                 };
             else params = {
@@ -76,7 +76,7 @@ const ShopDetail = (props: IShopDetailProps) => {
 
     const getCart = () => {
         productApi.getCart({}).then((res) => {
-            if (res?.status === HttpCode.OK) {
+            if (res?.status === HttpCode.OK && res?.data?.code !== -1) {
                 let data: ICartResponse = res?.data;
                 dispatch(updateCart(data?.payload));
                 localStorage.setItem(LocalStorageKey.CART, JSON.stringify(cart))

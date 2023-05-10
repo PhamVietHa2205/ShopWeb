@@ -146,5 +146,10 @@ export default {
         "action": "Action",
         "order": "Order",
         "save": "Save",
+        "purchase": "Purchase",
+        "confirmPurchaseDescription": "Are you sure want to purchase",
+        "cancel": "Cancel",
+        "purchaseSuccessfully": "Purchase Successfully",
+        "noItemInCart": "No item in cart",
     }
 }

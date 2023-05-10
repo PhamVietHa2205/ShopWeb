@@ -1,58 +1,68 @@
 import { useTranslation } from 'react-i18next';
 import { formatNumber } from '../../utils/index';
 import { useState, useEffect, memo } from 'react';
+import productApi from '../../api/product-api';
+import orderApi from '../../api/order-api';
+import { DefaultAssets, HttpCode, LocalStorageKey } from '../../constants/key_local';
+import { ICartResponse, ICartProduct } from '../../interfaces/product-interface';
+import { useDispatch, useSelector } from 'react-redux';
+import { updateCart } from '../../redux/reducers/cart-reducer';
+import * as Notify from "../../shared/Notify";
+import { RootState } from '../../redux';
+
 
 interface ICartShopProps {
-    
+    setLoading: any,
 }
 
-const CartShop = () => {
+const CartShop = (props: ICartShopProps) => {
+    const { setLoading } = props;
     const { t } = useTranslation();
     const [subTotalPrice, setSubTotalPrice] = useState(0);
     const [shippingFee, setShippingFee] = useState(0);
-    const listInCart = [
-        {
-            image: "product-1.jpg",
-            name: "Colorful Stylish Shirt",
-            price: 150,
-            quantity: 1,
-        },
-        {
-            image: "product-2.jpg",
-            name: "Colorful Stylish Shirt",
-            price: 150,
-            quantity: 1,
-        },
-        {
-            image: "product-3.jpg",
-            name: "Colorful Stylish Shirt",
-            price: 150,
-            quantity: 1,
-        },
-        {
-            image: "product-4.jpg",
-            name: "Colorful Stylish Shirt",
-            price: 150,
-            quantity: 1,
-        },
-        {
-            image: "product-5.jpg",
-            name: "Colorful Stylish Shirt",
-            price: 150,
-            quantity: 1,
-        }
-    ]
+    const dispatch = useDispatch();
+    const cart = useSelector((state: RootState) => state?.cart?.cartList);
 
     useEffect(() => {
         setShippingFee(10);
+        setLoading(true);
+        productApi.getCart({}).then((res) => {
+            setLoading(false);
+            if (res?.status === HttpCode.OK && res?.data?.code !== -1) {
+                let data: ICartResponse = res?.data;
+                dispatch(updateCart(data?.payload));
+            } else {
+                Notify.error(res?.data?.message);
+            }
+        })
     }, []);
 
     useEffect(() => {
-        setSubTotalPrice(listInCart.map((item) => item.price * item.quantity).reduce((first, second) => first + second, 0));
-    }, [listInCart]);
+        if (cart)
+        setSubTotalPrice(cart.map((item) => Number(item.price) * item.quantity).reduce((first, second) => first + second, 0));
+    }, [cart]);
     
+    const sendPurchaseOrder = () => {
+        setLoading(true);
+        const param = {
+            detail: cart.map((item: ICartProduct) => {
+            return {idProduct: item.id_product, quantity: item.quantity}
+            })
+        }
+        orderApi.postOrder(param).then((res) => {
+            setLoading(false);
+            if (res?.status === HttpCode.OK && res?.data?.code !== -1) {
+                Notify.success(t("purchaseSuccessfully"));
+                dispatch(updateCart([]));
+                localStorage.setItem(LocalStorageKey.CART, "[]");
+            } else {
+                Notify.error(res?.data?.message);
+            }
+        })
+    }
 
     return (
+        <>
         <div className="container-fluid pt-5">
         <div className="row px-xl-5">
             <div className="col-lg-8 table-responsive mb-5">
@@ -68,10 +78,10 @@ const CartShop = () => {
                     </thead>
                     <tbody className="align-middle">
                         {
-                            listInCart.map((item, index) => {
-                                return <tr>
-                                <td className="align-middle"><img src={require(`../../assets/img/${item.image}`)} alt="" style={{width: 50}}/> Colorful Stylish Shirt</td>
-                                <td className="align-middle">${formatNumber(item.price, 2)}</td>
+                            cart && cart.length > 0 ? cart.map((item: ICartProduct, index) => {
+                                return item && <tr>
+                                <td className="align-middle text-left"><img src={item?.image ?? DefaultAssets.PRODUCT_IMAGE_LINK} alt={item.name} style={{width: 50}}/> {item?.name}</td>
+                                <td className="align-middle">${formatNumber(Number(item.price), 2)}</td>
                                 <td className="align-middle">
                                     <div className="input-group quantity mx-auto" style={{width: 100}}>
                                         <div className="input-group-btn">
@@ -87,10 +97,12 @@ const CartShop = () => {
                                         </div>
                                     </div>
                                 </td>
-                                <td className="align-middle">${formatNumber(item.quantity * item.price, 2)}</td>
+                                <td className="align-middle">${formatNumber(item.quantity * Number(item.price), 2)}</td>
                                 <td className="align-middle"><button className="btn btn-sm btn-primary"><i className="fa fa-times"></i></button></td>
                             </tr>
-                            })
+                            }) : <tr>
+                            <td className="text-center container-fluid" colSpan={12}>{t("noItemInCart")}</td>
+                        </tr>
                         }
                     </tbody>
                 </table>
@@ -123,12 +135,32 @@ const CartShop = () => {
                             <h5 className="font-weight-bold">{t('total')}</h5>
                             <h5 className="font-weight-bold">${subTotalPrice + shippingFee}</h5>
                         </div>
-                        <button className="btn btn-block btn-primary my-3 py-3">{t('proceedToCheckout')}</button>
+                        <button className="btn btn-block btn-primary my-3 py-3" data-bs-target="#confirmModal" data-bs-toggle="modal">{t('proceedToCheckout')}</button>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+    <div className="modal fade" id="confirmModal" tabIndex={-1} role="dialog" aria-labelledby="confirmModal" aria-hidden="true">
+        <div className="modal-dialog modal-dialog-centered" role="document">
+            <div className="modal-content">
+            <div className="modal-header">
+                <h5 className="modal-title" id="confirmModal">{t('purchase')}?</h5>
+                <button type="button" className="close" data-bs-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div className="modal-body">
+                {t('confirmPurchaseDescription')}?
+            </div>
+            <div className="modal-footer">
+                <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">{t('cancel')}</button>
+                <button type="button" className="btn btn-primary" data-bs-dismiss="modal" onClick={sendPurchaseOrder}>{t("purchase")}</button>
+            </div>
+            </div>
+        </div>
+    </div>
+    </>
     )
 }
 export default memo(CartShop)
