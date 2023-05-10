@@ -66,7 +66,7 @@ const ShopDetail = (props: IShopDetailProps) => {
 
         productApi.editCart(params).then((res) => {
             setLoading(false);
-            if (res?.status === HttpCode.OK) {
+            if (res?.status === HttpCode.OK && res?.data?.code !== -1) {
             } else {
                 Notify.error(res?.data?.message)
             }
@@ -97,7 +97,7 @@ const ShopDetail = (props: IShopDetailProps) => {
         productApi.getDetailProduct(params).then((res) => {
             setLoading(false);
             let data: IDetailProductResponse = res?.data;
-            if (res?.status === HttpCode.OK) {
+            if (res?.status === HttpCode.OK && res?.data?.code !== -1) {
                 setProduct(data?.payload);
                 setRate(data?.payload?.comments?.length ? (data?.payload?.comments?.reduce((sum, value: IComment) => sum + value.star, 0) / data?.payload?.comments?.length) : 0);
             } else {

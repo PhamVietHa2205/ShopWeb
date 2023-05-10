@@ -4,6 +4,8 @@ import { useTranslation } from "react-i18next";
 import { Language, LocalStorageKey } from "../constants/key_local";
 import { useSelector } from "react-redux";
 import { RootState } from "../redux";
+import { useNavigate } from "react-router-dom";
+import { RouteUrl } from "../constants/path_local";
 
 interface ITopBarProps {
 
@@ -12,6 +14,7 @@ interface ITopBarProps {
 const TopBar = () => {
     const { t, i18n } = useTranslation();
     const cart = useSelector((state: RootState) => state.cart?.cartList);
+    const navigate = useNavigate();
 
     const handleChangeLanguage = (lang: string) => {
 		i18n.changeLanguage(lang ?? "en");
@@ -19,6 +22,10 @@ const TopBar = () => {
 
     const getClassActive = (lang: string) => {
         return i18n.language === lang ? "text-primary" : "text-dark";
+    }
+
+    const goToPage = (url: string) => {
+        navigate(url);
     }
 
     return (
@@ -75,7 +82,7 @@ const TopBar = () => {
                 </form>
             </div>
             <div className="col-lg-3 col-6 text-right">
-                <a className="btn border">
+                <a className="btn border" onClick={() => goToPage(RouteUrl.CART)}>
                     <sup>{cart?.length ?? 0} </sup>
                     <i className="fa fa-shopping-cart text-primary"></i>
                 </a>

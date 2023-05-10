@@ -22,6 +22,7 @@ const CartShop = (props: ICartShopProps) => {
     const [shippingFee, setShippingFee] = useState(0);
     const dispatch = useDispatch();
     const cart = useSelector((state: RootState) => state?.cart?.cartList);
+    const [cartListUpdate, setCartListUpdate] = useState(cart);
 
     useEffect(() => {
         setShippingFee(10);
@@ -31,6 +32,7 @@ const CartShop = (props: ICartShopProps) => {
             if (res?.status === HttpCode.OK && res?.data?.code !== -1) {
                 let data: ICartResponse = res?.data;
                 dispatch(updateCart(data?.payload));
+                setCartListUpdate(data?.payload);
             } else {
                 Notify.error(res?.data?.message);
             }
@@ -38,14 +40,18 @@ const CartShop = (props: ICartShopProps) => {
     }, []);
 
     useEffect(() => {
-        if (cart)
-        setSubTotalPrice(cart.map((item) => Number(item.price) * item.quantity).reduce((first, second) => first + second, 0));
-    }, [cart]);
+        if (cartListUpdate)
+        setSubTotalPrice(cartListUpdate.map((item) => Number(item.price) * item.quantity).reduce((first, second) => first + second, 0));
+    }, [cartListUpdate]);
     
     const sendPurchaseOrder = () => {
+        if (!(cartListUpdate && cartListUpdate.length > 0)) {
+            Notify.error(t("noItemInCart")!);
+            return;
+        }
         setLoading(true);
         const param = {
-            detail: cart.map((item: ICartProduct) => {
+            detail: cartListUpdate.map((item: ICartProduct) => {
             return {idProduct: item.id_product, quantity: item.quantity}
             })
         }
@@ -53,12 +59,38 @@ const CartShop = (props: ICartShopProps) => {
             setLoading(false);
             if (res?.status === HttpCode.OK && res?.data?.code !== -1) {
                 Notify.success(t("purchaseSuccessfully"));
-                dispatch(updateCart([]));
-                localStorage.setItem(LocalStorageKey.CART, "[]");
+                productApi.editCart({detail: []}).then((res) => {
+                    if (res?.status === HttpCode.OK && res?.data?.code !== -1) {
+                    } else {
+                        Notify.error(res?.data?.message)
+                    }
+                })
+                clearCart();
             } else {
                 Notify.error(res?.data?.message);
             }
         })
+    }
+
+    const clearCart = () => {
+        setCartListUpdate([]);
+        dispatch(updateCart([]));
+        localStorage.setItem(LocalStorageKey.CART, "[]");
+    }
+
+    const handleIncrease = (id: string) => {
+        let newCartList = cartListUpdate.map((item) => item.id_product === id ? {...item, quantity: item.quantity + 1} : item);
+        setCartListUpdate(newCartList);
+    }
+
+    const handleDecrease = (id: string) => {
+        let newCartList = cartListUpdate.map((item) => item.id_product === id ? {...item, quantity: item.quantity > 1 ? (item.quantity - 1) : 1} : item);
+        setCartListUpdate(newCartList);
+    }
+
+    const handleRemove = (id: string) => {
+        let newCartList = cartListUpdate.filter((item) => item.id_product !== id);
+        setCartListUpdate(newCartList);
     }
 
     return (
@@ -78,19 +110,19 @@ const CartShop = (props: ICartShopProps) => {
                     </thead>
                     <tbody className="align-middle">
                         {
-                            cart && cart.length > 0 ? cart.map((item: ICartProduct, index) => {
+                            cartListUpdate && cartListUpdate.length > 0 ? cartListUpdate.map((item: ICartProduct, index) => {
                                 return item && <tr>
                                 <td className="align-middle text-left"><img src={item?.image ?? DefaultAssets.PRODUCT_IMAGE_LINK} alt={item.name} style={{width: 50}}/> {item?.name}</td>
                                 <td className="align-middle">${formatNumber(Number(item.price), 2)}</td>
                                 <td className="align-middle">
                                     <div className="input-group quantity mx-auto" style={{width: 100}}>
-                                        <div className="input-group-btn">
+                                        <div className="input-group-btn" onClick={() => handleDecrease(item.id_product)}>
                                             <button className="btn btn-sm btn-primary btn-minus" >
                                             <i className="fa fa-minus"></i>
                                             </button>
                                         </div>
                                         <input type="text" className="form-control form-control-sm bg-secondary text-center" value={item.quantity}/>
-                                        <div className="input-group-btn">
+                                        <div className="input-group-btn" onClick={() => handleIncrease(item.id_product)}>
                                             <button className="btn btn-sm btn-primary btn-plus">
                                                 <i className="fa fa-plus"></i>
                                             </button>
@@ -98,7 +130,7 @@ const CartShop = (props: ICartShopProps) => {
                                     </div>
                                 </td>
                                 <td className="align-middle">${formatNumber(item.quantity * Number(item.price), 2)}</td>
-                                <td className="align-middle"><button className="btn btn-sm btn-primary"><i className="fa fa-times"></i></button></td>
+                                <td className="align-middle"><button className="btn btn-sm btn-primary" onClick={() => handleRemove(item.id_product)}><i className="fa fa-times"></i></button></td>
                             </tr>
                             }) : <tr>
                             <td className="text-center container-fluid" colSpan={12}>{t("noItemInCart")}</td>
@@ -108,14 +140,14 @@ const CartShop = (props: ICartShopProps) => {
                 </table>
             </div>
             <div className="col-lg-4">
-                <form className="mb-5" action="">
+                <div className="mb-5">
                     <div className="input-group">
                         <input type="text" className="form-control p-4" placeholder="Coupon Code"/>
                         <div className="input-group-append">
                             <button className="btn btn-primary">{t('applyCoupon')}</button>
                         </div>
                     </div>
-                </form>
+                </div>
                 <div className="card border-secondary mb-5">
                     <div className="card-header bg-secondary border-0">
                         <h4 className="font-weight-semi-bold m-0">{t('cartSummary')}</h4>
