@@ -1,17 +1,25 @@
 import { useTranslation } from "react-i18next";
 import { colorList, defaultPairPrice, defaultSize } from "../../mock/shopFilter";
-import { TypeSort } from "../../constants/key_local";
+import { HttpCode, TypeSort } from "../../constants/key_local";
 import { formatNumber } from "../../utils";
 import PaginationPage from "../../shared/Pagination";
-import { memo, useState } from "react";
+import { memo, useEffect, useState } from "react";
+import { useLocation } from "react-router-dom";
+import productApi from '../../api/product-api';
+import { IShopProductResponse } from "../../interfaces/product-interface";
+import * as Notify from "../../shared/Notify";
+
 
 interface IShopDetailProps {
-
+	setLoading: any,
 }
 
-const ShopDetail = () => {
+const ShopDetail = (props: IShopDetailProps) => {
 	const { t } = useTranslation();
 	const [currentPage, setCurrentPage] = useState(1);
+	const { state } = useLocation();
+	const { idShop } = state;
+	const { setLoading } = props;
 
 	const listProduct = [
 		{
@@ -63,6 +71,21 @@ const ShopDetail = () => {
 			deletedPrice: 123,
 		},
 	]
+
+	useEffect(() => {
+		let param = {
+			idShop: idShop,
+		}
+		productApi.getProductInShop(param).then((res) => {
+			console.log('here', param, res?.data)
+			if (res?.status === HttpCode.OK && res?.data?.code !== -1) {
+				let data: IShopProductResponse = res?.data;
+				console.log("data", data, res?.data, param);
+			    } else {
+				Notify.error(res?.data?.message);
+			    }
+		})
+	}, []);
 
 	return (
 		<div className="container-fluid pt-5">

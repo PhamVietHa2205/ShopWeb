@@ -41,6 +41,11 @@ const Product = (props: IProductProps) => {
         window.scrollTo(0, 0);
     }
 
+    const handleViewShop = (idShop: string) => {
+        navigate(RouteUrl.SHOP, {state: {idShop: idShop}});
+        window.scrollTo(0, 0);
+    }
+
     const handleAddToCart = (id: string) => {
         setLoading(true);
         let params: ICartEditRequest;
@@ -92,6 +97,10 @@ const Product = (props: IProductProps) => {
                             <div className="d-flex justify-content-center">
                                 <h6>{formatNumber(Number(item.price), 2)} VND</h6>
                             </div>
+                        </div>
+                        <div className="d-flex justify-content-evenly align-items-center py-2 border" onClick={() => handleViewShop(item.id_shop)}>
+                            <img src={item.logo ?? DefaultAssets.AVATAR_IMG_LINK} style={{width: 30, height: 30, padding: "auto"}} className="bg-info rounded-circle align-self-center"></img>
+                            <div className="nav-link">{item.nameShop}</div>
                         </div>
                         <div className="card-footer d-flex justify-content-between bg-light border">
                             <a className="btn btn-sm text-dark p-0" onClick={() => handleViewDetail(item.id)}><i className="fa fa-eye text-primary mr-1"></i>{t('viewDetail')}</a>

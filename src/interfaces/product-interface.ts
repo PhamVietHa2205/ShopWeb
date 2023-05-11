@@ -12,6 +12,8 @@ export interface IProductHotPayLoad {
 	quantity: number,
 	quantityBeSold: number,
 	images: string[],
+	logo: string,
+	nameShop: string,
 }
 
 export interface ICartInformation {
@@ -84,4 +86,28 @@ export interface IComment {
 export interface IPostCommentResponse {
 	code: number,
 	message: string,
+}
+
+export interface IShopProductResponse {
+	code: number,
+	message: string,
+	payload: IShopProductPayload,
+}
+
+export interface IShopProductPayload {
+	shop: IShopDetail,
+	products: IShopProduct[]
+}
+
+export interface IShopDetail {
+	logo: string,
+	name: string,
+	address: string,
+}
+
+export interface IShopProduct {
+	name: string,
+	quantity: number,
+	id: string,
+	images: string[],
 }
