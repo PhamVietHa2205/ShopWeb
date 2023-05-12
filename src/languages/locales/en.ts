@@ -151,5 +151,6 @@ export default {
         "cancel": "Cancel",
         "purchaseSuccessfully": "Purchase Successfully",
         "noItemInCart": "No item in cart",
+        "sold": "Sold",
     }
 }

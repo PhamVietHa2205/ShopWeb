@@ -6,6 +6,7 @@ export const ApiPath = {
     API_GET_DETAIL_PRODUCT: "detail-product",
     API_POST_COMMENT: "/buyer/comment",
     API_POST_ORDER: "/buyer/order",
+    API_GET_PRODUCT_IN_SHOP: "/product-in-shop/",
     API_ADMIN_GET_USER: "admin/get-user",
     API_ADMIN_GET_SHOP: "admin/get-shop",
     API_ADMIN_EDIT_SHOP: "admin/edit-shop",
