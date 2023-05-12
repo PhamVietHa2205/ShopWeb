@@ -18,6 +18,6 @@ export default {
 		return ClientService.post(ApiPath.API_POST_COMMENT, param);
 	},
 	getProductInShop(param: any) {
-		return ClientService.get(ApiPath.API_GET_PRODUCT_IN_SHOP, param);
+		return ClientService.get(ApiPath.API_GET_PRODUCT_IN_SHOP + `${param?.idShop}`, param);
 	}
 }

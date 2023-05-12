@@ -110,4 +110,6 @@ export interface IShopProduct {
 	quantity: number,
 	id: string,
 	images: string[],
+	price: string,
+	quantityBeSold: number,
 }

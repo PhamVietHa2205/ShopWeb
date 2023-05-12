@@ -69,7 +69,6 @@ const Product = (props: IProductProps) => {
 
         productApi.editCart(params).then((res) => {
             setLoading(false);
-            console.log('param', params, id, res?.data)
             if (res?.status === HttpCode.OK && res?.data?.code !== -1) {
                 dispatch(updateCart(res?.data?.payload));
                 localStorage.setItem(LocalStorageKey.CART, JSON.stringify(res?.data?.payload));
