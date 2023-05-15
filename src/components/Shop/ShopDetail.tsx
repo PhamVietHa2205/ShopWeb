@@ -55,13 +55,11 @@ const ShopDetail = (props: IShopDetailProps) => {
 	useEffect(() => {
 		if (highestPrice === 0) 
 		{
-			setFilterList(searchByName ? fullListProduct : fullListProduct.filter((item: IShopProduct) => item.name.toLowerCase().includes(searchByName.toLowerCase())));
-			setCurListProduct(fullListProduct.splice(0,9));
+			setFilterList(fullListProduct.filter((item: IShopProduct) => (searchByName !== "" ? item.name.toLowerCase().includes(searchByName.toLowerCase()) : true)));
+			setCurListProduct(fullListProduct.filter((item: IShopProduct) => (searchByName !== "" ? item.name.toLowerCase().includes(searchByName.toLowerCase()) : true)).splice(0, 9));
 		} else {
-			setFilterList(fullListProduct.filter((item: IShopProduct) => (Number(item.price) >= lowestPrice && Number(item.price) <= highestPrice))
-				.filter((item: IShopProduct) => item.name.toLowerCase().includes(searchByName.toLowerCase())));
-			setCurListProduct(fullListProduct.filter((item: IShopProduct) => (Number(item.price) >= lowestPrice && Number(item.price) <= highestPrice)).splice(0, 9)
-				.filter((item: IShopProduct) => item.name.toLowerCase().includes(searchByName.toLowerCase())));
+			setFilterList(fullListProduct.filter((item: IShopProduct) => (Number(item.price) >= lowestPrice) && (Number(item.price) <= highestPrice) && (searchByName !== "" ? item.name.toLowerCase().includes(searchByName.toLowerCase()) : true)));
+			setCurListProduct(fullListProduct.filter((item: IShopProduct) => (Number(item.price) >= lowestPrice) && (Number(item.price) <= highestPrice) && (searchByName !== "" ? item.name.toLowerCase().includes(searchByName.toLowerCase()) : true)).splice(0, 9));
 		}
 	}, [highestPrice, searchByName]);
 
@@ -72,10 +70,6 @@ const ShopDetail = (props: IShopDetailProps) => {
 	const handleViewDetail = (id: string) => {
 		navigate(RouteUrl.DETAIL, {state: {id: id}});
 		window.scrollTo(0, 0);
-	}
-
-	const handleSearchByName = () => {
-		
 	}
 	
 	const handleAddToCart = (id: string) => {
