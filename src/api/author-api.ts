@@ -5,6 +5,9 @@ export default {
 	login(param: any) {
 		return ClientService.post(ApiPath.API_LOGIN, param);
 	},
+	register(param: any) {
+		return ClientService.post(ApiPath.API_REGISTER, param);
+	},
 	getUser() {
 		return ClientService.get(ApiPath.API_ADMIN_GET_USER);
 	}

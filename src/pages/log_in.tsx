@@ -70,6 +70,7 @@ export function LogIn() {
 						</div>
 
 					</form>
+					<div className="position-absolute" style={{bottom: "40px", right: "0px", width: "80%"}}>{t("notHaveAnAccount")}? <a href='/sign_up' className='btn text-primary px-0'>{t("signup")}</a></div>
 					<div className="copy-text">{t('createdWith')}<i className="fa fa-heart"></i> {t('by')} <a href="http://grafreez.com">{WEB_SHOP_INFO.DESIGNER}</a></div>
 				</div>
 				<div className="col-md-8 banner-sec">

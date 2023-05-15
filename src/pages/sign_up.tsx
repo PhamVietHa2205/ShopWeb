@@ -1,117 +1,96 @@
+import { useTranslation } from "react-i18next";
+import { DefaultAssets, HttpCode, Roles } from "../constants/key_local";
+import { useState } from "react";
+import authorApi from '../api/author-api';
+import Loading from "../shared/Loading";
+import { IRegisterResponse } from "../interfaces/author-interface";
+import * as Notify from "../shared/Notify";
+import { RouteUrl } from "../constants/path_local";
+
 export function SignUp() {
 	require('../assets/css/soft-ui-dashboard.css');
 	require('../assets/css/nucleo-icons.css');
 	require('../assets/css/nucleo-svg.css');
-	return <>
-		<nav className="navbar navbar-expand-lg position-absolute top-0 z-index-3 w-100 shadow-none my-3 navbar-transparent mt-4">
-			<div className="container">
-				<a className="navbar-brand font-weight-bolder ms-lg-0 ms-3 text-white" href="/admin">
-					Website bán hàng
-				</a>
-				<button className="navbar-toggler shadow-none ms-2" type="button" data-bs-toggle="collapse" data-bs-target="#navigation" aria-controls="navigation" aria-expanded="false" aria-label="Toggle navigation">
-					<span className="navbar-toggler-icon mt-2">
-						<span className="navbar-toggler-bar bar1"></span>
-						<span className="navbar-toggler-bar bar2"></span>
-						<span className="navbar-toggler-bar bar3"></span>
-					</span>
-				</button>
-				<div className="collapse navbar-collapse" id="navigation">
-					<ul className="navbar-nav mx-auto ms-xl-auto me-xl-7">
-						<li className="nav-item">
-							<a className="nav-link me-2" aria-current="page" href="/admin">
-								<i className="fa fa-pie-chart opacity-6  me-1"></i>
-								Dashboard
-							</a>
-						</li>
-						<li className="nav-item">
-							<a className="nav-link me-2" href="admin/profile">
-								<i className="fa fa-user opacity-6  me-1"></i>
-								Profile
-							</a>
-						</li>
-						<li className="nav-item">
-							<a className="nav-link me-2" href="#">
-								<i className="fa fa-user-circle opacity-6  me-1"></i>
-								Sign Up
-							</a>
-						</li>
-						<li className="nav-item">
-							<a className="nav-link me-2" href="admin/sign-in">
-								<i className="fa fa-key opacity-6  me-1"></i>
-								Sign In
-							</a>
-						</li>
-					</ul>
 
-					<li className="nav-item d-flex align-items-center">
-						<a href="/" className="btn btn-sm btn-round mb-0 me-1 bg-gradient-light">Trang người dùng</a>
-					</li>
+	const { t } = useTranslation();
+	const [fullname, setFullname] = useState("");
+	const [email, setEmail] = useState("");
+	const [password, setPassword] = useState("");
+	const [phoneNumber, setPhoneNumber] = useState("");
+	const [role, setRole] = useState(Roles.BUYER);
+	const [isLoading, setIsLoading] = useState(false);
+
+	const handleSubmit = (e: any) => {
+		e.preventDefault();
+		let param = {
+			email: email,
+			password: password,
+			fullname: fullname,
+			phone: phoneNumber,
+			gender: "other",
+			role: role,
+			avatar: require("../assets/img/avatar.jpg"),
+		}
+		console.log('param', param);
+		setIsLoading(true);
+		authorApi.register(param).then((res) => {
+			setIsLoading(false);
+			let data: IRegisterResponse = res?.data;
+			if (res?.status === HttpCode.OK && res?.data?.code !== -1) {
+				Notify.success(t("success"));
+				window.location.pathname = RouteUrl.LOG_IN;
+			} else {
+				Notify.error(data?.message);
+			}
+		})
+	}
+
+
+	return <>
+		<div className="container-fluid min-vh-100" style={{ backgroundImage: `url(${require('../assets/img/curved-images/curved14.jpg')})`, backgroundRepeat: "no-repeat", backgroundSize: "cover" }}>
+			<div className="row">
+				<div className="col-xl-4 col-lg-5 col-md-7 mx-auto mt-6">
+					<div className="card z-index-0">
+						<div className="card-header text-center pt-4">
+							<h5>{t("registerWith")}</h5>
+						</div>
+						<div className="card-body">
+							<form role="form text-left" onSubmit={(e) => handleSubmit(e)}>
+								<div className="mb-3">
+									<input type="text" onChange={(e) => setFullname(e?.target?.value)} className="form-control" placeholder={t("name")} aria-label={t("name")} aria-describedby="name-addon" required/>
+								</div>
+								<div className="mb-3">
+									<input type="email" onChange={(e) => setEmail(e?.target?.value)} className="form-control" placeholder={t("email")} aria-label={t("name")} aria-describedby="email-addon" required/>
+								</div>
+								<div className="mb-3">
+									<input type="password" onChange={(e) => setPassword(e?.target?.value)} className="form-control" placeholder={t("password")} aria-label={t("password")} aria-describedby="password-addon" required/>
+								</div>
+								<div className="mb-3">
+									<input type="text" onChange={(e) => setPhoneNumber(e?.target?.value)} className="form-control" placeholder={t("phoneNumber")} aria-label={t("phoneNumber")} aria-describedby="phoneNumber-addon" required/>
+								</div>
+								<select className="mb-3 container-fluid form-select" value={role} onChange={(e) => setRole(e?.target?.value)} required>
+									{
+										Object.entries(Roles).map((role) => {
+											return <option value={role[1]}>{t(role[1])}</option>
+										})
+									}
+								</select>
+								<div className="form-check form-check-info text-left">
+									<input className="form-check-input" type="checkbox" value="" id="flexCheckDefault" checked />
+									<label className="form-check-label" >
+										{t("iAgreeThe")} <a href="#" className="text-dark font-weight-bolder">{t("termsAndConditions")}</a>
+									</label>
+								</div>
+								<div className="text-center">
+									<button type="submit" className="btn bg-gradient-dark w-100 my-4 mb-2">{t("signup")}</button>
+								</div>
+								<p className="text-sm mt-3 mb-0">{t("alreadyHaveAnAccount")}? <a href="/log_in" className="text-dark font-weight-bolder">{t("login")}</a></p>
+							</form>
+						</div>
+					</div>
 				</div>
 			</div>
-		</nav>
-
-		<main className="main-content  mt-0">
-			<section className="min-vh-100 mb-8">
-				<div className="page-header align-items-start min-vh-50 pt-5 pb-11 m-3 border-radius-lg" style={{ backgroundImage: `url(${require('../assets/img/curved-images/curved14.jpg')})` }}  >
-					<span className="mask bg-gradient-dark opacity-6"></span>
-					<div className="container">
-						<div className="row justify-content-center">
-							<div className="col-lg-5 text-center mx-auto">
-								<h1 className="text-white mb-2 mt-5">Welcome!</h1>
-								<p className="text-lead text-white">Sign Up Account Free</p>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div className="container">
-					<div className="row mt-lg-n10 mt-md-n11 mt-n10">
-						<div className="col-xl-4 col-lg-5 col-md-7 mx-auto">
-							<div className="card z-index-0">
-								<div className="card-header text-center pt-4">
-									<h5>Register with</h5>
-								</div>
-
-								<div className="card-body">
-									<form role="form text-left">
-										<div className="mb-3">
-											<input type="text" className="form-control" placeholder="Name" aria-label="Name" aria-describedby="email-addon" />
-										</div>
-										<div className="mb-3">
-											<input type="email" className="form-control" placeholder="Email" aria-label="Email" aria-describedby="email-addon" />
-										</div>
-										<div className="mb-3">
-											<input type="password" className="form-control" placeholder="Password" aria-label="Password" aria-describedby="password-addon" />
-										</div>
-										<div className="form-check form-check-info text-left">
-											<input className="form-check-input" type="checkbox" value="" id="flexCheckDefault" checked />
-											<label className="form-check-label" >
-												I agree the <a href="#" className="text-dark font-weight-bolder">Terms and Conditions</a>
-											</label>
-										</div>
-										<div className="text-center">
-											<button type="button" className="btn bg-gradient-dark w-100 my-4 mb-2">Sign up</button>
-										</div>
-										<p className="text-sm mt-3 mb-0">Already have an account? <a href="/admin/sign-in" className="text-dark font-weight-bolder">Sign in</a></p>
-									</form>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</section>
-			<footer className="footer py-5">
-				<div className="container">
-
-					<div className="row">
-						<div className="col-8 mx-auto text-center mt-1">
-							<p className="mb-0 text-secondary">
-								Made at 3/3/2023  by Kien.
-							</p>
-						</div>
-					</div>
-				</div>
-			</footer>
-
-		</main>
+		</div>
+		<Loading loading={isLoading}/>
 	</>
 }

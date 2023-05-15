@@ -19,3 +19,8 @@ export interface IUserInformation {
     role: string,
     numberShop: number,
 }
+
+export interface IRegisterResponse {
+    code: number,
+    message: string,
+}

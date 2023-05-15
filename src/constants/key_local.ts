@@ -23,6 +23,11 @@ export const DefaultAssets = {
     PRODUCT_IMAGE_LINK: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSstkTLhD3UkEn8tfRH_ABEmV_syqMZZOs4tQ&usqp=CAU",
 }
 
+export const Roles = {
+    BUYER: "buyer",
+    SELLER: "seller",
+}
+
 export const REDUX_ACTION = {
     USER: "user",
     CART: "cart",

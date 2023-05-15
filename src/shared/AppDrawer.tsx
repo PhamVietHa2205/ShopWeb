@@ -27,6 +27,11 @@ const AppDrawer = () => {
         window.location.pathname = RouteUrl.LOG_IN;
     }
 
+    const signup = () => {
+        localStorage.clear();
+        window.location.pathname = RouteUrl.SIGN_UP;
+    }
+
     const goToPage = (url: string) => {
         navigate(url);
     }
@@ -103,7 +108,7 @@ const AppDrawer = () => {
                                 </>
                             }
                             <a href="#" onClick={() => logout()} className="nav-item nav-link">{t(isLogin ? "logout" : "login")}</a>
-                            <a href="#" className="nav-item nav-link">{t('register')}</a>
+                            <a href="#" onClick={() => signup()} className="nav-item nav-link">{t('register')}</a>
                         </div>
                     </div>
                 </nav>
