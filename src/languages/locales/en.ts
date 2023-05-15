@@ -152,5 +152,14 @@ export default {
         "purchaseSuccessfully": "Purchase Successfully",
         "noItemInCart": "No item in cart",
         "sold": "Sold",
+        "registerWith": "Register with",
+        "name": "Name",
+        "iAgreeThe": "I agree the",
+        "termsAndConditions": "Terms and Conditions",
+        "signup": "Sign up",
+        "alreadyHaveAnAccount": "Already have an account?",
+        "buyer": "Buyer",
+        "seller": "Seller",
+        "notHaveAnAccount": "Not have an account",
     }
 }
