@@ -17,7 +17,7 @@ const cartReducer = createSlice({
 	initialState: initState,
 	reducers: {
 		updateCart: (state: any, action: PayloadAction<ICartProduct[]>) => {
-			state.cartList = [...action.payload]
+			state.cartList = action.payload;
 		}
 	}
 })

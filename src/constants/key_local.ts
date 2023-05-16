@@ -31,6 +31,7 @@ export const Roles = {
 export const REDUX_ACTION = {
     USER: "user",
     CART: "cart",
+    ORDER_LIST: "order-list",
 }
 
 export const TypeSort = {
@@ -49,6 +50,7 @@ export const LocalStorageKey = {
     LOGIN: "login",
     USER_INFO: "user-info",
     CART: "cart",
+    ORDER_LIST: "order-list",
 }
 
 export const HttpCode = {

@@ -4,6 +4,7 @@ export const ApiPath = {
     API_HOT_PRODUCTS: "product-hot",
     API_GET_CART: "buyer/get-cart",
     API_EDIT_CART: "buyer/edit-cart",
+    API_GET_LIST_ORDER: "buyer/get-list-order",
     API_GET_DETAIL_PRODUCT: "detail-product",
     API_POST_COMMENT: "/buyer/comment",
     API_POST_ORDER: "/buyer/order",

@@ -31,6 +31,7 @@ import { SellerHome } from "./pages/seller_home"
 import { ProductList } from "./pages/seller_productList";
 import { OrderList } from "./pages/seller_order";
 import { CreateProduct } from "./pages/seller_createProduct";
+import Order from "./pages/order";
 
 function App() {
   return (
@@ -45,6 +46,7 @@ function App() {
           <Route path={RouteUrl.CHECKOUT} element={<Checkout />}></Route>
           <Route path={RouteUrl.SHOP} element={<Shop />}></Route>
           <Route path={RouteUrl.CART} element={<Cart />}></Route>
+          <Route path={RouteUrl.ORDERS} element={<Order />}></Route>
           <Route path={RouteUrl.CONTACT} element={<Contact />}></Route>
           <Route path={RouteUrl.ADMIN} element={<Admin />}></Route>
           <Route path={RouteUrl.SIGN_IN_ADMIN} element={<SignInAdmin />}></Route>

@@ -161,5 +161,7 @@ export default {
         "buyer": "Buyer",
         "seller": "Seller",
         "notHaveAnAccount": "Not have an account",
+        "orders": "Orders",
+        "noOrderInList": "No order in list",
     }
 }

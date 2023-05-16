@@ -17,4 +17,9 @@ export interface IOrderProduct {
 	price: string,
 	id_product: string,
 	quantity: number,
+	image: string,
+}
+
+export interface IOrderListInformation {
+	orderList: IOrderProduct[],
 }
