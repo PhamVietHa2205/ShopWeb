@@ -41,7 +41,6 @@ const SellerShop = () => {
                                         <a className="btn btn-outline-primary py-md-2 px-md-3" ><i className="fa fa-product-hunt text-primary mr-1"></i>{t('viewDetail')}</a>
                                         <a className="btn btn-outline-primary py-md-2 px-md-3" ><i className="fa fa-shopping-bag text-primary mr-1"></i>{t('order')}</a>
                                     </div>
-                                    {/* <a href="#" className="btn btn-outline-primary py-md-2 px-md-3">Check In</a> */}
                                 </div>
                             </div>
                         </div>

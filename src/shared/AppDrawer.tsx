@@ -94,7 +94,7 @@ const AppDrawer = () => {
                                 <a className="btn btn-link nav-link dropdown-toggle" data-bs-toggle="dropdown">{t('pages')}</a>
                                 <div className="dropdown-menu rounded-0 m-0">
                                     <a href="#" onClick={() => goToPage(RouteUrl.CART)} className="dropdown-item">{t('shoppingCart')}</a>
-                                    <a href="#" onClick={() => goToPage(RouteUrl.CHECKOUT)} className="dropdown-item">{t('checkout')}</a>
+                                    <a href="#" onClick={() => goToPage(RouteUrl.ORDERS)} className="dropdown-item">{t('orders')}</a>
                                 </div>
                             </div>
                             <a href="#" onClick={() => goToPage(RouteUrl.CONTACT)} className={`nav-item nav-link ${getClassActive(RouteUrl.CONTACT)}`}>{t('contact')}</a>

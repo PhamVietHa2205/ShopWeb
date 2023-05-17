@@ -260,28 +260,6 @@ const ShopDetail = (props: IShopDetailProps) => {
                                         })
                                     }
                                 </div>
-                                {/* <div className="col-md-6">
-                                    <form onSubmit={handleSubmitReview}>
-                                        <h4 className="mb-4">{t('leaveAReview')}</h4>
-                                        <small>{t('requiredFormWarning')} *</small>
-                                        <div className="d-flex my-3">
-                                            <p className="mb-0 mr-2">{t('yourRating')} * :</p>
-                                            <Rating
-                                                className='form-group me-3'
-                                                defaultValue={yourRate}
-                                                value={yourRate}
-                                                onChange={(event: any, newValue: any) => setYourRate(newValue)}
-                                            />
-                                        </div>
-                                        <div className="form-group">
-                                            <label htmlFor="message">{t('yourReview')} *</label>
-                                            <textarea id="message" cols={30} rows={5} className="form-control" onChange={(event: any) => setYourComment(event?.target?.value)}></textarea>
-                                        </div>
-                                        <div className="form-group mb-0">
-                                            <input type="submit" value={t('leaveYourReview')} className="btn btn-primary px-3" readOnly/>
-                                        </div>
-                                    </form>
-                                </div> */}
                             </div>
                         </div>
                     </div>

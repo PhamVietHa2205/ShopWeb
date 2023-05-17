@@ -1,20 +1,31 @@
 import { ICartProduct } from "./product-interface";
 
-export interface IOrderResponse {
+export interface IOrderListResponse {
 	code: number,
 	message: string,
-	payload: IOrderPayload,
+	payload: IOrderListPayload,
 }
 
-export interface IOrderPayload {
-    id: string,
-    detail: IOrderProduct[],
+export interface IOrderListPayload {
+    orders: IOrder[],
 }
 
-export interface IOrderProduct {
-	name: string,
+export interface IOrder{
 	id: string,
-	price: string,
-	id_product: string,
+	id_buyer: string,
+	status: string,
+	date: string,
+	payment: boolean,
+	detail: IOrderProduct[],
+}
+export interface IOrderProduct {
+	id: string,
+	id_order: string,
+	nameProduct: string,
 	quantity: number,
+	price: string,
+}
+
+export interface IOrderListInformation {
+	orderList: IOrder[],
 }
