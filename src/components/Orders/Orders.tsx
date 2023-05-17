@@ -1,13 +1,15 @@
 import { useTranslation } from 'react-i18next';
-import { formatNumber } from '../../utils/index';
+import { formatDate, formatNumber } from '../../utils/index';
 import { useState, useEffect, memo } from 'react';
 import orderApi from '../../api/order-api';
-import { DefaultAssets, HttpCode, LocalStorageKey } from '../../constants/key_local';
+import { HttpCode, LocalStorageKey } from '../../constants/key_local';
 import { useDispatch, useSelector } from 'react-redux';
 import * as Notify from "../../shared/Notify";
 import { RootState } from '../../redux';
-import { IOrderProduct, IOrderResponse } from '../../interfaces/order-interface';
+import { IOrder, IOrderListResponse, IOrderProduct } from '../../interfaces/order-interface';
 import { updateOrderList } from '../../redux/reducers/order-reducer';
+import ModalStatus from './ModalStatus';
+import ModalComment from './ModalComment';
 
 
 interface IOrdersProps {
@@ -17,58 +19,74 @@ interface IOrdersProps {
 const Orders = (props: IOrdersProps) => {
     const { setLoading } = props;
     const { t } = useTranslation();
-    const [subTotalPrice, setSubTotalPrice] = useState(0);
     const dispatch = useDispatch();
     const orderList = useSelector((state: RootState) => state?.order?.orderList);
     const [orderListUpdate, setOrderListUpdate] = useState(orderList);
+    const [curOrderId, setCurOrderId] = useState("");
+    const [curProductId, setCurProductId] = useState("");
+    const [curNameProduct, setCurNameProduct] = useState("");
+    const [curStatus, setCurStatus] = useState("");
+    const [showStatusModal, setShowStatusModal] = useState(false);
+    const [showCommentModal, setShowCommentModal] = useState(false);
 
     useEffect(() => {
+        getListOrder();
+    }, []);
+
+    const getListOrder = () => {
         setLoading(true);
         orderApi.getListOrder({}).then((res) => {
             setLoading(false);
-            console.log('res', res);
             if (res?.status === HttpCode.OK && res?.data?.code !== -1) {
-                let data: IOrderResponse = res?.data;
-                dispatch(updateOrderList(data?.payload?.detail));
-                setOrderListUpdate(data?.payload?.detail);
+                let data: IOrderListResponse = res?.data;
+                dispatch(updateOrderList(data?.payload?.orders));
+                setOrderListUpdate(data?.payload?.orders);
             } else {
                 Notify.error(res?.data?.message);
             }
         })
-    }, []);
+    }
 
-    useEffect(() => {
-        if (orderListUpdate)
-        setSubTotalPrice(orderListUpdate.map((item) => Number(item.price) * item.quantity).reduce((first, second) => first + second, 0));
-    }, [orderListUpdate]);
-    
-    // const sendPurchaseOrder = () => {
-    //     if (!(orderListUpdate && orderListUpdate.length > 0)) {
-    //         Notify.error(t("noOrder")!);
-    //         return;
-    //     }
-    //     setLoading(true);
-    //     const param = {
-    //         detail: orderListUpdate.map((item: IOrderProduct) => {
-    //         return {idProduct: item.id_product, quantity: item.quantity}
-    //         })
-    //     }
-    //     orderApi.postOrder(param).then((res) => {
-    //         setLoading(false);
-    //         if (res?.status === HttpCode.OK && res?.data?.code !== -1) {
-    //             Notify.success(t("purchaseSuccessfully"));
-    //             productApi.editOrder({detail: []}).then((res) => {
-    //                 if (res?.status === HttpCode.OK && res?.data?.code !== -1) {
-    //                 } else {
-    //                     Notify.error(res?.data?.message)
-    //                 }
-    //             })
-    //             clearOrder();
-    //         } else {
-    //             Notify.error(res?.data?.message);
-    //         }
-    //     })
-    // }
+    const handleChangeStatus = (id: string, status: string) => {
+        setCurOrderId(id);
+        setCurStatus(status);
+        setShowStatusModal(true);
+    }
+
+    const handleShowCommentModal = (orderId: string, productId: string, nameProduct: string) => {
+        setCurOrderId(orderId);
+        setCurProductId(productId);
+        setCurNameProduct(nameProduct);
+        setShowCommentModal(true);
+    }
+
+    const handleSubmitStatusModal = () => {
+        let param = {
+            idOrder: curOrderId,
+            status: curStatus,
+        }
+        setLoading(true);
+        orderApi.editOrder(param).then((res) => {
+            setLoading(false);
+            console.log('data', param, res?.data);
+            if (res?.status === HttpCode.OK && res?.data?.code !== -1) {
+                Notify.success(t("success"));
+            } else {
+                Notify.error(res?.data?.message);
+            }
+        })
+        setShowStatusModal(false);
+        clearOrder();
+        getListOrder();
+    }
+
+    const handleCloseStatusModal = () => {
+        setShowStatusModal(false);
+    }
+
+    const handleCloseCommentModal = () => {
+        setShowCommentModal(false);
+    }
 
     const clearOrder = () => {
         setOrderListUpdate([]);
@@ -78,72 +96,75 @@ const Orders = (props: IOrdersProps) => {
 
     return (
         <>
-        <div className="container-fluid pt-5">
-        <div className="row px-xl-5">
-            <div className="col table-responsive mb-5">
-                <table className="table text-center mb-0 border">
-                    <thead className="bg-secondary text-dark">
-                        <tr>
-                            <th>{t('products')}</th>
-                            <th>{t('price')}</th>
-                            <th>{t('quantity')}</th>
-                            <th>{t('total')}</th>
-                            <th>{t('remove')}</th>
-                        </tr>
-                    </thead>
-                    <tbody className="align-middle">
-                        {
-                            orderListUpdate && orderListUpdate.length > 0 ? orderListUpdate.map((item: IOrderProduct, index) => {
-                                return item && <tr>
-                                <td className="align-middle text-left"><img src={item?.image ?? DefaultAssets.PRODUCT_IMAGE_LINK} alt={item.name} style={{width: 50}}/> {item?.name}</td>
-                                <td className="align-middle">${formatNumber(Number(item.price), 2)}</td>
-                                <td className="align-middle">
-                                    <div className="input-group quantity mx-auto" style={{width: 100}}>
-                                        <div className="input-group-btn">
-                                            <button className="btn btn-sm btn-primary btn-minus" >
-                                            <i className="fa fa-minus"></i>
-                                            </button>
-                                        </div>
-                                        <input type="text" className="form-control form-control-sm bg-secondary text-center" value={item.quantity}/>
-                                        <div className="input-group-btn">
-                                            <button className="btn btn-sm btn-primary btn-plus">
-                                                <i className="fa fa-plus"></i>
-                                            </button>
-                                        </div>
-                                    </div>
-                                </td>
-                                <td className="align-middle">${formatNumber(item.quantity * Number(item.price), 2)}</td>
-                                <td className="align-middle"><button className="btn btn-sm btn-primary"><i className="fa fa-times"></i></button></td>
+            <div className="container-fluid pt-5">
+                <div className="row px-xl-5 mb-3">
+                    <h4 className='col text-center bg-secondary py-3 fw-bold'>{t('listOrder')}</h4>
+                    <table className='table table-hover'>
+                        <thead>
+                            <tr className='text-center text-white'>
+                                <th className='bg-primary'></th>
+                                <th className='bg-primary'>{t('time')}</th>
+                                <th className='bg-primary'>{t('status')}</th>
+                                <th className='bg-primary'>{t('payment')}</th>
+                                <th className='bg-primary'>{t('action')}</th>
                             </tr>
-                            }) : <tr>
-                            <td className="text-center container-fluid" colSpan={12}>{t("noOrderInList")}</td>
-                        </tr>
-                        }
-                    </tbody>
-                </table>
+                        </thead>
+                        <tbody>
+                            {
+                                orderListUpdate && orderListUpdate.length > 0 && orderListUpdate.map((order: IOrder, index) => {
+                                    return <>
+                                        <tr className='text-center bg-secondary' data-bs-toggle="collapse" data-bs-target={`#order-${index}`}>
+                                            <td>{index}</td>
+                                            <td>{formatDate(order?.date)}</td>
+                                            <td className='text-capitalize'>{t(order?.status)}</td>
+                                            <td className='text-capitalize'>{order?.payment ? t("paid") : t("notPaid")}</td>
+                                            <td>
+                                                <div>
+                                                    <button className='btn mr-2' data-bs-toggle="dropdown" data-bs-target={`#statusList-${index}`}><i className="fa fa-edit text-dark"></i></button>
+                                                    <div className="dropdown-menu" id={`statusList-${index}`} aria-labelledby="dropdownMenuButton">
+                                                        <a className="dropdown-item" href="#" onClick={() => handleChangeStatus(order?.id, "done")}>{t('done')}</a>
+                                                        <a className="dropdown-item" href="#" onClick={() => handleChangeStatus(order?.id, "cancel")}>{t('cancel')}</a>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr className="text-center collapse" id={`order-${index}`}>
+                                            <td colSpan={12} className='px-0 py-0'>
+                                                <table className='table'>
+                                                    <thead>
+                                                        <tr className='text-white' style={{ backgroundColor: "lightgrey" }}>
+                                                            <th>{t('name')}</th>
+                                                            <th>{t('quantity')}</th>
+                                                            <th>{t('price')} (VNĐ)</th>
+                                                            <th>{t('rating')}</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        {
+                                                            order?.detail?.map((product: IOrderProduct) => {
+                                                                return <tr>
+                                                                    <td className='text-capitalize'>{product?.nameProduct}</td>
+                                                                    <td>{product?.quantity}</td>
+                                                                    <td>{product?.price}</td>
+                                                                    <td><button className='btn' onClick={() => handleShowCommentModal(product?.id_order, product?.id, product?.nameProduct)}><i className="fa fa-star"></i></button>
+                                                                    </td>
+                                                                </tr>
+                                                            })
+                                                        }
+                                                    </tbody>
+                                                </table>
+                                            </td>
+                                        </tr>
+                                    </>
+                                })
+                            }
+                        </tbody>
+                    </table>
+                </div>
             </div>
-        </div>
-    </div>
-    <div className="modal fade" id="confirmModal" tabIndex={-1} role="dialog" aria-labelledby="confirmModal" aria-hidden="true">
-        <div className="modal-dialog modal-dialog-centered" role="document">
-            <div className="modal-content">
-            <div className="modal-header">
-                <h5 className="modal-title" id="confirmModal">{t('purchase')}?</h5>
-                <button type="button" className="close" data-bs-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div className="modal-body">
-                {t('confirmPurchaseDescription')}?
-            </div>
-            <div className="modal-footer">
-                <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">{t('cancel')}</button>
-                <button type="button" className="btn btn-primary" data-bs-dismiss="modal">{t("purchase")}</button>
-            </div>
-            </div>
-        </div>
-    </div>
-    </>
+            <ModalStatus showStatusModal={showStatusModal} handleCloseStatusModal={handleCloseStatusModal} curStatus={curStatus} handleSubmitStatusModal={handleSubmitStatusModal} />
+            <ModalComment showCommentModal={showCommentModal} handleCloseCommentModal={handleCloseCommentModal} idOrder={curOrderId} idProduct={curProductId} nameProduct={curNameProduct} setLoading={(setLoading)}/>
+        </>
     )
 }
 export default memo(Orders)

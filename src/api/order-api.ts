@@ -7,5 +7,8 @@ export default {
     },
 	postOrder(param: any) {
         return ClientService.post(ApiPath.API_POST_ORDER, param);
-    }
+    },
+    editOrder(param: any) {
+        return ClientService.put(ApiPath.API_EDIT_ORDER, param);
+    },
 }

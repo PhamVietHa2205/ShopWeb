@@ -163,5 +163,16 @@ export default {
         "notHaveAnAccount": "Not have an account",
         "orders": "Orders",
         "noOrderInList": "No order in list",
+        "listOrder": "List order",
+        "time": "Time",
+        "status": "Status",
+        "watting": "Waiting",
+        "paid": "Paid",
+        "notPaid": "Not paid",     
+        "done": "Done",
+        "statusDoneTitle": "Change status to 'Done'",
+        "statusDoneContent": "Do you want to change order status to 'Done'",   
+        "statusCancelTitle": "Change status to 'Cancel'",
+        "statusCancelContent": "Do you want to change order status to 'Cancel'", 
     }
 }

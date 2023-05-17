@@ -1,7 +1,6 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit"
 import { LocalStorageKey, REDUX_ACTION } from "../../constants/key_local"
-import { ICartProduct } from "../../interfaces/product-interface";
-import { IOrderListInformation, IOrderProduct } from "../../interfaces/order-interface";
+import { IOrder, IOrderListInformation, IOrderProduct } from "../../interfaces/order-interface";
 
 let initState: IOrderListInformation = {
 	orderList: [],
@@ -16,7 +15,7 @@ const orderReducer = createSlice({
 	name: REDUX_ACTION.ORDER_LIST,
 	initialState: initState,
 	reducers: {
-		updateOrderList: (state: any, action: PayloadAction<IOrderProduct[]>) => {
+		updateOrderList: (state: any, action: PayloadAction<IOrder[]>) => {
 			state.orderList = action.payload;
 		}
 	}
