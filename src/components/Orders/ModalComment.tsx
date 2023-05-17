@@ -36,6 +36,7 @@ const ModalComment = (props: IModalCommentProps) => {
             } else {
                 Notify.error(res?.data?.message);
             }
+            handleCloseCommentModal();
         })
     }
 
