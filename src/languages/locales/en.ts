@@ -174,5 +174,6 @@ export default {
         "statusDoneContent": "Do you want to change order status to 'Done'",   
         "statusCancelTitle": "Change status to 'Cancel'",
         "statusCancelContent": "Do you want to change order status to 'Cancel'", 
+        "rating": "Rating",
     }
 }

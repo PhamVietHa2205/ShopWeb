@@ -32,7 +32,7 @@ const ModalComment = (props: IModalCommentProps) => {
         commentApi.comment(param).then((res) => {
             setLoading(false);
             if (res?.status === HttpCode.OK && res?.data?.code !== -1) {
-                Notify.success("success");
+                Notify.success(t("success"));
             } else {
                 Notify.error(res?.data?.message);
             }

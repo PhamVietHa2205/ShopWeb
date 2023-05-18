@@ -36,7 +36,9 @@ export function LogIn() {
 				dispatch(updateUser(data?.payload?.user));
 				localStorage.setItem(LocalStorageKey.TOKEN, data?.payload?.token);
 				localStorage.setItem(LocalStorageKey.LOGIN, "true");
-				window.location.pathname = RouteUrl.HOME_PATH;
+				data?.payload?.user?.role === "buyer" 
+				? window.location.pathname = RouteUrl.HOME_PATH
+				: window.location.pathname = RouteUrl.SELLER_HOME;
 			} else {
 				Notify.error(data?.message)
 			}
