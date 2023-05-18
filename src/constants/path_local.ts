@@ -11,7 +11,7 @@ export const RouteUrl = {
     ADMIN: "/admin",
     ADMIN_USER: "/admin/user",
     ADMIN_ORDER: "/admin/order",
-    ADMIN_PRODUCT: "/admin/product",
+    ADMIN_PRODUCT: "/admin/product/:id",
     ADMIN_SHOP: "/admin/shop",
     ADMIN_COMMENT: "/admin/comment",
     SIGN_IN_ADMIN: "/sign_in",

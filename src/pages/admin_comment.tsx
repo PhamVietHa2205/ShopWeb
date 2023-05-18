@@ -36,6 +36,8 @@ export function CommentManager() {
                                         <table className="table align-items-center mb-0">
                                             <thead>
                                                 <tr>
+                                                    <th className="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Người đánh giá</th>
+                                                    <th className="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Sản phẩm</th>
                                                     <th className="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Nội dung</th>
                                                     <th className="text-center text-uppercase  text-secondary text-xxs font-weight-bolder opacity-7 ">Số sao đánh giá</th>
                                                 </tr>
@@ -44,7 +46,24 @@ export function CommentManager() {
                                                 {
                                                     commentRecord.map((item, index) => {
                                                         return <tr key={item.id}>
-                                                            <td className="align-middle  ">
+                                                            <td>
+                                                                <div className="d-flex align-items-center px-2 py-1">
+                                                                    <div>
+                                                                        <img src={item.avatar} className="avatar avatar-sm me-3" alt="user" />
+                                                                    </div>
+                                                                    <h6 className="mb-0 text-sm">{item.name}</h6>
+                                                                </div>
+                                                            </td>
+                                                            <td >
+                                                                <div className="d-flex flex-column justify-content-center">
+                                                                    {item.orderDetail.map((product: any) => {
+                                                                        return <div key={product.id_product}>
+                                                                            {product.nameProduct}
+                                                                        </div>
+                                                                    })}
+                                                                </div>
+                                                            </td>
+                                                            <td className="align-middle">
                                                                 <span className="text-secondary text-xs font-weight-bold">{item.content}</span>
                                                             </td>
                                                             <td className="align-middle text-center">

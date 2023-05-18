@@ -12,7 +12,11 @@ export interface IAdminGetUserResponse {
     },
 }
 
-
+export interface IAdminGetDetailUserResponse {
+    code: number,
+    message: string,
+    payload: IUserInformation
+}
 export interface IUserInformation {
     id: string,
     email: string,
@@ -36,12 +40,28 @@ export interface IAdminGetShopResponse {
         "totalPage": number,
     },
 }
+export interface IAdminGetDetailShopResponse {
+    code: number,
+    message: string,
+    payload: IDetailShop
+}
+export interface IDetailShop {
+    id: string,
+    id_user: string,
+    shopName: string,
+    address: string,
+    logo: string,
+    fullname: string,
+    avatar: string
+}
 export interface IShopInformation {
     id: string,
     id_user: string,
     name: string,
     address: string,
     logo: string,
+    fullname: string,
+    avatar: string
 }
 /**
  * ORDER
@@ -62,7 +82,10 @@ export interface IOrderInformation {
     status: string,
     date: string,
     payment: boolean,
-    detail: IDetail[]
+    detail: IDetail[],
+    nameBuyer: string,
+    avatar: string,
+
 }
 export interface IDetail {
     id: string,
@@ -96,4 +119,33 @@ export interface IOrderDetail {
     id_orderDetail: string,
     id_order: string,
     id_product: number,
+}
+/**
+ * PRODUCT
+ */
+export interface IAdminGetProductResponse {
+    code: number,
+    message: string,
+    payload: {
+        "shop": IDetailProductShop,
+        "products": IDetailProduct[]
+    }
+}
+export interface IAdminDetailProductResponse {
+    code: number,
+    message: string,
+    payload: IDetailProduct
+}
+export interface IDetailProductShop {
+    logo: string,
+    name: string,
+    address: string
+}
+export interface IDetailProduct {
+    id: string,
+    price: string,
+    nameProduct: string,
+    quantity: number,
+    images: string[],
+    comments: string[]
 }
