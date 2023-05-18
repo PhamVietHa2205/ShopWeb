@@ -12,6 +12,7 @@ export const ApiPath = {
     API_COMMENT: "buyer/comment",
     API_SELLER_GET_LIST_SHOP: "/seller/get-list-shop",
     API_ADMIN_GET_USER: "admin/get-user",
+    API_ADMIN_EDIT_USER: "admin/edit-user",
     API_ADMIN_GET_SHOP: "admin/get-shop",
     API_ADMIN_EDIT_SHOP: "admin/edit-shop",
     API_ADMIN_CREATE_SHOP: "admin/create-shop",
@@ -19,4 +20,8 @@ export const ApiPath = {
     API_ADMIN_GET_COMMENT: "admin/get-comment",
     API_ADMIN_GET_ORDER: "admin/get-order",
     API_ADMIN_EDIT_ORDER: "admin/edit-order",
+    API_ADMIN_GET_LIST_PRODUCT: "product-in-shop",
+    API_ADMIN_CREATE_PRODUCT: "admin/create-product",
+    API_ADMIN_EDIT_PRODUCT: "admin/edit-product",
+    API_ADMIN_DELETE_PRODUCT: "admin/del-product",
 }

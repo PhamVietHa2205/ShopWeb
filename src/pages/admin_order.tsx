@@ -31,12 +31,11 @@ export function OrderManager() {
                                     <div className="table-responsive p-0">
                                         <table className="table align-items-center mb-0">
                                             <thead>
-                                                <tr>
-                                                    <th className="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Tên</th>
-                                                    <th className="text-center text-uppercase  text-secondary text-xxs font-weight-bolder opacity-7 ">ID người mua</th>
-                                                    <th className="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Trạng thái</th>
+                                                <tr><th className="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Người mua</th>
+                                                    <th className="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Đơn hàng</th>
+                                                    <th className="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Trạng thái đơn hàng</th>
                                                     <th className="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ">Ngày đặt</th>
-                                                    <th className="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">payment</th>
+                                                    <th className="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Trạng thái giao hàng</th>
                                                     <th className="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Hành động</th>
                                                 </tr>
                                             </thead>
@@ -44,6 +43,15 @@ export function OrderManager() {
                                                 {
                                                     orderRecord.map((item, index) => {
                                                         return <tr key={item.id}>
+                                                            <td >
+                                                                <div className="d-flex align-items-center px-2 py-1">
+                                                                    <div>
+                                                                        <img src={item.avatar} className="avatar avatar-sm me-3" alt="user" />
+                                                                    </div>
+                                                                    <h6 className="mb-0 text-sm">{item.nameBuyer}</h6>
+                                                                </div>
+
+                                                            </td>
                                                             <td>
                                                                 <div className="d-flex flex-column justify-content-center">
                                                                     {item.detail.map((productOrdered: any) => {
@@ -53,14 +61,10 @@ export function OrderManager() {
                                                                     })}
                                                                 </div>
                                                             </td>
-                                                            <td className="align-middle text-center ">
-                                                                <span className="text-secondary text-xs font-weight-bold">{item.id_buyer}</span>
-                                                            </td>
                                                             <td className="align-middle text-center text-sm">
                                                                 {
                                                                     item.status == 'done' && <span className="badge badge-sm bg-gradient-success">Hoàn thành</span>
                                                                 }
-
                                                                 {
                                                                     item.status == 'cancel' && <span className="badge badge-sm bg-gradient-secondary">Bị Hủy</span>
                                                                 }
@@ -70,7 +74,7 @@ export function OrderManager() {
                                                             </td>
 
                                                             <td className="align-middle text-center">
-                                                                <span className="text-secondary text-xs font-weight-bold">{item.payment}</span>
+                                                                <span className="text-secondary text-xs font-weight-bold">{item.payment ? 'Đã giao' : 'Chưa giao'}</span>
                                                             </td>
 
                                                             <td className="align-middle  text-center">

@@ -22,7 +22,6 @@ export function SignInAdmin() {
       password: password,
     }
 
-
     authorApi.login(params).then((res: any) => {
       const data: ILoginResponse = res?.data;
       if (res?.status === HttpCode.OK) {
@@ -119,7 +118,7 @@ export function SignInAdmin() {
                           <label className="form-check-label" >Remember me</label>
                         </div> */}
                         <div className="text-center">
-                          <button type="submit" className="btn bg-gradient-info w-100 mt-4 mb-0">Sign in</button>
+                          <button onClick={handleSubmit} type="submit" className="btn bg-gradient-info w-100 mt-4 mb-0">Sign in</button>
                         </div>
                       </form>
                     </div>

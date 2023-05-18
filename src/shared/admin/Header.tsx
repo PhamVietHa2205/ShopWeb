@@ -40,13 +40,8 @@ const Header = () => {
                         <h6 className="font-weight-bolder mb-0">Dashboard</h6>
                     </nav>
                     <div className="collapse navbar-collapse mt-sm-0 mt-2 me-md-0 me-sm-4" id="navbar">
-                        <div className="ms-md-auto pe-md-3 d-flex align-items-center">
-                            <div className="input-group">
-                                <span className="input-group-text text-body"><i className="fa fa-search" aria-hidden="true"></i></span>
-                                <input type="text" className="form-control" placeholder="Type here..." />
-                            </div>
-                        </div>
-                        <ul className="navbar-nav  justify-content-end">
+
+                        <ul className="ms-md-auto navbar-nav  justify-content-end">
                             <li className="nav-item d-flex align-items-center">
                                 <a className="btn btn-outline-primary btn-sm mb-0 me-3" target="_blank" href="/">Trang người dùng</a>
                             </li>
@@ -60,7 +55,7 @@ const Header = () => {
                                         </>
                                     }
                                 </a>
-                                <ul className="dropdown-menu  dropdown-menu-end mt-0  px-2  me-sm-3" aria-labelledby="dropdownMenuButton">
+                                <ul className="dropdown-menu  dropdown-menu-end border mt-0  px-2  me-sm-3" aria-labelledby="dropdownMenuButton">
                                     <li className="mb-2">
                                         <a className="dropdown-item border-radius-md" href="#">
                                             <div className="d-flex align-items-center py-1">
@@ -68,14 +63,11 @@ const Header = () => {
                                                     <img src={require("../../assets/img/team-2.jpg")} className="avatar avatar-sm  me-3 " />
                                                 </div>
                                                 <h6 className="text-sm font-weight-normal mb-1">
-                                                    <span className="font-weight-bold">Profile</span> from Laur
+                                                    <span className="font-weight-bold">Profile</span>
                                                 </h6>
-
-
                                             </div>
                                         </a>
                                     </li>
-
                                     <li>
                                         <a className="dropdown-item border-radius-md" href="#" onClick={() => logout()}>
                                             <div className="d-flex align-items-center py-1 ">
@@ -98,24 +90,10 @@ const Header = () => {
                                                 <h6 className="text-sm font-weight-normal mb-1">
                                                     Log out
                                                 </h6>
-
-
                                             </div>
                                         </a>
                                     </li>
                                 </ul>
-                            </li>
-
-                            {/* <li className="nav-item px-3 d-flex align-items-center">
-                                <a href="#" className="nav-link text-body p-0">
-                                    <i className="fa fa-cog fixed-plugin-button-nav cursor-pointer"></i>
-                                </a>
-                            </li> */}
-                            <li className="nav-item dropdown pe-2 d-flex align-items-center">
-                                <a href="#" className="nav-link text-body p-0" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
-                                    <i className="fa fa-bell cursor-pointer"></i>
-                                </a>
-
                             </li>
                         </ul>
                     </div>
