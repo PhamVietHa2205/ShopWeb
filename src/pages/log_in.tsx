@@ -38,7 +38,8 @@ export function LogIn() {
 				localStorage.setItem(LocalStorageKey.LOGIN, "true");
 				data?.payload?.user?.role === "buyer" 
 				? window.location.pathname = RouteUrl.HOME_PATH
-				: window.location.pathname = RouteUrl.SELLER_HOME;
+				: data?.payload?.user?.role === "seller" ? window.location.pathname = RouteUrl.SELLER_HOME
+				: Notify.error("wrongRoleUser");
 			} else {
 				Notify.error(data?.message)
 			}

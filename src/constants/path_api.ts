@@ -10,6 +10,7 @@ export const ApiPath = {
     API_POST_ORDER: "/buyer/order",
     API_EDIT_ORDER: "/buyer/edit-order",
     API_COMMENT: "buyer/comment",
+    API_GET_PRODUCT_IN_SHOP: "/product-in-shop/",
     API_SELLER_GET_LIST_SHOP: "/seller/get-list-shop",
     API_ADMIN_GET_USER: "admin/get-user",
     API_ADMIN_EDIT_USER: "admin/edit-user",

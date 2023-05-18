@@ -1,21 +1,18 @@
 import TopBar from '../shared/TopBar'
-import Featured from "../components/Home/Featured";
-import Categories from "../components/Home/Categories";
 import ButtonToTop from "../shared/ButtonToTop";
-import AppDrawer from "../shared/AppDrawer";
-import Shop from '../components/Seller/Shop';
+import AppDrawer from '../shared/seller/AppDrawer';
+import ShopList from '../components/Seller/ShopList';
+import Loading from '../shared/Loading';
+import { useState } from 'react';
+
 export function SellerHome() {
-    require('./../assets/css/style.css');
-    require('./../assets/css/style.min.css');
-    require('./../assets/scss/style.scss');
-    require('./../assets/css/newStyle.css');
+    const [isLoading, setIsLoading] = useState(false);
 
     return <>
         <TopBar />
         <AppDrawer />
-        <Featured />
-        <Shop />
-        <Categories />
+        <ShopList setLoading={setIsLoading}/>
         <ButtonToTop />
+        <Loading loading={isLoading}/>
     </>
 }

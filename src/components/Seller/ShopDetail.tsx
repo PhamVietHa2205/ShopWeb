@@ -1,8 +1,12 @@
-import { memo } from 'react';
+import { memo, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
+import shopApi from '../../api/seller/shop-api';
+import { HttpCode } from '../../constants/key_local';
+import { IShopListResponse } from '../../interfaces/seller-interface';
+import * as Notify from '../../shared/Notify';
 
-interface IOfferProps {
-
+interface ISellerShopProps {
+    setLoading: (loading: boolean) => void,
 }
 
 const SellerShop = () => {

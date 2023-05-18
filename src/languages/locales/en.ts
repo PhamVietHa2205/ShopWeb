@@ -175,5 +175,6 @@ export default {
         "statusCancelTitle": "Change status to 'Cancel'",
         "statusCancelContent": "Do you want to change order status to 'Cancel'", 
         "rating": "Rating",
+        "wrongRoleUser": "Wrong role user",
     }
 }
