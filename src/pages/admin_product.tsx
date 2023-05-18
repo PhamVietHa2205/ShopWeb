@@ -11,10 +11,10 @@ export function ProductManager() {
     require('./../assets/css/soft-ui-dashboard.css');
     require('./../assets/css/nucleo-icons.css');
     require('./../assets/css/nucleo-svg.css');
-    // const { state } = useLocation();
-    // const { id } = state;
     const { id } = useParams();
     const [productRecord, setProduct] = useState([]);
+    const [imageRemove, setImageRemove] = useState([]);
+    const [imageAdd, setImageAdd] = useState([]);
     const [shopRecord, setShop] = useState<IDetailProductShop>();
     useEffect(() => {
         getProductList();
@@ -53,6 +53,13 @@ export function ProductManager() {
             [e.target.name]: e.target.value
         })
     }
+    const removeImageProduct = (imageSelected: any) => {
+        setProductShop({
+            ...product,
+            images: product?.images.filter(image => image !== imageSelected)
+        })
+        setImageRemove([...imageRemove, imageSelected])
+    };
     const convertBase64 = (file: File) => {
         return new Promise((resolve, reject) => {
             const fileReader = new FileReader();
@@ -70,7 +77,9 @@ export function ProductManager() {
         const base64 = await convertBase64(file)
         setProductShop({
             ...product,
+            images: [...product?.images, String(base64)]
         })
+        setImageAdd([...imageAdd, String(base64)])
     }
     const submit = (e: any) => {
         e.preventDefault()
@@ -78,14 +87,27 @@ export function ProductManager() {
             name: product.nameProduct,
             quantity: product.quantity,
             price: product.price,
-
         }
+        if (imageRemove.length > 0) Object.assign(param, { imagesRemove: imageRemove })
+        if (imageAdd.length > 0) Object.assign(param, { imagesAdd: imageAdd.filter(i => !imageRemove.includes(i)) })
         adminProductApi.editProduct(product.id, param).then((res) => {
             if (res?.status === HttpCode.OK && res?.data?.code !== -1) {
+                Notify.success(res?.data?.message)
+                getProductList();
             } else {
                 Notify.error(res?.data?.message)
             }
         })
+    }
+    const deleteProduct = (id: any) => {
+        adminProductApi.deleteProduct({ idProduct: id }).then((res) => {
+            if (res?.status === HttpCode.OK && res?.data?.code !== -1) {
+                Notify.success(res?.data?.message)
+                getProductList();
+            } else {
+                Notify.error(res?.data?.message)
+            }
+        });
     }
     return (
         <>
@@ -132,9 +154,15 @@ export function ProductManager() {
                                                         <p className="text-xs font-weight-bold mb-0">{item.quantity}</p>
                                                     </td>
                                                     <td className="align-middle  text-center">
-                                                        <a href="#" className="text-secondary font-weight-bold text-xs" data-bs-toggle="modal" data-bs-target="#editProduct" onClick={() => getDetailShop(item.id)} >
-                                                            Edit
-                                                        </a>
+                                                        <div className="d-flex justify-content-center align-items-center  mx-auto">
+                                                            <div className="text-secondary font-weight-bold text-xs mr-3" data-bs-toggle="modal" data-bs-target="#editProduct" onClick={() => getDetailShop(item.id)} >
+                                                                Edit
+                                                            </div>
+                                                            <div className="text-secondary font-weight-bold text-xs " onClick={() => deleteProduct(item.id)}>
+                                                                Delete
+                                                            </div>
+                                                        </div>
+
                                                     </td>
                                                 </tr>
                                             })
@@ -166,22 +194,16 @@ export function ProductManager() {
                                                 </div>
                                                 <div className="form-group d-flex  flex-column">
                                                     <label>Hình ảnh liên quan</label>
-                                                    <div id="product-carousel" className="carousel slide" data-bs-ride="carousel">
-                                                        <div className="carousel-inner ">
-                                                            {
-                                                                product?.images && product?.images?.map((item, index) => {
-                                                                    return <div className={`carousel-item ${index === 0 ? "active" : "0"}`} key={index}>
-                                                                        <img className="w-100 h-100" src={product?.images[index]} alt={item} />
-                                                                    </div>
-                                                                })
-                                                            }
-                                                        </div>
-                                                        <a className="carousel-control-prev" href="#product-carousel" data-bs-slide="prev">
-                                                            <i className="fa fa-2x fa-angle-left text-dark"></i>
-                                                        </a>
-                                                        <a className="carousel-control-next" href="#product-carousel" data-bs-slide="next">
-                                                            <i className="fa fa-2x fa-angle-right text-dark"></i>
-                                                        </a>
+                                                    <input type="file" className="form-control-file" onChange={e => handleFileRead(e)} />
+                                                    <div className="carousel-inner flex mt-3">
+                                                        {
+                                                            product?.images && product?.images?.map((item, index) => {
+                                                                return <div className="avatar avatar-lg  me-3 border position-relative">
+                                                                    <img src={item} className=""></img>
+                                                                    <i className="fa fa-trash text-sm ms-1 position-absolute text-danger top-0 " aria-hidden="true" style={{ right: '0', cursor: 'pointer' }} onClick={() => removeImageProduct(item)}></i>
+                                                                </div>
+                                                            })
+                                                        }
                                                     </div>
                                                 </div>
                                             </form>

@@ -11,10 +11,13 @@ export default {
     editShop(idShop: any, param: any) {
         return ClientService.put(ApiPath.API_ADMIN_EDIT_SHOP + `/${idShop}`, param);
     },
-    postShop(param: any) {
+    createShop(param: any) {
         return ClientService.post(ApiPath.API_ADMIN_CREATE_SHOP, param);
     },
     deleteShop(idShop: any) {
-        return ClientService.delete(ApiPath.API_ADMIN_DELETE_SHOP + idShop);
+        return ClientService.delete(ApiPath.API_ADMIN_DELETE_SHOP + `/${idShop}`);
+    },
+    getUserList(param: any) {
+        return ClientService.get(ApiPath.API_ADMIN_GET_USER, param);
     }
 }

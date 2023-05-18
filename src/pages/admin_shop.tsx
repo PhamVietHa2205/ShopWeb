@@ -6,16 +6,24 @@ import { useEffect, useState } from "react";
 import { IAdminGetShopResponse, IAdminGetDetailShopResponse, IDetailShop } from "../interfaces/admin-interface";
 import { HttpCode } from '../constants/key_local';
 import * as Notify from "../shared/Notify";
+import { useNavigate } from "react-router-dom";
 export function ShopManager() {
     require('./../assets/css/soft-ui-dashboard.css');
     require('./../assets/css/nucleo-icons.css');
     require('./../assets/css/nucleo-svg.css');
+    let navigate = useNavigate();
+    const routeChange = (path) => {
+        navigate(path);
+    }
     useEffect(() => {
+        getShoptList()
+    }, []);
+    const getShoptList = () => {
         adminShopApi.getShoptList({}).then((res: any) => {
             const data: IAdminGetShopResponse = res?.data;
             setRecord(data.payload.shops)
         });
-    }, []);
+    }
     const [shopRecord, setRecord] = useState([]);
     const [shop, setShop] = useState<IDetailShop>();
     const getDetailShop = (id: any) => {
@@ -30,6 +38,16 @@ export function ShopManager() {
                 Notify.error(data?.message);
             }
         })
+    }
+    const deleteShop = (id: any) => {
+        adminShopApi.deleteShop(id).then((res) => {
+            if (res?.status === HttpCode.OK && res?.data?.code !== -1) {
+                Notify.success(res?.data?.message)
+                getShoptList()
+            } else {
+                Notify.error(res?.data?.message)
+            }
+        });
     }
     const updateData = (e: any) => {
         setShop({
@@ -66,6 +84,8 @@ export function ShopManager() {
         }
         adminShopApi.editShop(shop.id, param).then((res) => {
             if (res?.status === HttpCode.OK && res?.data?.code !== -1) {
+                Notify.success(res?.data?.message)
+                getShoptList()
             } else {
                 Notify.error(res?.data?.message)
             }
@@ -81,7 +101,7 @@ export function ShopManager() {
                         <div className="card mb-4">
                             <div className="card-header d-flex pb-0">
                                 <h6 className="mr-auto">Shop table</h6>
-                                <button type="button" className="btn btn-labeled btn-info">
+                                <button type="button" className="btn btn-labeled btn-info" onClick={() => routeChange('/admin/shop/create')}>
                                     <span className="btn-label mr-2"><i className="fa fa-cart-plus"></i></span>Add Shop</button>
                             </div>
                             <div className="card-body px-0 pt-0 pb-2">
@@ -98,7 +118,7 @@ export function ShopManager() {
                                         <tbody>
                                             {
                                                 shopRecord.map((item, index) => {
-                                                    return <tr key={item.id}>
+                                                    return <tr key={item.id} >
                                                         <td>
                                                             <div className="d-flex align-items-center px-2 py-1">
                                                                 <div>
@@ -108,7 +128,7 @@ export function ShopManager() {
                                                             </div>
                                                         </td>
                                                         <td>
-                                                            <div className="d-flex px-2 py-1">
+                                                            <div className="d-flex align-items-center px-2 py-1">
                                                                 <div>
                                                                     <img src={item.logo} className="avatar avatar-sm me-3" alt="shop" />
                                                                 </div>
@@ -119,13 +139,19 @@ export function ShopManager() {
                                                             <span className="text-secondary text-xs font-weight-bold">{item.address}</span>
                                                         </td>
 
-                                                        <td className="align-middle  text-center">
-                                                            <a href={`shop/${item.id}`} className="text-secondary font-weight-bold text-xs mr-3" data-bs-toggle="modal" data-bs-target="#editShop" onClick={() => getDetailShop(item.id)}>
-                                                                Edit
-                                                            </a>
-                                                            <a href={`product/${item.id}`} className="text-secondary font-weight-bold text-xs"  >
-                                                                Product
-                                                            </a>
+                                                        <td >
+                                                            <div className="d-flex justify-content-center align-items-center  mx-auto">
+                                                                <a href={`product/${item.id}`} className="text-secondary font-weight-bold text-xs mr-3"  >
+                                                                    Product
+                                                                </a>
+                                                                <div className="text-secondary font-weight-bold text-xs mr-3" data-bs-toggle="modal" data-bs-target="#editShop" onClick={() => getDetailShop(item.id)}>
+                                                                    Edit
+                                                                </div>
+                                                                <div className="text-secondary font-weight-bold text-xs mr-3" onClick={() => deleteShop(item.id)}>
+                                                                    Delete
+                                                                </div>
+                                                            </div>
+
                                                         </td>
                                                     </tr>
                                                 })
@@ -134,7 +160,7 @@ export function ShopManager() {
                                     </table>
                                 </div>
                             </div>
-                            <div className="modal fade" id="editShop" aria-labelledby="modalLabel" aria-hidden="true">
+                            <div className="modal fade" id="editShop" aria-hidden="true">
                                 <div className="modal-dialog">
                                     <div className="modal-content">
                                         <div className="modal-header">

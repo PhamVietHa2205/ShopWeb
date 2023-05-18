@@ -6,6 +6,7 @@ import { useDispatch } from 'react-redux';
 import { updateUser } from '../redux/reducers/user-reducer';
 import { RouteUrl } from '../constants/path_local';
 import { useState } from 'react';
+import Loading from '../shared/Loading';
 
 export function SignInAdmin() {
   require('./../assets/css/soft-ui-dashboard.css');
@@ -14,6 +15,7 @@ export function SignInAdmin() {
   const dispatch = useDispatch();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
 
   const handleSubmit = (e: any) => {
     e.preventDefault();
@@ -21,12 +23,14 @@ export function SignInAdmin() {
       email: email,
       password: password,
     }
-
+    setIsLoading(true);
     authorApi.login(params).then((res: any) => {
+      setIsLoading(false);
       const data: ILoginResponse = res?.data;
       if (res?.status === HttpCode.OK) {
         Notify.success(data?.message);
         localStorage.setItem(LocalStorageKey.USER_INFO, JSON.stringify(data?.payload?.user));
+        localStorage.setItem(LocalStorageKey.TOKEN, data?.payload?.token);
         localStorage.setItem(LocalStorageKey.LOGIN, "true");
         dispatch(updateUser(data?.payload?.user));
         window.location.pathname = RouteUrl.ADMIN;
@@ -157,7 +161,7 @@ export function SignInAdmin() {
               <a href="#" target="_blank" className="text-secondary me-xl-4 me-4">
                 <span className="text-lg fa fa-instagram"></span>
               </a>
-              <a href="https://github.com/PhamVietHa2205/ShopWeb" target="_blank" className="text-secondary me-xl-4 me-4">
+              <a href="https://github.com/PhamVietHa2205/ShopWeb" target="_blank" className="text-secondary me-xl-4 me-4" rel="noreferrer">
                 <span className="text-lg fa fa-github"></span>
               </a>
             </div>
@@ -173,6 +177,8 @@ export function SignInAdmin() {
           </div>
         </div>
       </footer>
+      <Loading loading={isLoading}/>
     </>
+    
   )
 }

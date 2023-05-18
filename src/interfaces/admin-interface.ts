@@ -149,3 +149,19 @@ export interface IDetailProduct {
     images: string[],
     comments: string[]
 }
+export interface IAdminGetHotProductResponse {
+    code: number,
+    message: string,
+    payload: IHotProduct[]
+}
+export interface IHotProduct {
+    id: string,
+    name: string,
+    price: string,
+    id_shop: string,
+    quantity: number,
+    logo: string,
+    nameShop: string,
+    quantityBeSold: number
+    images: string[],
+}

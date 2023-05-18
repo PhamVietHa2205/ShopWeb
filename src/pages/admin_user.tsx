@@ -12,12 +12,14 @@ export function UserManager() {
     require('./../assets/css/nucleo-svg.css');
 
     useEffect(() => {
+        getUserList()
+    }, []);
+    const getUserList = () => {
         adminUserApi.getUsertList({}).then((res: any) => {
             const data: IAdminGetUserResponse = res?.data;
             setRecord(data.payload.users)
         });
-    }, []);
-
+    }
     const [userRecord, setRecord] = useState([]);
     const [user, setUser] = useState<IUserInformation>();
     const genderUser = ["male", "female", "other"];
@@ -68,10 +70,11 @@ export function UserManager() {
             avatar: user.avatar,
             gender: user.gender,
             numberShop: user.numberShop,
-
         }
         adminUserApi.editUser(user.id, param).then((res) => {
             if (res?.status === HttpCode.OK && res?.data?.code !== -1) {
+                Notify.success(res?.data?.message)
+                getUserList()
             } else {
                 Notify.error(res?.data?.message)
             }
@@ -166,8 +169,8 @@ export function UserManager() {
                                                     <input name="phone" type="number" className="form-control" onChange={updateData} placeholder="Phone Number" value={user?.phone} />
                                                 </div>
                                                 <div className="form-group">
-                                                    <label >GIới tính</label>
-                                                    <select className="align-self-center form-select mb-4">
+                                                    <label >Giới tính</label>
+                                                    <select className="align-self-center form-select mb-4" name="gender" onChange={updateData}>
                                                         {genderUser.map((status) => {
                                                             return status === user?.gender ? <option selected value={status}>{status}</option> : <option value={status}>{status}</option>
                                                         })}
@@ -180,7 +183,7 @@ export function UserManager() {
                                                 <div className="form-group d-flex  flex-column">
                                                     <label>Avatar</label>
                                                     <input type="file" className="form-control-file" onChange={e => handleFileRead(e)} />
-                                                    <img className="w-50 rounded-circle border align-self-center" src={user?.avatar}></img>
+                                                    <img alt="error_image" className="w-50 rounded-circle border align-self-center" src={user?.avatar}></img>
                                                 </div>
                                             </form>
                                         </div>

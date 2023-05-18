@@ -57,7 +57,7 @@ const Header = () => {
                                 </a>
                                 <ul className="dropdown-menu  dropdown-menu-end border mt-0  px-2  me-sm-3" aria-labelledby="dropdownMenuButton">
                                     <li className="mb-2">
-                                        <a className="dropdown-item border-radius-md" href="#">
+                                        <a className="dropdown-item border-radius-md" href="/admin/profile">
                                             <div className="d-flex align-items-center py-1">
                                                 <div className="my-auto justify-content-center ">
                                                     <img src={require("../../assets/img/team-2.jpg")} className="avatar avatar-sm  me-3 " />

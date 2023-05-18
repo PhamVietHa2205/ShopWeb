@@ -54,11 +54,12 @@ export function CommentManager() {
                                                                     <h6 className="mb-0 text-sm">{item.name}</h6>
                                                                 </div>
                                                             </td>
-                                                            <td >
+                                                            <td>
                                                                 <div className="d-flex flex-column justify-content-center">
                                                                     {item.orderDetail.map((product: any) => {
-                                                                        return <div key={product.id_product}>
+                                                                        return <div className="mb-0 text-sm" key={product.id_product}>
                                                                             {product.nameProduct}
+                                                                            <p className="text-xs text-secondary mb-0">{product.price} vnđ - {product.orderDate}</p>
                                                                         </div>
                                                                     })}
                                                                 </div>
