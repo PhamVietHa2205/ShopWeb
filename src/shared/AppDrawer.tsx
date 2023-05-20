@@ -45,38 +45,7 @@ const AppDrawer = () => {
         <>
         <div className="container-fluid mb-5">
         		<div className="row border-top px-xl-5">
-            <div className="col-lg-3 d-none d-lg-block">
-                <a className="btn shadow-none d-flex align-items-center justify-content-between bg-primary text-white w-100"
-                    data-bs-toggle="collapse" data-bs-target="#navbar-vertical"
-                    style={{height: 65, marginTop: -1, padding: 30 }}>
-                    <h6 className="m-0">{t("categories")}</h6>
-                    <i className="fa fa-angle-down text-dark"></i>
-                </a>
-                <nav className="collapse navbar navbar-vertical navbar-light align-items-start p-0 border border-top-0 border-bottom-0"
-                    id="navbar-vertical">
-                    <div className="navbar-nav w-100 overflow-hidden" style={{height: 410}}>
-                        <div className="nav-item dropdown">
-                            <a href="#" className="nav-link" data-bs-toggle="dropdown">{t("dresses")} <i
-                                    className="fa fa-angle-down float-right mt-1"></i></a>
-                            <div className="dropdown-menu position-absolute bg-secondary border-0 rounded-0 w-100 m-0">
-                                <a href="#" className="dropdown-item">{t('menDresses')}</a>
-                                <a href="#" className="dropdown-item">{t('womanDresses')}</a>
-                                <a href="#" className="dropdown-item">{t('babyDresses')}</a>
-                            </div>
-                        </div>
-                        <a href="#" className="nav-item nav-link">{t('shirts')}</a>
-                        <a href="#" className="nav-item nav-link">{t('jeans')}</a>
-                        <a href="#" className="nav-item nav-link">{t('swimwear')}</a>
-                        <a href="#" className="nav-item nav-link">{t('sleepwear')}</a>
-                        <a href="#" className="nav-item nav-link">{t('sportwear')}</a>
-                        <a href="#" className="nav-item nav-link">{t('jumpsuits')}</a>
-                        <a href="#" className="nav-item nav-link">{t('blazers')}</a>
-                        <a href="#" className="nav-item nav-link">{t('jackets')}</a>
-                        <a href="#" className="nav-item nav-link">{t('shoes')}</a>
-                    </div>
-                </nav>
-            </div>
-            <div className="col-lg-9">
+            <div className="col-lg-12">
                 <nav className="navbar navbar-expand-lg bg-light navbar-light py-3 py-lg-0 px-0">
                     <a className="text-decoration-none d-block d-lg-none">
                         <h1 className="m-0 display-5 font-weight-semi-bold"><span
@@ -87,17 +56,10 @@ const AppDrawer = () => {
                     </button>
                     <div className="collapse navbar-collapse justify-content-between" id="navbarCollapse">
                         <div className="navbar-nav mr-auto py-0">
-                            <a href="#" onClick={() => goToPage(RouteUrl.HOME_PATH)} className={`nav-item nav-link ${getClassActive(RouteUrl.HOME_PATH)}`}>{t('home')}</a>
-                            <a href="#" onClick={() => goToPage(RouteUrl.SHOP)} className={`nav-item nav-link ${getClassActive(RouteUrl.SHOP)}`}>{t('shop')}</a>
-                            <a href="#" onClick={() => goToPage(RouteUrl.DETAIL)} className={`nav-item nav-link ${getClassActive(RouteUrl.DETAIL)}`}>{t('shopDetail')}</a>
-                            <div className="nav-item dropdown">
-                                <a className="btn btn-link nav-link dropdown-toggle" data-bs-toggle="dropdown">{t('pages')}</a>
-                                <div className="dropdown-menu rounded-0 m-0">
-                                    <a href="#" onClick={() => goToPage(RouteUrl.CART)} className="dropdown-item">{t('shoppingCart')}</a>
-                                    <a href="#" onClick={() => goToPage(RouteUrl.ORDERS)} className="dropdown-item">{t('orders')}</a>
-                                </div>
-                            </div>
-                            <a href="#" onClick={() => goToPage(RouteUrl.CONTACT)} className={`nav-item nav-link ${getClassActive(RouteUrl.CONTACT)}`}>{t('contact')}</a>
+                            <a href="#" onClick={() => goToPage(RouteUrl.HOME_PATH)} className={`nav-item nav-link ${getClassActive(RouteUrl.HOME_PATH)}`}><i className={`fa fa-home ${getClassActive(RouteUrl.HOME_PATH)}`}>{t('home')}</i></a>
+                                    <a href="#" onClick={() => goToPage(RouteUrl.CART)} className={`nav-item nav-link ${getClassActive(RouteUrl.CART)}`}><i className={`fa fa-shopping-cart ${getClassActive(RouteUrl.CART)}`}>{t('shoppingCart')}</i></a>
+                                    <a href="#" onClick={() => goToPage(RouteUrl.ORDERS)} className={`nav-item nav-link ${getClassActive(RouteUrl.ORDERS)}`}><i className={`fa fa-exchange ${getClassActive(RouteUrl.ORDERS)}`}>{t('orders')}</i></a>
+                            <a href="#" onClick={() => goToPage(RouteUrl.CONTACT)} className={`nav-item nav-link ${getClassActive(RouteUrl.CONTACT)}`}><i className={`fa fa-envelope ${getClassActive(RouteUrl.CONTACT)}`}>{t('contact')}</i></a>
                         </div>
                         <div className="navbar-nav ml-auto py-0">
                             {
