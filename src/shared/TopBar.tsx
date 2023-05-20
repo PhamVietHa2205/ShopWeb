@@ -13,7 +13,6 @@ interface ITopBarProps {
 
 const TopBar = () => {
     const { t, i18n } = useTranslation();
-    const cart = useSelector((state: RootState) => state.cart?.cartList);
     const navigate = useNavigate();
 
     const handleChangeLanguage = (lang: string) => {
@@ -80,12 +79,6 @@ const TopBar = () => {
                         </div>
                     </div>
                 </form>
-            </div>
-            <div className="col-lg-3 col-6 text-right">
-                <a className="btn border" onClick={() => goToPage(RouteUrl.CART)}>
-                    <sup>{cart?.length ?? 0} </sup>
-                    <i className="fa fa-shopping-cart text-primary"></i>
-                </a>
             </div>
         </div>
     </div>

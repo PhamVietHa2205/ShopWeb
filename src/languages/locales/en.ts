@@ -163,7 +163,7 @@ export default {
         "notHaveAnAccount": "Not have an account",
         "orders": "Orders",
         "noOrderInList": "No order in list",
-        "listOrder": "List order",
+        "listOrder": "List Order",
         "time": "Time",
         "status": "Status",
         "watting": "Waiting",
@@ -174,5 +174,10 @@ export default {
         "statusDoneContent": "Do you want to change order status to 'Done'",   
         "statusCancelTitle": "Change status to 'Cancel'",
         "statusCancelContent": "Do you want to change order status to 'Cancel'", 
+        "rating": "Rating",
+        "wrongRoleUser": "Wrong role user",
+        "logo": "Logo",
+        "option": "Option",
+        "listShop": "List Shop"
     }
 }
