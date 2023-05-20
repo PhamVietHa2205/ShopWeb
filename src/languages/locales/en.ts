@@ -178,6 +178,11 @@ export default {
         "wrongRoleUser": "Wrong role user",
         "logo": "Logo",
         "option": "Option",
-        "listShop": "List Shop"
+        "listShop": "List Shop",
+        "createShop": "Create Shop",
+        "shopName": "Shop Name",
+        "editShop": "Edit Shop",
+        "deleteShop": "Delete Shop",
+        "wantToDeleteShop": "Want to delete shop",
     }
 }

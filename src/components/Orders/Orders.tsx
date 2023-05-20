@@ -68,7 +68,6 @@ const Orders = (props: IOrdersProps) => {
         setLoading(true);
         orderApi.editOrder(param).then((res) => {
             setLoading(false);
-            console.log('data', param, res?.data);
             if (res?.status === HttpCode.OK && res?.data?.code !== -1) {
                 Notify.success(t("success"));
             } else {

@@ -31,7 +31,6 @@ export function SignUp() {
 			role: role,
 			avatar: require("../assets/img/avatar.jpg"),
 		}
-		console.log('param', param);
 		setIsLoading(true);
 		authorApi.register(param).then((res) => {
 			setIsLoading(false);
