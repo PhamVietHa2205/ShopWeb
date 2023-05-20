@@ -13,6 +13,7 @@ export const RouteUrl = {
     ADMIN_ORDER: "/admin/order",
     ADMIN_PRODUCT: "/admin/product/:id",
     ADMIN_SHOP: "/admin/shop",
+    ADMIN_CREATE_SHOP:"/admin/shop/create",
     ADMIN_COMMENT: "/admin/comment",
     SIGN_IN_ADMIN: "/sign_in",
     PROFILE_ADMIN: "/admin/profile",

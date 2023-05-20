@@ -28,4 +28,5 @@ export const ApiPath = {
     API_ADMIN_CREATE_PRODUCT: "admin/create-product",
     API_ADMIN_EDIT_PRODUCT: "admin/edit-product",
     API_ADMIN_DELETE_PRODUCT: "admin/del-product",
+    API_ADMIN_CHANGE_PROFILE:"/change-profile"
 }

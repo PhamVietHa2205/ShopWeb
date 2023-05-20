@@ -9,12 +9,15 @@ export default {
         return ClientService.post(ApiPath.API_ADMIN_CREATE_PRODUCT, param);
     },
     deleteProduct(param: any) {
-        return ClientService.get(ApiPath.API_ADMIN_DELETE_PRODUCT + `?id=${param.idShop}`, param);
+        return ClientService.delete(ApiPath.API_ADMIN_DELETE_PRODUCT + `/${param.idProduct}`, param);
     },
     getDetailProduct(param: any) {
         return ClientService.get(ApiPath.API_GET_DETAIL_PRODUCT + `/${param.idProduct}`, param);
     },
     editProduct(idProduct: string, param: any) {
         return ClientService.put(ApiPath.API_ADMIN_EDIT_PRODUCT + `/${idProduct}`, param);
+    },
+    getHotProduct(param: any) {
+        return ClientService.get(ApiPath.API_HOT_PRODUCTS, param)
     }
 }

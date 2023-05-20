@@ -15,6 +15,7 @@ import { SignInAdmin } from "./pages/sign_in_admin";
 import { ProfileManger } from "./pages/admin_profile";
 import { ShopManager } from "./pages/admin_shop";
 import { CommentManager } from "./pages/admin_comment";
+import { CreateShopAdmin } from "./pages/admin_createShop";
 /** USER */
 import { Home } from "./pages/home";
 import { LogIn } from "./pages/log_in";
@@ -54,6 +55,7 @@ function App() {
           <Route path={RouteUrl.ADMIN_PRODUCT} element={<ProductManager />}></Route>
           <Route path={RouteUrl.ADMIN_ORDER} element={<OrderManager />}></Route>
           <Route path={RouteUrl.ADMIN_SHOP} element={<ShopManager />}></Route>
+          <Route path={RouteUrl.ADMIN_CREATE_SHOP} element={<CreateShopAdmin />}></Route>
           <Route path={RouteUrl.ADMIN_COMMENT} element={<CommentManager />}></Route>
           <Route path={RouteUrl.SELLER_HOME} element={<SellerHome />}></Route>
           <Route path={RouteUrl.PROFILE_ADMIN} element={<ProfileManger />}></Route>

@@ -35,7 +35,7 @@ const NavBar = () => {
                 <div className="sidenav-header">
                     <i className="fas fa-times p-3 cursor-pointer text-secondary opacity-5 position-absolute end-0 top-0 d-none d-xl-none" aria-hidden="true" id="iconSidenav"></i>
                     <a className="navbar-brand m-0" target="_blank">
-                        <img src={require("../../assets/img/logo-ct-dark.png")} className="navbar-brand-img h-100" alt="main_logo" />
+                        <img src={require("../../assets/img/logoShop.png")} className="navbar-brand-img h-100" alt="main_logo" />
                         <span className="ms-1 font-weight-bold">
                             Website quản trị
                         </span>
@@ -68,14 +68,14 @@ const NavBar = () => {
                                 <span className="nav-link-text ms-1">Đơn hàng</span>
                             </a>
                         </li>
-                        <li className="nav-item">
+                        {/* <li className="nav-item">
                             <a className="nav-link active " href="/admin/product">
                                 <div className="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
                                     <img src={require('../../assets/img/small-logos/icon-navbar-virtualrelated.svg').default} alt='mySvgImage' />
                                 </div>
                                 <span className="nav-link-text ms-1">Sản phẩm</span>
                             </a>
-                        </li>
+                        </li> */}
                         <li className="nav-item">
                             <a className="nav-link active  " href="/admin/shop">
                                 <div className="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">

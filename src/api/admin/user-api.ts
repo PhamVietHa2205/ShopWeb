@@ -10,5 +10,8 @@ export default {
     },
     getDetailUser(param: any) {
         return ClientService.get(ApiPath.API_ADMIN_GET_USER + `?id=${param.id}`, param);
+    },
+    changeProfile(param :any){
+        return ClientService.post(ApiPath.API_ADMIN_CHANGE_PROFILE, param);
     }
 }
