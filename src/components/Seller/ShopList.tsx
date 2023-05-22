@@ -8,6 +8,8 @@ import * as Notify from '../../shared/Notify';
 import ModalCreateShop from './ModalCreateShop';
 import ModalEditShop from './ModalEditShop';
 import ModalDeleteShop from './ModalDeleteShop';
+import { useNavigate } from 'react-router-dom';
+import { RouteUrl } from '../../constants/path_local';
 
 interface IShopListProps {
 	setLoading: (loading: boolean) => void,
@@ -22,6 +24,7 @@ const ShopList = (props: IShopListProps) => {
 	const [showDeleteShopModal, setShowDeleteShopModal] = useState(false);
 	const [curShopId, setCurShopId] = useState("");
 	const [curShopName, setCurShopName] = useState("");
+	const navigate = useNavigate();
 
 	useEffect(() => {
 		getShopList();
@@ -70,6 +73,10 @@ const ShopList = (props: IShopListProps) => {
         setShowDeleteShopModal(false);
 		getShopList();
     }	
+    const handleViewShop = (idShop: string, name: string, logo: string) => {
+        navigate(RouteUrl.SELLER_SHOP, {state: {idShop: idShop, name: name, logo: logo}});
+        window.scrollTo(0, 0);
+    }
 
 	return (
 		<div className="pt-5 mx-3">
@@ -89,8 +96,8 @@ const ShopList = (props: IShopListProps) => {
 				</thead>
 				<tbody>
 					{
-						listShop ? listShop.map((shop: IShopInformation, index) => {
-							return <tr>
+						listShop && listShop.length > 0 ? listShop.map((shop: IShopInformation, index) => {
+							return <tr onClick={() => handleViewShop(shop.id, shop.name, shop.logo)}>
 								<td>{index + 1}</td>
 								<td><img className='rounded-circle' src={shop?.logo} style={{ width: 30 }} alt={shop.logo} /></td>
 								<td>{shop.name}</td>
@@ -100,7 +107,7 @@ const ShopList = (props: IShopListProps) => {
 									<button className='btn' onClick={() => handleShowDeleteShopModal(shop?.id, shop?.name)}><i className="fa fa-trash text-dark"></i></button>
 								</td>
 							</tr>
-						}) : <tr><td>{t('noShop')}</td></tr>
+						}) : <tr><td colSpan={6}>{t('youHaveNoShop')}</td></tr>
 					}
 				</tbody>
 			</table>

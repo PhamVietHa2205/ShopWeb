@@ -184,5 +184,6 @@ export default {
         "editShop": "Edit Shop",
         "deleteShop": "Delete Shop",
         "wantToDeleteShop": "Want to delete shop",
+        "youHaveNoShop": "You have no shop",
     }
 }

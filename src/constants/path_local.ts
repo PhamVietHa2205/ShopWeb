@@ -21,6 +21,7 @@ export const RouteUrl = {
     SELLER_PRODUCT_LIST: '/seller/product_list',
     SELLER_CREATE_PRODUCT: '/seller/create_product',
     SELLER_ORDER_LIST: '/seller/order_list',
+    SELLER_SHOP: "/seller/shop",
     CHANGE_PASSWORD: 'change_password',
 
 }
