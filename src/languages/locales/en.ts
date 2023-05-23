@@ -185,5 +185,8 @@ export default {
         "deleteShop": "Delete Shop",
         "wantToDeleteShop": "Want to delete shop",
         "youHaveNoShop": "You have no shop",
+        "edit": "Edit",
+        "delete": "Delete",
+        "noProduct": "No Product",
     }
 }

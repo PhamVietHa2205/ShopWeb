@@ -7,7 +7,7 @@ import TopBar from "../shared/seller/TopBar";
 import AppDrawer from "../shared/seller/AppDrawer";
 import ShopDetail from "../components/Seller/ShopDetail";
 
-const Shop = () => {
+const SellerShop = () => {
   const [isLoading, setIsLoading] = useState();
 
   return (
@@ -23,4 +23,4 @@ const Shop = () => {
   );
 };
 
-export default Shop;
+export default SellerShop;

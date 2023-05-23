@@ -5,13 +5,15 @@ import { formatNumber } from "../../utils";
 import PaginationPage from "../../shared/Pagination";
 import { memo, useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
-import productApi from '../../api/product-api';
-import { ICartEditRequest, ICartProduct, IShopProduct, IShopProductResponse } from "../../interfaces/product-interface";
+import productApi from '../../api/seller/product-api';
+import { ICartEditRequest, ICartProduct, ISellerShopProductResponse, IShopProduct, IShopProductResponse } from "../../interfaces/product-interface";
 import * as Notify from "../../shared/Notify";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../redux";
 import { RouteUrl } from "../../constants/path_local";
 import { updateCart } from "../../redux/reducers/cart-reducer";
+import ModalEditProduct from "./ModalEditProduct";
+import ModalDeleteProduct from "./ModalDeleteProduct";
 
 
 interface IShopDetailProps {
@@ -26,30 +28,19 @@ const ShopDetail = (props: IShopDetailProps) => {
 	const { idShop, name, logo } = state;
 	const { setLoading } = props;
 	const navigate = useNavigate();
-	const cart = useSelector((state: RootState) => state.cart?.cartList);
 	const [fullListProduct, setFullListProduct] = useState([]);
 	const [filterList, setFilterList] = useState([]);
 	const [curListProduct, setCurListProduct] = useState([]);
-	const [shopDetail, setShopDetail] = useState({});
 	const [highestPrice, setHighestPrice] = useState(0);
 	const [lowestPrice, setLowestPrice] = useState(0);
 	const [searchByName, setSearchByName] = useState("");
-	const dispatch = useDispatch();
+	const [showEditProductModal, setShowEditProductModal] = useState(false);
+	const [showDeleteProductModal, setShowDeleteProductModal] = useState(false);
+	const [curProductId, setCurProductId] = useState("");
+	const [curProductName, setCurProductName] = useState("");
 
 	useEffect(() => {
-		let param = {
-			idShop: idShop,
-		}
-		productApi.getProductInShop(param).then((res) => {
-			if (res?.status === HttpCode.OK && res?.data?.code !== -1) {
-				let data: IShopProductResponse = res?.data;
-				setFullListProduct(data?.payload?.products);
-				setFilterList(data?.payload?.products);
-				setCurListProduct(data?.payload?.products.slice(0, 9));
-			    } else {
-				Notify.error(res?.data?.message);
-			    }
-		})
+		getProductList();
 	}, []);
 
 	useEffect(() => {
@@ -67,43 +58,44 @@ const ShopDetail = (props: IShopDetailProps) => {
 		setCurListProduct(filterList.slice((currentPage - 1) * 9, Math.min(filterList.length, currentPage * 9)));
 	}, [currentPage, totalPage]);
 
-	const handleViewDetail = (id: string) => {
-		navigate(RouteUrl.DETAIL, {state: {id: id}});
-		window.scrollTo(0, 0);
-	}
-	
-	const handleAddToCart = (id: string) => {
+	const getProductList = () => {
 		setLoading(true);
-		let params: ICartEditRequest;
-		if (cart && cart?.some((item: ICartProduct) => item.id_product === id)) {
-		    params = {
-			detail: [...cart.map((item: ICartProduct) => {
-			    return {idProduct: item.id_product, quantity: item.id_product === id ? (item.quantity + 1) : item.quantity}
-			})]
-		    };
-		} else {
-		    if (cart)
-		    params = {
-			detail: [...cart.map((item: ICartProduct) => {
-			    return {idProduct: item.id_product, quantity: item.quantity}
-			}), {idProduct: id, quantity: 1}]
-		    };
-		    else params = {
-			detail: [{idProduct: id, quantity: 1}]
-		    }
-		};
-	
-		productApi.editCart(params).then((res) => {
-		    setLoading(false);
-		    if (res?.status === HttpCode.OK && res?.data?.code !== -1) {
-			dispatch(updateCart(res?.data?.payload));
-			localStorage.setItem(LocalStorageKey.CART, JSON.stringify(res?.data?.payload));
-		    } else {
-			Notify.error(res?.data?.message)
-		    }
+		let param = {
+			id: idShop,
+		}
+		productApi.getProductInShop(param).then((res) => {
+			setLoading(false);
+			if (res?.status === HttpCode.OK && res?.data?.code !== -1) {
+				let data: ISellerShopProductResponse = res?.data;
+				setFullListProduct(data?.payload?.products);
+				setFilterList(data?.payload?.products);
+				setCurListProduct(data?.payload?.products.slice(0, 9));
+			} else {
+			Notify.error(res?.data?.message);
+			}
 		})
-	    }
-	
+	}
+
+	const handleShowEditProductModal = (id: string) => {
+		setCurProductId(id);
+		setShowEditProductModal(true);
+	}
+
+	const handleShowDeleteProductModal = (id: string,  name: string) => {
+		setCurProductId(id);
+		setCurProductName(name);
+		setShowDeleteProductModal(true);
+	}
+
+	const handleCloseEditProductModal = () => {
+        setShowEditProductModal(false);
+		getProductList();
+    }	
+
+	const handleCloseDeleteProductModal = () => {
+        setShowDeleteProductModal(false);
+		getProductList();
+    }	
 
 	return (
 		<div className="container-fluid pt-5">
@@ -150,7 +142,7 @@ const ShopDetail = (props: IShopDetailProps) => {
 							</div>
 						</div>
 						{
-							curListProduct ? curListProduct.map((item, index) => {
+							curListProduct && curListProduct.length > 0 ? curListProduct.map((item, index) => {
 								return <div className="col-lg-4 col-md-6 col-sm-12 pb-1" key={index}>
 								<div className="card product-item border-0 mb-4">
 									<div className="card-header product-img position-relative overflow-hidden bg-transparent border p-0">
@@ -165,27 +157,30 @@ const ShopDetail = (props: IShopDetailProps) => {
 										<div className="d-flex justify-content-center">
 											<h6 className="fw-bold">{formatNumber(item.price, 2)} VNĐ</h6>
 										</div>
-										<div className="d-flex justify-content-center">
-											<h6>{t("quantity")} {item.quantity ?? 0}</h6>
-											<h6 className="font-italic text-lowercase ml-2">
-												({item.quantityBeSold ?? 0} {t("sold")})
-											</h6>
-										</div>
 									</div>
 									<div className="card-footer d-flex justify-content-between bg-light border">
-										<a className="btn btn-sm text-dark p-0" onClick={() => handleViewDetail(item.id)}><i className="fa fa-eye text-primary mr-1"></i>{t('viewDetail')}</a>
-										<a className="btn btn-sm text-dark p-0" onClick={() => handleAddToCart(item.id)}><i className="fa fa-shopping-cart text-primary mr-1"></i>{t('addToCart')}</a>
+										<a className="btn btn-sm text-dark p-0" onClick={() => handleShowEditProductModal(item.id)}><i className="fa fa-edit text-primary mr-1"></i>{t('edit')}</a>
+										<a className="btn btn-sm text-dark p-0" onClick={() => handleShowDeleteProductModal(item.id, item.name)}><i className="fa fa-trash text-primary mr-1"></i>{t('delete')}</a>
 									</div>
+
 								</div>
 							</div>
-							}) : <h3>{t("noProduct")}</h3>
+							}) : <div className="d-flex bg-secondary py-2 justify-content-center align-items-center mb-3" style={{height: 200}}>
+									<h5 className="text-center">{t("noProduct")}</h5>
+								</div>
 						}
-						<div className="col-12 pb-1">
-							<PaginationPage totalItem={filterList.length} currentPage={currentPage} changePage={setCurrentPage}/>
-						</div>
+						{
+							curListProduct && curListProduct.length > 0 &&
+							<div className="col-12 pb-1">
+								<PaginationPage totalItem={filterList.length} currentPage={currentPage} changePage={setCurrentPage}/>
+							</div>
+						}
 					</div>
 				</div>
 			</div>
+			
+			{curProductId && <ModalEditProduct showEditProductModal={showEditProductModal} handleCloseEditProductModal={handleCloseEditProductModal} setLoading={setLoading} id={curProductId}/>}
+			<ModalDeleteProduct showDeleteProductModal ={showDeleteProductModal} handleCloseDeleteProductModal={handleCloseDeleteProductModal} setLoading={setLoading} productId={curProductId} productName={curProductName}/>
 		</div>
 	);
 };

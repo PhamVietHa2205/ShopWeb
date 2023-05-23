@@ -47,13 +47,15 @@ const ShopList = (props: IShopListProps) => {
 		setShowCreateShopModal(true);
 	}
 
-	const handleShowEditShopModal = (id: string, name: string) => {
+	const handleShowEditShopModal = (e: any, id: string, name: string) => {
+		e.stopPropagation();
 		setCurShopId(id);
 		setCurShopName(name);
 		setShowEditShopModal(true);
 	}
 
-	const handleShowDeleteShopModal = (id: string, name: string) => {
+	const handleShowDeleteShopModal = (e: any, id: string, name: string) => {
+		e.stopPropagation();
 		setCurShopId(id);
 		setCurShopName(name);
 		setShowDeleteShopModal(true);
@@ -97,14 +99,14 @@ const ShopList = (props: IShopListProps) => {
 				<tbody>
 					{
 						listShop && listShop.length > 0 ? listShop.map((shop: IShopInformation, index) => {
-							return <tr onClick={() => handleViewShop(shop.id, shop.name, shop.logo)}>
+							return <tr onClick={() => handleViewShop(shop.id, shop.name, shop.logo)} tabIndex={2}>
 								<td>{index + 1}</td>
 								<td><img className='rounded-circle' src={shop?.logo} style={{ width: 30 }} alt={shop.logo} /></td>
 								<td>{shop.name}</td>
 								<td>{shop.address}</td>
 								<td className='align-middle'>
-									<button className='btn' onClick={() => handleShowEditShopModal(shop?.id, shop?.name)}><i className="fa fa-edit text-dark"></i></button>
-									<button className='btn' onClick={() => handleShowDeleteShopModal(shop?.id, shop?.name)}><i className="fa fa-trash text-dark"></i></button>
+									<button className='btn' onClick={(e) => handleShowEditShopModal(e, shop?.id, shop?.name)} tabIndex={1}><i className="fa fa-edit text-dark"></i></button>
+									<button className='btn' onClick={(e) => handleShowDeleteShopModal(e, shop?.id, shop?.name)} tabIndex={1}><i className="fa fa-trash text-dark"></i></button>
 								</td>
 							</tr>
 						}) : <tr><td colSpan={6}>{t('youHaveNoShop')}</td></tr>

@@ -80,7 +80,6 @@ const AppDrawer = () => {
                         </div>
                     </div>
                 </nav>
-                {/* <NavBar/> */}
             </div>
             </div>
             </div>

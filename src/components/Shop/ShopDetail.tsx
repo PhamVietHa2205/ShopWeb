@@ -180,9 +180,12 @@ const ShopDetail = (props: IShopDetailProps) => {
 							</div>
 							}) : <h3>{t("noProduct")}</h3>
 						}
-						<div className="col-12 pb-1">
-							<PaginationPage totalItem={filterList.length} currentPage={currentPage} changePage={setCurrentPage}/>
-						</div>
+						{
+							curListProduct && curListProduct.length > 0 &&
+							<div className="col-12 pb-1">
+								<PaginationPage totalItem={filterList.length} currentPage={currentPage} changePage={setCurrentPage}/>
+							</div>
+						}
 					</div>
 				</div>
 			</div>
