@@ -23,7 +23,7 @@ const ShopDetail = (props: IShopDetailProps) => {
 	const [currentPage, setCurrentPage] = useState(1);
 	const [totalPage, setTotalPage] = useState(1);
 	const { state } = useLocation();
-	const { idShop } = state;
+	const { idShop, name, logo } = state;
 	const { setLoading } = props;
 	const navigate = useNavigate();
 	const cart = useSelector((state: RootState) => state.cart?.cartList);
@@ -41,7 +41,7 @@ const ShopDetail = (props: IShopDetailProps) => {
 			idShop: idShop,
 		}
 		productApi.getProductInShop(param).then((res) => {
-			if (res?.status === HttpCode.OK && res?.data?.code !== -1) {
+			if (res?.status === HttpCode.OK && res?.data?.code === 0) {
 				let data: IShopProductResponse = res?.data;
 				setFullListProduct(data?.payload?.products);
 				setFilterList(data?.payload?.products);
@@ -95,7 +95,7 @@ const ShopDetail = (props: IShopDetailProps) => {
 	
 		productApi.editCart(params).then((res) => {
 		    setLoading(false);
-		    if (res?.status === HttpCode.OK && res?.data?.code !== -1) {
+		    if (res?.status === HttpCode.OK && res?.data?.code === 0) {
 			dispatch(updateCart(res?.data?.payload));
 			localStorage.setItem(LocalStorageKey.CART, JSON.stringify(res?.data?.payload));
 		    } else {
@@ -130,9 +130,13 @@ const ShopDetail = (props: IShopDetailProps) => {
 					</div>
 				</div>
 				<div className="col-lg-9 col-md-12">
-					<div className="row pb-3">
-						<div className="col-12 pb-1">
-							<div className="d-flex align-items-center justify-content-between mb-4">
+					<div className="row pb-3 justify-content-between">
+						<div className="pb-4 col-6 d-flex align-items-center">
+							<img src={logo} alt={logo} className="rounded-circle mr-4" style={{width: 40, height: 40}}/>
+							<h5 className="fw-bold">{name}</h5>
+						</div>
+						<div className="pb-1 col-6">
+							<div className="d-flex mb-4 justify-content-end">
 								<form action="">
 									<div className="input-group">
 										<input type="text" className="form-control" placeholder={t('searchByName')} onChange={(e) => setSearchByName(e?.target?.value)}/>
@@ -176,9 +180,12 @@ const ShopDetail = (props: IShopDetailProps) => {
 							</div>
 							}) : <h3>{t("noProduct")}</h3>
 						}
-						<div className="col-12 pb-1">
-							<PaginationPage totalItem={filterList.length} currentPage={currentPage} changePage={setCurrentPage}/>
-						</div>
+						{
+							curListProduct && curListProduct.length > 0 &&
+							<div className="col-12 pb-1">
+								<PaginationPage totalItem={filterList.length} currentPage={currentPage} changePage={setCurrentPage}/>
+							</div>
+						}
 					</div>
 				</div>
 			</div>

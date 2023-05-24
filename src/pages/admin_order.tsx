@@ -44,7 +44,7 @@ export function OrderManager() {
             payment: orderPram.payment,
         }
         adminOrderApi.editOrder(orderPram.id, param).then((res) => {
-            if (res?.status === HttpCode.OK && res?.data?.code !== -1) {
+            if (res?.status === HttpCode.OK && res?.data?.code === 0) {
                 Notify.success(res?.data?.message)
                 getOrderList()
             } else {

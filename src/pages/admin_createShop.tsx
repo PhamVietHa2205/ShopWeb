@@ -61,7 +61,7 @@ export function CreateShopAdmin() {
             idUser: shop.idUser
         }
         adminShopApi.createShop(param).then((res) => {
-            if (res?.status === HttpCode.OK && res?.data?.code !== -1) {
+            if (res?.status === HttpCode.OK && res?.data?.code === 0) {
             } else {
                 Notify.error(res?.data?.message)
             }

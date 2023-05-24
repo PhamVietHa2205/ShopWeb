@@ -29,7 +29,7 @@ const CartShop = (props: ICartShopProps) => {
         setLoading(true);
         productApi.getCart({}).then((res) => {
             setLoading(false);
-            if (res?.status === HttpCode.OK && res?.data?.code !== -1) {
+            if (res?.status === HttpCode.OK && res?.data?.code === 0) {
                 let data: ICartResponse = res?.data;
                 dispatch(updateCart(data?.payload));
                 setCartListUpdate(data?.payload);
@@ -57,10 +57,10 @@ const CartShop = (props: ICartShopProps) => {
         }
         orderApi.postOrder(param).then((res) => {
             setLoading(false);
-            if (res?.status === HttpCode.OK && res?.data?.code !== -1) {
+            if (res?.status === HttpCode.OK && res?.data?.code === 0) {
                 Notify.success(t("purchaseSuccessfully"));
                 productApi.editCart({detail: []}).then((res) => {
-                    if (res?.status === HttpCode.OK && res?.data?.code !== -1) {
+                    if (res?.status === HttpCode.OK && res?.data?.code === 0) {
                     } else {
                         Notify.error(res?.data?.message)
                     }

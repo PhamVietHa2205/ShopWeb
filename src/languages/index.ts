@@ -4,7 +4,7 @@ import vi from './locales/vi';
 import en from './locales/en';
 
 const I18n = i18next.use(initReactI18next).init({
-    lng: 'en',
+    lng: 'vi',
     resources: {
         vi: vi,
         en: en,

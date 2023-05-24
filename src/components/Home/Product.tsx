@@ -28,7 +28,7 @@ const Product = (props: IProductProps) => {
         productApi.getHotProductList({}).then((res) => {
             setLoading(false);
             let data: IProductHotResponse = res?.data;
-            if (res?.status === HttpCode.OK && res?.data?.code !== -1) {
+            if (res?.status === HttpCode.OK && res?.data?.code === 0) {
                 setHotProductList(data?.payload);
             } else {
                 Notify.error(data?.message);
@@ -41,8 +41,8 @@ const Product = (props: IProductProps) => {
         window.scrollTo(0, 0);
     }
 
-    const handleViewShop = (idShop: string) => {
-        navigate(RouteUrl.SHOP, {state: {idShop: idShop}});
+    const handleViewShop = (idShop: string, name: string, logo: string) => {
+        navigate(RouteUrl.SHOP, {state: {idShop: idShop, name: name, logo: logo}});
         window.scrollTo(0, 0);
     }
 
@@ -69,7 +69,7 @@ const Product = (props: IProductProps) => {
 
         productApi.editCart(params).then((res) => {
             setLoading(false);
-            if (res?.status === HttpCode.OK && res?.data?.code !== -1) {
+            if (res?.status === HttpCode.OK && res?.data?.code === 0) {
                 dispatch(updateCart(res?.data?.payload));
                 localStorage.setItem(LocalStorageKey.CART, JSON.stringify(res?.data?.payload));
             } else {
@@ -97,7 +97,7 @@ const Product = (props: IProductProps) => {
                                 <h6>{formatNumber(Number(item.price), 2)} VND</h6>
                             </div>
                         </div>
-                        <div className="d-flex justify-content-evenly align-items-center py-2 border btn" onClick={() => handleViewShop(item.id_shop)}>
+                        <div className="d-flex justify-content-evenly align-items-center py-2 border btn" onClick={() => handleViewShop(item.id_shop, item.nameShop, item.logo)}>
                             <img src={item.logo ?? DefaultAssets.AVATAR_IMG_LINK} style={{width: 30, height: 30, padding: "auto"}} className="bg-info rounded-circle align-self-center"></img>
                             <div className="nav-link">{item.nameShop}</div>
                         </div>

@@ -54,19 +54,6 @@ const AppDrawer = () => {
                         <span className="navbar-toggler-icon"></span>
                     </button>
                     <div className="collapse navbar-collapse justify-content-between" id="navbarCollapse">
-                        <div className="navbar-nav mr-auto py-0">
-                            <a href="#" onClick={() => goToPage(RouteUrl.SELLER_HOME)} className={`nav-item nav-link ${getClassActive(RouteUrl.HOME_PATH)}`}>{t('home')}</a>
-                            <a href="#" onClick={() => goToPage(RouteUrl.SHOP)} className={`nav-item nav-link ${getClassActive(RouteUrl.SHOP)}`}>{t('shop')}</a>
-                            <a href="#" onClick={() => goToPage(RouteUrl.DETAIL)} className={`nav-item nav-link ${getClassActive(RouteUrl.DETAIL)}`}>{t('shopDetail')}</a>
-                            <div className="nav-item dropdown">
-                                <a className="btn btn-link nav-link dropdown-toggle" data-bs-toggle="dropdown">{t('pages')}</a>
-                                <div className="dropdown-menu rounded-0 m-0">
-                                    <a href="#" onClick={() => goToPage(RouteUrl.CART)} className="dropdown-item">{t('shoppingCart')}</a>
-                                    <a href="#" onClick={() => goToPage(RouteUrl.ORDERS)} className="dropdown-item">{t('orders')}</a>
-                                </div>
-                            </div>
-                            <a href="#" onClick={() => goToPage(RouteUrl.CONTACT)} className={`nav-item nav-link ${getClassActive(RouteUrl.CONTACT)}`}>{t('contact')}</a>
-                        </div>
                         <div className="navbar-nav ml-auto py-0">
                             {
                                 isLogin &&
@@ -80,7 +67,6 @@ const AppDrawer = () => {
                         </div>
                     </div>
                 </nav>
-                {/* <NavBar/> */}
             </div>
             </div>
             </div>

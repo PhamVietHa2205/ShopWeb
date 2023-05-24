@@ -72,7 +72,7 @@ export function UserManager() {
             numberShop: user.numberShop,
         }
         adminUserApi.editUser(user.id, param).then((res) => {
-            if (res?.status === HttpCode.OK && res?.data?.code !== -1) {
+            if (res?.status === HttpCode.OK && res?.data?.code === 0) {
                 Notify.success(res?.data?.message)
                 getUserList()
             } else {

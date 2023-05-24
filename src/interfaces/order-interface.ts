@@ -24,6 +24,7 @@ export interface IOrderProduct {
 	nameProduct: string,
 	quantity: number,
 	price: string,
+	name: string,
 }
 
 export interface IOrderListInformation {

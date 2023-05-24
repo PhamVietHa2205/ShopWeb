@@ -113,3 +113,24 @@ export interface IShopProduct {
 	price: string,
 	quantityBeSold: number,
 }
+
+export interface ISellerShopProductResponse {
+	code: number,
+	message: string,
+	payload: ISellerShopProductPayload,
+}
+
+export interface ISellerShopProductPayload {
+	pageIndex: number,
+	pageSize: number,
+	products: ISellerShopProduct[],
+}
+
+export interface ISellerShopProduct {
+	id: string,
+	id_shop: string,
+	image: string[],
+	name: string,
+	price: string,
+	quantity: number,
+}
