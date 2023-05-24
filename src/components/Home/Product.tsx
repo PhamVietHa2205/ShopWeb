@@ -28,7 +28,7 @@ const Product = (props: IProductProps) => {
         productApi.getHotProductList({}).then((res) => {
             setLoading(false);
             let data: IProductHotResponse = res?.data;
-            if (res?.status === HttpCode.OK && res?.data?.code !== -1) {
+            if (res?.status === HttpCode.OK && res?.data?.code === 0) {
                 setHotProductList(data?.payload);
             } else {
                 Notify.error(data?.message);
@@ -69,7 +69,7 @@ const Product = (props: IProductProps) => {
 
         productApi.editCart(params).then((res) => {
             setLoading(false);
-            if (res?.status === HttpCode.OK && res?.data?.code !== -1) {
+            if (res?.status === HttpCode.OK && res?.data?.code === 0) {
                 dispatch(updateCart(res?.data?.payload));
                 localStorage.setItem(LocalStorageKey.CART, JSON.stringify(res?.data?.payload));
             } else {

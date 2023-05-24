@@ -55,7 +55,7 @@ export function ProfileManger() {
         const file = event.target.files[0]
         const base64 = await convertBase64(file)
         await adminUserApi.changeProfile({ avatar: String(base64) }).then((res) => {
-            if (res?.status === HttpCode.OK && res?.data?.code !== -1) {
+            if (res?.status === HttpCode.OK && res?.data?.code === 0) {
                 setCurrentUser({
                     ...user,
                     avatar: res?.data?.payload?.avatar
@@ -75,7 +75,7 @@ export function ProfileManger() {
             gender: user?.gender
         }
         adminUserApi.changeProfile(param).then((res) => {
-            if (res?.status === HttpCode.OK && res?.data?.code !== -1) {
+            if (res?.status === HttpCode.OK && res?.data?.code === 0) {
                 Notify.success('Cập nhật trang cá nhân thành công')
                 setEditting(false);
             } else {

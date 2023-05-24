@@ -34,7 +34,7 @@ const ShopList = (props: IShopListProps) => {
 		setLoading(true);
 		shopApi.getShoptList({}).then((res) => {
 			setLoading(false);
-			if (res?.status === HttpCode.OK && res?.data?.code !== -1) {
+			if (res?.status === HttpCode.OK && res?.data?.code === 0) {
 				let data: IShopListResponse = res?.data;
 				setListShop(data?.payload?.shop)
 			} else {
@@ -62,23 +62,29 @@ const ShopList = (props: IShopListProps) => {
 	}
 
 	const handleCloseCreateShopModal = () => {
-        setShowCreateShopModal(false);
+		setShowCreateShopModal(false);
 		getShopList();
-    }
+	}
 
 	const handleCloseEditShopModal = () => {
-        setShowEditShopModal(false);
+		setShowEditShopModal(false);
 		getShopList();
-    }	
+	}
 
 	const handleCloseDeleteShopModal = () => {
-        setShowDeleteShopModal(false);
+		setShowDeleteShopModal(false);
 		getShopList();
-    }	
-    const handleViewShop = (idShop: string, name: string, logo: string) => {
-        navigate(RouteUrl.SELLER_SHOP, {state: {idShop: idShop, name: name, logo: logo}});
-        window.scrollTo(0, 0);
-    }
+	}
+	const handleViewShop = (idShop: string, name: string, logo: string) => {
+		navigate(RouteUrl.SELLER_SHOP, { state: { idShop: idShop, name: name, logo: logo } });
+		window.scrollTo(0, 0);
+	}
+
+	const handleViewOrders = (e: any, idShop: string, name: string, logo: string) => {
+		e.stopPropagation();
+		navigate(RouteUrl.SELLER_ORDERS, { state: { idShop: idShop, name: name, logo: logo } });
+		window.scrollTo(0, 0);
+	}
 
 	return (
 		<div className="pt-5 mx-3">
@@ -107,15 +113,16 @@ const ShopList = (props: IShopListProps) => {
 								<td className='align-middle'>
 									<button className='btn' onClick={(e) => handleShowEditShopModal(e, shop?.id, shop?.name)} tabIndex={1}><i className="fa fa-edit text-dark"></i></button>
 									<button className='btn' onClick={(e) => handleShowDeleteShopModal(e, shop?.id, shop?.name)} tabIndex={1}><i className="fa fa-trash text-dark"></i></button>
+									<button className='btn' onClick={(e) => handleViewOrders(e, shop?.id, shop?.name, shop?.logo)} tabIndex={1}><i className="fa fa-file-text-o text-dark"></i></button>
 								</td>
 							</tr>
 						}) : <tr><td colSpan={6}>{t('youHaveNoShop')}</td></tr>
 					}
 				</tbody>
 			</table>
-			<ModalCreateShop showCreateShopModal={showCreateShopModal} handleCloseCreateShopModal={handleCloseCreateShopModal} setLoading={setLoading}/>
-			<ModalEditShop showEditShopModal={showEditShopModal} handleCloseEditShopModal={handleCloseEditShopModal} setLoading={setLoading} shopId={curShopId} preName={curShopName}/>
-			<ModalDeleteShop showDeleteShopModal={showDeleteShopModal} handleCloseDeleteShopModal={handleCloseDeleteShopModal} setLoading={setLoading} shopId={curShopId} shopName={curShopName}/>
+			<ModalCreateShop showCreateShopModal={showCreateShopModal} handleCloseCreateShopModal={handleCloseCreateShopModal} setLoading={setLoading} />
+			<ModalEditShop showEditShopModal={showEditShopModal} handleCloseEditShopModal={handleCloseEditShopModal} setLoading={setLoading} shopId={curShopId} preName={curShopName} />
+			<ModalDeleteShop showDeleteShopModal={showDeleteShopModal} handleCloseDeleteShopModal={handleCloseDeleteShopModal} setLoading={setLoading} shopId={curShopId} shopName={curShopName} />
 		</div>
 	);
 

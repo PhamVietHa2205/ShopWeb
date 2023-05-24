@@ -30,7 +30,7 @@ export function LogIn() {
 		authorApi.login(params).then((res: any) => {
 			setIsLoading(false);
 			const data: ILoginResponse = res?.data;
-			if (res?.status === HttpCode.OK && res?.data?.code !== -1) {
+			if (res?.status === HttpCode.OK && res?.data?.code === 0) {
 				Notify.success(data?.message);
 				localStorage.setItem(LocalStorageKey.USER_INFO, JSON.stringify(data?.payload?.user));
 				dispatch(updateUser(data?.payload?.user));

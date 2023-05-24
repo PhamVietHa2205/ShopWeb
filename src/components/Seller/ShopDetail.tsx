@@ -70,7 +70,7 @@ const ShopDetail = (props: IShopDetailProps) => {
 		}
 		productApi.getProductInShop(param).then((res) => {
 			setLoading(false);
-			if (res?.status === HttpCode.OK && res?.data?.code !== -1) {
+			if (res?.status === HttpCode.OK && res?.data?.code === 0) {
 				let data: ISellerShopProductResponse = res?.data;
 				setFullListProduct(data?.payload?.products);
 				setFilterList(data?.payload?.products);

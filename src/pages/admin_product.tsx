@@ -91,7 +91,7 @@ export function ProductManager() {
         if (imageRemove.length > 0) Object.assign(param, { imagesRemove: imageRemove })
         if (imageAdd.length > 0) Object.assign(param, { imagesAdd: imageAdd.filter(i => !imageRemove.includes(i)) })
         adminProductApi.editProduct(product.id, param).then((res) => {
-            if (res?.status === HttpCode.OK && res?.data?.code !== -1) {
+            if (res?.status === HttpCode.OK && res?.data?.code === 0) {
                 Notify.success(res?.data?.message)
                 getProductList();
             } else {
@@ -101,7 +101,7 @@ export function ProductManager() {
     }
     const deleteProduct = (id: any) => {
         adminProductApi.deleteProduct({ idProduct: id }).then((res) => {
-            if (res?.status === HttpCode.OK && res?.data?.code !== -1) {
+            if (res?.status === HttpCode.OK && res?.data?.code === 0) {
                 Notify.success(res?.data?.message)
                 getProductList();
             } else {

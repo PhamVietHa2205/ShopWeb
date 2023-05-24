@@ -41,7 +41,7 @@ export function ShopManager() {
     }
     const deleteShop = (id: any) => {
         adminShopApi.deleteShop(id).then((res) => {
-            if (res?.status === HttpCode.OK && res?.data?.code !== -1) {
+            if (res?.status === HttpCode.OK && res?.data?.code === 0) {
                 Notify.success(res?.data?.message)
                 getShoptList()
             } else {
@@ -83,7 +83,7 @@ export function ShopManager() {
             logo: shop.logo
         }
         adminShopApi.editShop(shop.id, param).then((res) => {
-            if (res?.status === HttpCode.OK && res?.data?.code !== -1) {
+            if (res?.status === HttpCode.OK && res?.data?.code === 0) {
                 Notify.success(res?.data?.message)
                 getShoptList()
             } else {

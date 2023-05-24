@@ -35,7 +35,7 @@ export function SignUp() {
 		authorApi.register(param).then((res) => {
 			setIsLoading(false);
 			let data: IRegisterResponse = res?.data;
-			if (res?.status === HttpCode.OK && res?.data?.code !== -1) {
+			if (res?.status === HttpCode.OK && res?.data?.code === 0) {
 				Notify.success(t("success"));
 				window.location.pathname = RouteUrl.LOG_IN;
 			} else {

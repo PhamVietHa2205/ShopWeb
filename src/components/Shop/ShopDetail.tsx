@@ -41,7 +41,7 @@ const ShopDetail = (props: IShopDetailProps) => {
 			idShop: idShop,
 		}
 		productApi.getProductInShop(param).then((res) => {
-			if (res?.status === HttpCode.OK && res?.data?.code !== -1) {
+			if (res?.status === HttpCode.OK && res?.data?.code === 0) {
 				let data: IShopProductResponse = res?.data;
 				setFullListProduct(data?.payload?.products);
 				setFilterList(data?.payload?.products);
@@ -95,7 +95,7 @@ const ShopDetail = (props: IShopDetailProps) => {
 	
 		productApi.editCart(params).then((res) => {
 		    setLoading(false);
-		    if (res?.status === HttpCode.OK && res?.data?.code !== -1) {
+		    if (res?.status === HttpCode.OK && res?.data?.code === 0) {
 			dispatch(updateCart(res?.data?.payload));
 			localStorage.setItem(LocalStorageKey.CART, JSON.stringify(res?.data?.payload));
 		    } else {

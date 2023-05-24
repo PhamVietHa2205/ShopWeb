@@ -66,7 +66,7 @@ const ModalEditProduct = (props: IModalEditProductProps) => {
         }
         productApi.editProductInShop(param).then((res) => {
             setLoading(false);
-            if (res?.status === HttpCode.OK && res?.data?.code !== -1) {
+            if (res?.status === HttpCode.OK && res?.data?.code === 0) {
                 Notify.success(t("success"));
             } else {
                 Notify.error(res?.data?.message);

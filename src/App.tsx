@@ -30,10 +30,10 @@ import ChangePassword from "./pages/change_password";
 /**SELLER */
 import { SellerHome } from "./pages/seller_home"
 import { ProductList } from "./pages/seller_productList";
-import { OrderList } from "./pages/seller_order";
 import { CreateProduct } from "./pages/seller_createProduct";
 import Order from "./pages/order";
 import SellerShop from "./pages/seller_shop";
+import { SellerOrder } from "./pages/seller_order";
 
 function App() {
   return (
@@ -63,7 +63,7 @@ function App() {
           <Route path={RouteUrl.CHANGE_PASSWORD} element={<ChangePassword />}></Route>
           <Route path={RouteUrl.SELLER_PRODUCT_LIST} element={<ProductList />}></Route>
           <Route path={RouteUrl.SELLER_CREATE_PRODUCT} element={<CreateProduct />}></Route>
-          <Route path={RouteUrl.SELLER_ORDER_LIST} element={<OrderList />}></Route>
+          <Route path={RouteUrl.SELLER_ORDERS} element={<SellerOrder />}></Route>
           <Route path={RouteUrl.SELLER_SHOP} element={<SellerShop/>}></Route>
         </Routes>
         <ToastContainer theme="colored" />

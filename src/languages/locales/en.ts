@@ -174,6 +174,8 @@ export default {
         "statusDoneContent": "Do you want to change order status to 'Done'",   
         "statusCancelTitle": "Change status to 'Cancel'",
         "statusCancelContent": "Do you want to change order status to 'Cancel'", 
+        "statusDeliveringTitle": "Change status to 'Delivering'",
+        "statusDeliveringContent": "Do you want to change order status to 'Delivering'", 
         "rating": "Rating",
         "wrongRoleUser": "Wrong role user",
         "logo": "Logo",
@@ -190,5 +192,6 @@ export default {
         "noProduct": "No Product",
         "editProduct": "Edit Product",
         "images": "Images",
+        "delivering": "Delivering",
     }
 }
