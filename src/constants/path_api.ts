@@ -19,6 +19,7 @@ export const ApiPath = {
     API_SELLER_DELETE_PRODUCT:"seller/del-product",
     API_SELLER_GET_DETAIL_PRODUCT:"seller/get-product",
     API_SELLER_EDIT_PRODUCT:"seller/edit-product",
+    API_SELLER_CREATE_PRODUCT: "seller/create-product",
     API_ADMIN_GET_USER: "admin/get-user",
     API_ADMIN_EDIT_USER: "admin/edit-user",
     API_ADMIN_GET_SHOP: "admin/get-shop",

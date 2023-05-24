@@ -15,5 +15,8 @@ export default {
         let productId = param.id;
         delete param.id;
         return ClientService.put(ApiPath.API_SELLER_EDIT_PRODUCT + `/${productId}`, param)
+    },
+    createProduct(param: any) {
+        return ClientService.post(ApiPath.API_SELLER_CREATE_PRODUCT, param);
     }
 }

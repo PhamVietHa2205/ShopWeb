@@ -188,5 +188,7 @@ export default {
         "edit": "Edit",
         "delete": "Delete",
         "noProduct": "No Product",
+        "editProduct": "Edit Product",
+        "images": "Images",
     }
 }

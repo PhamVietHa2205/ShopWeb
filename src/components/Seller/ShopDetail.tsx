@@ -14,6 +14,7 @@ import { RouteUrl } from "../../constants/path_local";
 import { updateCart } from "../../redux/reducers/cart-reducer";
 import ModalEditProduct from "./ModalEditProduct";
 import ModalDeleteProduct from "./ModalDeleteProduct";
+import ModalCreateProduct from "./ModalCreateProduct";
 
 
 interface IShopDetailProps {
@@ -34,10 +35,14 @@ const ShopDetail = (props: IShopDetailProps) => {
 	const [highestPrice, setHighestPrice] = useState(0);
 	const [lowestPrice, setLowestPrice] = useState(0);
 	const [searchByName, setSearchByName] = useState("");
+	const [showCreateProductModal, setShowCreateProductModal] = useState(false);
 	const [showEditProductModal, setShowEditProductModal] = useState(false);
 	const [showDeleteProductModal, setShowDeleteProductModal] = useState(false);
 	const [curProductId, setCurProductId] = useState("");
 	const [curProductName, setCurProductName] = useState("");
+	const [curProductImages, setCurProductImages] = useState([]);
+	const [curQuantity, setCurQuantity] = useState(0);
+	const [curPrice, setCurPrice] = useState("");
 
 	useEffect(() => {
 		getProductList();
@@ -76,8 +81,16 @@ const ShopDetail = (props: IShopDetailProps) => {
 		})
 	}
 
-	const handleShowEditProductModal = (id: string) => {
+	const handleShowCreateProductModal = () => {
+		setShowCreateProductModal(true);
+	}
+
+	const handleShowEditProductModal = (id: string, name: string, images: string[], quantity: number, price: string) => {
 		setCurProductId(id);
+		setCurProductName(name);
+		setCurProductImages(images);
+		setCurQuantity(quantity);
+		setCurPrice(price);
 		setShowEditProductModal(true);
 	}
 
@@ -86,6 +99,11 @@ const ShopDetail = (props: IShopDetailProps) => {
 		setCurProductName(name);
 		setShowDeleteProductModal(true);
 	}
+
+	const handleCloseCreateProductModal = () => {
+        setShowCreateProductModal(false);
+		getProductList();
+    }	
 
 	const handleCloseEditProductModal = () => {
         setShowEditProductModal(false);
@@ -141,6 +159,11 @@ const ShopDetail = (props: IShopDetailProps) => {
 								</form>
 							</div>
 						</div>
+						<div className="pb-1 col-12">
+							<div className="d-flex mb-4 justify-content-end">
+							<button className='btn btn-primary rounded' onClick={handleShowCreateProductModal}>{t('createShop')}</button>
+							</div>
+						</div>
 						{
 							curListProduct && curListProduct.length > 0 ? curListProduct.map((item, index) => {
 								return <div className="col-lg-4 col-md-6 col-sm-12 pb-1" key={index}>
@@ -159,7 +182,7 @@ const ShopDetail = (props: IShopDetailProps) => {
 										</div>
 									</div>
 									<div className="card-footer d-flex justify-content-between bg-light border">
-										<a className="btn btn-sm text-dark p-0" onClick={() => handleShowEditProductModal(item.id)}><i className="fa fa-edit text-primary mr-1"></i>{t('edit')}</a>
+										<a className="btn btn-sm text-dark p-0" onClick={() => handleShowEditProductModal(item.id, item.name, item.images, item.quantity, item.price)}><i className="fa fa-edit text-primary mr-1"></i>{t('edit')}</a>
 										<a className="btn btn-sm text-dark p-0" onClick={() => handleShowDeleteProductModal(item.id, item.name)}><i className="fa fa-trash text-primary mr-1"></i>{t('delete')}</a>
 									</div>
 
@@ -179,8 +202,9 @@ const ShopDetail = (props: IShopDetailProps) => {
 				</div>
 			</div>
 			
-			{curProductId && <ModalEditProduct showEditProductModal={showEditProductModal} handleCloseEditProductModal={handleCloseEditProductModal} setLoading={setLoading} id={curProductId}/>}
-			<ModalDeleteProduct showDeleteProductModal ={showDeleteProductModal} handleCloseDeleteProductModal={handleCloseDeleteProductModal} setLoading={setLoading} productId={curProductId} productName={curProductName}/>
+			{curProductId && <ModalEditProduct images={curProductImages} showEditProductModal={showEditProductModal} handleCloseEditProductModal={handleCloseEditProductModal} setLoading={setLoading} id={curProductId} nameProduct={curProductName} quantityProduct={curQuantity} priceProduct={curPrice}/>}
+			{curProductId && <ModalDeleteProduct showDeleteProductModal={showDeleteProductModal} handleCloseDeleteProductModal={handleCloseDeleteProductModal} setLoading={setLoading} productId={curProductId} productName={curProductName}/>}
+			<ModalCreateProduct showCreateProductModal={showCreateProductModal} handleCloseCreateProductModal={handleCloseCreateProductModal} setLoading={setLoading} idShop={idShop}/>
 		</div>
 	);
 };
