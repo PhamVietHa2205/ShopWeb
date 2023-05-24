@@ -8,10 +8,13 @@ import { useEffect, useState, useRef } from 'react';
 import adminUserApi from "../api/admin/user-api"
 import { HttpCode, LocalStorageKey } from '../constants/key_local';
 import * as Notify from "../shared/Notify";
+import { useLocation } from 'react-router-dom'
 export function ProfileManger() {
     require('./../assets/css/soft-ui-dashboard.css');
     require('./../assets/css/nucleo-icons.css');
     require('./../assets/css/nucleo-svg.css');
+    const location = useLocation()
+    const router = location?.pathname.split("/").splice(1)
     const userInfo: IUserInformation = useSelector((state: RootState) => state.userInfo);
     const [user, setCurrentUser] = useState<IUserInformation>()
     const [curPassword, setCurPassword] = useState("");
@@ -87,7 +90,7 @@ export function ProfileManger() {
         <>
             <NavBar />
             <main className="main-content position-relative max-height-vh-100 h-100 border-radius-lg ">
-                <Header />
+                <Header router={router} />
                 <div className="container-fluid">
                     <div className="page-header min-height-300 border-radius-xl mt-4" style={{ backgroundImage: `url(${require('../assets/img/curved-images/curved-10.jpg')})` }}>
                         <span className="mask bg-gradient-primary opacity-6"></span>

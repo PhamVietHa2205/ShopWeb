@@ -6,13 +6,16 @@ import { RootState } from "../../redux";
 import { DefaultAssets, LocalStorageKey } from "../../constants/key_local";
 import { memo, useEffect, useState } from "react";
 import { IUserInformation } from "../../interfaces/author-interface";
-const Header = () => {
+const Header = (props: any) => {
+    const nameRoute = props.router;
     const { t } = useTranslation();
     const navigate = useNavigate();
     const userInfo: IUserInformation = useSelector((state: RootState) => state.userInfo);
     const [isLogin, setIsLogin] = useState(false);
     const goToPage = (url: string) => {
-        navigate(url);
+        if (url === 'admin') {
+            navigate('/admin');
+        } else navigate(`/admin/${url}`);
     }
 
     const getClassActive = (url: string) => {
@@ -34,10 +37,13 @@ const Header = () => {
                 <div className="container-fluid py-1 px-3">
                     <nav aria-label="breadcrumb">
                         <ol className="breadcrumb bg-transparent mb-0 pb-0 pt-1 px-0 me-sm-6 me-5">
-                            <li className="breadcrumb-item text-sm"><a className="opacity-5 text-dark" href="#">Pages</a></li>
-                            <li className="breadcrumb-item text-sm text-dark active" aria-current="page">Dashboard</li>
+                            {nameRoute.map((item: any, index: number) => {
+                                return <li className="breadcrumb-item text-sm" style={{ cursor: 'pointer' }}>{item === "admin" ? <a className="opacity-5 text-dark" onClick={() => goToPage(item)}>Home</a> : <a className="opacity-5 text-dark" onClick={() => goToPage(item)}>{item}</a>} </li>
+                            })}
+                            {/* <li className="breadcrumb-item text-sm"><a className="opacity-5 text-dark" href="#">Pages</a></li>
+                            <li className="breadcrumb-item text-sm text-dark active" aria-current="page">Dashboard</li> */}
                         </ol>
-                        <h6 className="font-weight-bolder mb-0">Dashboard</h6>
+                        <h6 className="font-weight-bolder mb-0 text-uppercase">{nameRoute[1]}</h6>
                     </nav>
                     <div className="collapse navbar-collapse mt-sm-0 mt-2 me-md-0 me-sm-4" id="navbar">
 

@@ -1,23 +1,28 @@
 import NavBar from "../shared/admin/NavBar";
 import Header from "../shared/admin/Header";
 import Footer from "../shared/admin/Footer";
-import ProfitStatistics from "../components/Admin/ProfitStatistics";
-import UserStatistic from "../components/Admin/UserStatistic";
 import { useEffect, useState } from "react";
 import adminProductApi from "../api/admin/product-api";
 import { IAdminGetHotProductResponse, IHotProduct } from "../interfaces/admin-interface";
+import { useLocation } from 'react-router-dom'
+import Loading from "../shared/Loading";
 export function Admin() {
     require('./../assets/css/soft-ui-dashboard.css');
     require('./../assets/css/nucleo-icons.css');
     require('./../assets/css/nucleo-svg.css');
+    const location = useLocation()
+    const router = location?.pathname.split("/").splice(1)
     const [productRecord, setProduct] = useState([]);
+    const [isLoading, setIsLoading] = useState(false);
     useEffect(() => {
         getShoptList()
     }, []);
     const getShoptList = () => {
         adminProductApi.getHotProduct({}).then((res: any) => {
+            setIsLoading(true);
             const data: IAdminGetHotProductResponse = res?.data;
             setProduct(data?.payload)
+            setIsLoading(false)
         });
     }
     return (
@@ -26,10 +31,10 @@ export function Admin() {
             <NavBar />
             <main className="main-content position-relative max-height-vh-100 h-100 border-radius-lg ">
                 {/* <!-- Header --> */}
-                <Header />
+                <Header router={router} />
                 {/* <!-- Content --> */}
                 <div className="container-fluid py-4">
-                    <ProfitStatistics />
+                    {/* <ProfitStatistics /> */}
                     <div className="container-fluid py-4">
 
                         <div className="card-header pb-0">
@@ -94,6 +99,7 @@ export function Admin() {
 
                         </div>
                     </div>
+                    <Loading loading={isLoading} />
                     <Footer />
                 </div>
             </main>
