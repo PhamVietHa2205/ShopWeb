@@ -83,7 +83,7 @@ export function SignInAdmin() {
                   </li>
                   <ul className="navbar-nav d-lg-block d-none">
                     <li className="nav-item">
-                      <a href="https://github.com/PhamVietHa2205/ShopWeb" className="btn btn-sm btn-round mb-0 me-1 bg-gradient-dark">Free download</a>
+                      <a href="https://github.com/PhamVietHa2205/ShopWeb" className="btn btn-sm btn-round mb-0 me-1 bg-gradient-dark">Free download App</a>
                     </li>
                   </ul>
                 </div>
@@ -145,29 +145,18 @@ export function SignInAdmin() {
         </section>
       </main>
 
-      <footer className="footer py-5">
+      <footer className="footer py-3">
         <div className="container">
           <div className="row">
             <div className="col-lg-8 mb-4 mx-auto text-center">
-              <h4>Nhóm 5</h4>
-            </div>
-            <div className="col-lg-8 mx-auto text-center mb-4 mt-2">
-              <a href="#" target="_blank" className="text-secondary me-xl-4 me-4">
-                <span className="text-lg fa fa-dribbble"></span>
-              </a>
-              <a href="#" target="_blank" className="text-secondary me-xl-4 me-4">
-                <span className="text-lg fa fa-twitter"></span>
-              </a>
-              <a href="#" target="_blank" className="text-secondary me-xl-4 me-4">
-                <span className="text-lg fa fa-instagram"></span>
-              </a>
-              <a href="https://github.com/PhamVietHa2205/ShopWeb" target="_blank" className="text-secondary me-xl-4 me-4" rel="noreferrer">
+              <h3>Nhóm 9</h3>
+              <a href="https://github.com/PhamVietHa2205/ShopWeb" target="_blank" className="text-secondary " rel="noreferrer">
                 <span className="text-lg fa fa-github"></span>
               </a>
             </div>
           </div>
           <div className="row">
-            <div className="col-8 mx-auto text-center mt-1">
+            <div className="col-8 mx-auto text-center ">
               <p className="mb-0 text-secondary">
                 Created <script>
                   3/3/2023
@@ -177,8 +166,8 @@ export function SignInAdmin() {
           </div>
         </div>
       </footer>
-      <Loading loading={isLoading}/>
+      <Loading loading={isLoading} />
     </>
-    
+
   )
 }

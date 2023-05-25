@@ -4,24 +4,32 @@ import Footer from "../shared/admin/Footer";
 import adminCommentApi from "../api/admin/comment-api";
 import { useEffect, useState } from "react";
 import { IAdminGetCommentResponse } from "../interfaces/admin-interface";
+import { useLocation } from 'react-router-dom'
+import Loading from "../shared/Loading";
 export function CommentManager() {
     require('./../assets/css/soft-ui-dashboard.css');
     require('./../assets/css/nucleo-icons.css');
     require('./../assets/css/nucleo-svg.css');
-
+    const [isLoading, setIsLoading] = useState(false);
+    const location = useLocation()
+    const router = location?.pathname.split("/").splice(1)
     useEffect(() => {
-        adminCommentApi.getCommenttList({}).then((res: any) => {
+        getCommenttList()
+    }, []);
+    const getCommenttList = async () => {
+        setIsLoading(true);
+        await adminCommentApi.getCommenttList({}).then((res: any) => {
             const data: IAdminGetCommentResponse = res?.data;
             setRecord(data.payload.comments)
         });
-    }, []);
-
+        setIsLoading(false)
+    }
     const [commentRecord, setRecord] = useState([]);
     return (
         <>
             <NavBar />
             <main className="main-content position-relative max-height-vh-100 h-100 border-radius-lg ">
-                <Header />
+                <Header router={router} />
 
                 <div className="container-fluid py-4">
 
@@ -81,8 +89,8 @@ export function CommentManager() {
                             </div>
                         </div>
                     </div>
+                    <Loading loading={isLoading} />
                     <Footer />
-
                 </div>
             </main>
 

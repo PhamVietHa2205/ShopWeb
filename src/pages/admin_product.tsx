@@ -7,10 +7,17 @@ import adminProductApi from "../api/admin/product-api";
 import { IAdminGetProductResponse, IDetailProduct, IDetailProductShop, IAdminDetailProductResponse } from "../interfaces/admin-interface";
 import * as Notify from "../shared/Notify";
 import { HttpCode } from '../constants/key_local';
+import Loading from "../shared/Loading";
+import { Modal } from "react-bootstrap"
+import { useTranslation } from "react-i18next";
 export function ProductManager() {
     require('./../assets/css/soft-ui-dashboard.css');
     require('./../assets/css/nucleo-icons.css');
     require('./../assets/css/nucleo-svg.css');
+    const { t } = useTranslation();
+    const [isLoading, setIsLoading] = useState(false);
+    const location = useLocation()
+    const router = location?.pathname.split("/").splice(1)
     const { id } = useParams();
     const [productRecord, setProduct] = useState([]);
     const [imageRemove, setImageRemove] = useState([]);
@@ -19,11 +26,12 @@ export function ProductManager() {
     useEffect(() => {
         getProductList();
     }, [id]);
-    const getProductList = () => {
+    const getProductList = async () => {
         let params = {
             idShop: id,
         }
-        adminProductApi.getProductList(params).then(res => {
+        setIsLoading(true);
+        await adminProductApi.getProductList(params).then(res => {
             let data: IAdminGetProductResponse = res?.data;
             if (res?.status === HttpCode.OK) {
                 setProduct(data?.payload.products);
@@ -32,13 +40,18 @@ export function ProductManager() {
                 Notify.error(data?.message);
             }
         })
+        setIsLoading(false)
     }
     const [product, setProductShop] = useState<IDetailProduct>();
-    const getDetailShop = (id: any) => {
+    const [stateModal, setModal] = useState(false)
+    const [stateDeleteModal, setDeleteModal] = useState(false)
+    const [curShopId, setCurShopId] = useState("");
+    const getProduct = async (id: any) => {
         let params = {
             idProduct: id,
         }
-        adminProductApi.getDetailProduct(params).then(res => {
+        setIsLoading(true);
+        await adminProductApi.getDetailProduct(params).then(res => {
             let data: IAdminDetailProductResponse = res?.data;
             if (res?.status === HttpCode.OK) {
                 setProductShop(data?.payload);
@@ -46,6 +59,8 @@ export function ProductManager() {
                 Notify.error(data?.message);
             }
         })
+        setModal(true)
+        setIsLoading(false)
     }
     const updateData = (e: any) => {
         setProductShop({
@@ -90,30 +105,40 @@ export function ProductManager() {
         }
         if (imageRemove.length > 0) Object.assign(param, { imagesRemove: imageRemove })
         if (imageAdd.length > 0) Object.assign(param, { imagesAdd: imageAdd.filter(i => !imageRemove.includes(i)) })
+        setIsLoading(true)
         adminProductApi.editProduct(product.id, param).then((res) => {
             if (res?.status === HttpCode.OK && res?.data?.code === 0) {
                 Notify.success(res?.data?.message)
                 getProductList();
+                setModal(false)
             } else {
                 Notify.error(res?.data?.message)
             }
         })
+        setIsLoading(false)
     }
-    const deleteProduct = (id: any) => {
-        adminProductApi.deleteProduct({ idProduct: id }).then((res) => {
-            if (res?.status === HttpCode.OK && res?.data?.code === 0) {
+    const deleteConfirm = (id: string) => {
+        setDeleteModal(true)
+        setCurShopId(id)
+    }
+    const deleteProduct = () => {
+        setIsLoading(true);
+        adminProductApi.deleteProduct({ idProduct: curShopId }).then((res) => {
+            if (res?.status === HttpCode.OK && res?.data?.code !== -1) {
                 Notify.success(res?.data?.message)
                 getProductList();
+                setDeleteModal(false)
             } else {
                 Notify.error(res?.data?.message)
             }
         });
+        setIsLoading(false)
     }
     return (
         <>
             <NavBar />
             <main className="main-content position-relative max-height-vh-100 h-100 border-radius-lg ">
-                <Header />
+                <Header router={router} />
                 <div className="container-fluid py-4">
 
                     <div className="card mb-4">
@@ -155,10 +180,10 @@ export function ProductManager() {
                                                     </td>
                                                     <td className="align-middle  text-center">
                                                         <div className="d-flex justify-content-center align-items-center  mx-auto">
-                                                            <div className="text-secondary font-weight-bold text-xs mr-3" data-bs-toggle="modal" data-bs-target="#editProduct" onClick={() => getDetailShop(item.id)} >
+                                                            <div className="text-secondary font-weight-bold text-xs mr-3" onClick={() => getProduct(item.id)} >
                                                                 Edit
                                                             </div>
-                                                            <div className="text-secondary font-weight-bold text-xs " onClick={() => deleteProduct(item.id)}>
+                                                            <div className="text-secondary font-weight-bold text-xs " onClick={() => deleteConfirm(item.id)}>
                                                                 Delete
                                                             </div>
                                                         </div>
@@ -170,53 +195,66 @@ export function ProductManager() {
                                     </tbody>
                                 </table>
                             </div>
-                            <div className="modal fade" id="editProduct" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                <div className="modal-dialog">
-                                    <div className="modal-content">
-                                        <div className="modal-header">
-                                            <h5 className="modal-title" id="exampleModalLabel">Are you sure save change</h5>
-                                            <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                        </div>
-                                        <div className="modal-body">
-                                            <form className=' mx-auto  mb-4' onSubmit={submit}>
-
-                                                <div className="form-group">
-                                                    <label >Tên sản phẩm</label>
-                                                    <input name="nameProduct" type="text" className="form-control" onChange={updateData} placeholder="Enter name user" value={product?.nameProduct} />
+                            <Modal show={stateModal} centered>
+                                <div className="modal-content">
+                                    <div className="modal-header">
+                                        <h5 className="modal-title" id="exampleModalLabel">Are you sure save change</h5>
+                                        <button type="button" className="btn-close" aria-label="Close" onClick={() => setModal(false)}> </button>
+                                    </div>
+                                    <div className="modal-body">
+                                        <form className=' mx-auto  mb-4' onSubmit={submit}>
+                                            <div className="form-group">
+                                                <label >Tên sản phẩm</label>
+                                                <input name="nameProduct" type="text" className="form-control" onChange={updateData} placeholder="Enter name user" value={product?.nameProduct} />
+                                            </div>
+                                            <div className="form-group">
+                                                <label >Giá</label>
+                                                <input name="price" type="number" className="form-control" onChange={updateData} placeholder="Phone Number" value={product?.price} />
+                                            </div>
+                                            <div className="form-group">
+                                                <label >Số lượng</label>
+                                                <input name="quantity" type="number" className="form-control" onChange={updateData} placeholder="Phone Number" value={product?.quantity} />
+                                            </div>
+                                            <div className="form-group d-flex  flex-column">
+                                                <label>Hình ảnh liên quan</label>
+                                                <input type="file" className="form-control-file" onChange={e => handleFileRead(e)} />
+                                                <div className="carousel-inner flex mt-3">
+                                                    {
+                                                        product?.images && product?.images?.map((item, index) => {
+                                                            return <div className="avatar avatar-lg  me-3 border position-relative">
+                                                                <img src={item} className=""></img>
+                                                                <i className="fa fa-trash text-sm ms-1 position-absolute text-danger top-0 " aria-hidden="true" style={{ right: '0', cursor: 'pointer' }} onClick={() => removeImageProduct(item)}></i>
+                                                            </div>
+                                                        })
+                                                    }
                                                 </div>
-                                                <div className="form-group">
-                                                    <label >Giá</label>
-                                                    <input name="price" type="number" className="form-control" onChange={updateData} placeholder="Phone Number" value={product?.price} />
-                                                </div>
-                                                <div className="form-group">
-                                                    <label >Số lượng</label>
-                                                    <input name="quantity" type="number" className="form-control" onChange={updateData} placeholder="Phone Number" value={product?.quantity} />
-                                                </div>
-                                                <div className="form-group d-flex  flex-column">
-                                                    <label>Hình ảnh liên quan</label>
-                                                    <input type="file" className="form-control-file" onChange={e => handleFileRead(e)} />
-                                                    <div className="carousel-inner flex mt-3">
-                                                        {
-                                                            product?.images && product?.images?.map((item, index) => {
-                                                                return <div className="avatar avatar-lg  me-3 border position-relative">
-                                                                    <img src={item} className=""></img>
-                                                                    <i className="fa fa-trash text-sm ms-1 position-absolute text-danger top-0 " aria-hidden="true" style={{ right: '0', cursor: 'pointer' }} onClick={() => removeImageProduct(item)}></i>
-                                                                </div>
-                                                            })
-                                                        }
-                                                    </div>
-                                                </div>
-                                            </form>
-                                        </div>
-                                        <div className="modal-footer">
-                                            <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                            <button type="button" className="btn btn-primary" onClick={submit}>Save changes</button>
-                                        </div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                    <div className="modal-footer">
+                                        <button type="button" className="btn btn-secondary" onClick={() => setModal(false)}>Close</button>
+                                        <button type="button" className="btn btn-primary" onClick={submit}>Save changes</button>
                                     </div>
                                 </div>
-                            </div>
+                            </Modal>
+                            <Modal show={stateDeleteModal} centered>
+                                <div className="modal-content">
+                                    <div className="modal-header">
+                                        <h5 className="modal-title">{t('deleteProduct')}?</h5>
+                                        <button type="button" className="btn-close" aria-label="Close" onClick={() => setDeleteModal(false)}> </button>
+                                    </div>
+                                    <div className="modal-body">
+                                        {t('wantToDeleteProduct')}?
+                                    </div>
+                                    <div className="modal-footer">
+                                        <button type="button" className="btn btn-secondary" onClick={() => setDeleteModal(false)}>{t('cancel')}</button>
+                                        <button type="button" className="btn btn-primary" onClick={deleteProduct}>{t("submit")}</button>
+                                    </div>
+                                </div>
+                            </Modal>
                         </div>
                     </div>
+                    <Loading loading={isLoading} />
                     <Footer />
                 </div>
             </main>

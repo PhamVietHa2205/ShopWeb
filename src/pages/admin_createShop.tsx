@@ -6,18 +6,20 @@ import { useEffect, useState } from "react";
 import { IAdminGetUserResponse, IAdminGetDetailShopResponse, IDetailShop } from "../interfaces/admin-interface";
 import { HttpCode } from '../constants/key_local';
 import * as Notify from "../shared/Notify";
-
+import { useLocation, useNavigate } from 'react-router-dom'
 export function CreateShopAdmin() {
     require('./../assets/css/soft-ui-dashboard.css');
     require('./../assets/css/nucleo-icons.css');
     require('./../assets/css/nucleo-svg.css');
-
+    const location = useLocation()
+    const router = location?.pathname.split("/").splice(1)
     useEffect(() => {
         adminShopApi.getUserList({}).then((res: any) => {
             const data: IAdminGetUserResponse = res?.data;
             setUserList(data.payload.users.filter(({ role }) => role === 'seller'))
         });
     }, []);
+    const navigate = useNavigate();
     const [shop, setShop] = useState({
         name: null,
         address: null,
@@ -52,7 +54,7 @@ export function CreateShopAdmin() {
             logo: String(base64)
         })
     }
-    const submit = (e: any) => {
+    const submit = async (e: any) => {
         e.preventDefault()
         let param = {
             name: shop.name,
@@ -60,8 +62,10 @@ export function CreateShopAdmin() {
             logo: shop.logo,
             idUser: shop.idUser
         }
-        adminShopApi.createShop(param).then((res) => {
-            if (res?.status === HttpCode.OK && res?.data?.code === 0) {
+        await adminShopApi.createShop(param).then((res) => {
+            if (res?.status === HttpCode.OK && res?.data?.code !== -1) {
+                Notify.success(res?.data?.message)
+                navigate('/admin/shop')
             } else {
                 Notify.error(res?.data?.message)
             }
@@ -71,11 +75,11 @@ export function CreateShopAdmin() {
         <>
             <NavBar />
             <main className="main-content position-relative max-height-vh-100 h-100 border-radius-lg ">
-                <Header />
+                <Header router={router} />
                 <div className="container-fluid py-4">
                     <div className="row">
                         <div className="card mb-4">
-                            <h6 className="card-header pb-0">Shop table</h6>
+                            <h6 className="card-header pb-0">Create shop</h6>
                             <div className="body">
                                 <form className=' mx-auto  mb-4'>
                                     <div className="form-group">
@@ -98,7 +102,7 @@ export function CreateShopAdmin() {
                                     <div className="form-group d-flex  flex-column">
                                         <label>Logo</label>
                                         <input type="file" className="form-control-file" onChange={e => handleFileRead(e)} />
-                                        {shop.logo && <img alt="error_image" className=" w-50 rounded-circle  align-self-center" src={shop?.logo}></img>}
+                                        {shop.logo && <img alt="error_image" className=" w-25 h-auto rounded-circle  align-self-center" src={shop?.logo}></img>}
                                     </div>
                                 </form>
                             </div>
