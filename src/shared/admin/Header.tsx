@@ -3,28 +3,33 @@ import { useNavigate } from "react-router-dom";
 import { RouteUrl } from "../../constants/path_local";
 import { useSelector } from "react-redux";
 import { RootState } from "../../redux";
-import { DefaultAssets, LocalStorageKey } from "../../constants/key_local";
+import { DefaultAssets, LocalStorageKey, HttpCode } from "../../constants/key_local";
 import { memo, useEffect, useState } from "react";
-import { IUserInformation } from "../../interfaces/author-interface";
+import { IUserInformation, IAdminGetDetailUserResponse } from "../../interfaces/admin-interface";
+import adminUserApi from "../../api/admin/user-api";
+import * as Notify from "../../shared/Notify";
 const Header = (props: any) => {
     const nameRoute = props.router;
     const { t } = useTranslation();
     const navigate = useNavigate();
     const userInfo: IUserInformation = useSelector((state: RootState) => state.userInfo);
     const [isLogin, setIsLogin] = useState(false);
+    const [user, setCurrentUser] = useState<IUserInformation>()
     const goToPage = (url: string) => {
         if (url === 'admin') {
             navigate('/admin');
         } else navigate(`/admin/${url}`);
     }
-
-    const getClassActive = (url: string) => {
-        if (window.location.pathname === "/") navigate(RouteUrl.HOME_PATH);
-        return window.location.pathname.includes(url) ? "active" : "";
-    }
-
     useEffect(() => {
         setIsLogin(localStorage.getItem(LocalStorageKey.LOGIN) ? true : false);
+        adminUserApi.getDetailUser({ id: userInfo?.id }).then(res => {
+            let data: IAdminGetDetailUserResponse = res?.data;
+            if (res?.status === HttpCode.OK) {
+                setCurrentUser(data?.payload);
+            } else {
+                Notify.error(data?.message);
+            }
+        })
     }, []);
 
     const logout = () => {
@@ -40,8 +45,6 @@ const Header = (props: any) => {
                             {nameRoute.map((item: any, index: number) => {
                                 return <li className="breadcrumb-item text-sm" style={{ cursor: 'pointer' }}>{item === "admin" ? <a className="opacity-5 text-dark" onClick={() => goToPage(item)}>Home</a> : <a className="opacity-5 text-dark" onClick={() => goToPage(item)}>{item}</a>} </li>
                             })}
-                            {/* <li className="breadcrumb-item text-sm"><a className="opacity-5 text-dark" href="#">Pages</a></li>
-                            <li className="breadcrumb-item text-sm text-dark active" aria-current="page">Dashboard</li> */}
                         </ol>
                         <h6 className="font-weight-bolder mb-0 text-uppercase">{nameRoute[1]}</h6>
                     </nav>
@@ -56,8 +59,8 @@ const Header = (props: any) => {
                                     {
                                         isLogin &&
                                         <>
-                                            <img src={userInfo?.avatar ?? DefaultAssets.AVATAR_IMG_LINK} className="avatar avatar-sm  me-3 "></img>
-                                            <div className="nav-link">{userInfo?.fullname}</div>
+                                            <img src={user?.avatar ?? DefaultAssets.AVATAR_IMG_LINK} className="avatar avatar-sm  me-3 "></img>
+                                            <div className="nav-link">{user?.fullname}</div>
                                         </>
                                     }
                                 </a>

@@ -9,21 +9,26 @@ import adminUserApi from "../api/admin/user-api"
 import { HttpCode, LocalStorageKey } from '../constants/key_local';
 import * as Notify from "../shared/Notify";
 import { useLocation } from 'react-router-dom'
+import Loading from "../shared/Loading";
 export function ProfileManger() {
     require('./../assets/css/soft-ui-dashboard.css');
     require('./../assets/css/nucleo-icons.css');
     require('./../assets/css/nucleo-svg.css');
     const location = useLocation()
     const router = location?.pathname.split("/").splice(1)
-    const userInfo: IUserInformation = useSelector((state: RootState) => state.userInfo);
+    const userInfo = useSelector((state: RootState) => state.userInfo);
+    const [isLoading, setIsLoading] = useState(false);
     const [user, setCurrentUser] = useState<IUserInformation>()
     const [curPassword, setCurPassword] = useState("");
     const [newPassword, setNewPassword] = useState("");
     const [editting, setEditting] = useState(false);
     const inputFile = useRef(null)
     useEffect(() => {
-        // setCurrentUser(userInfo)
-        adminUserApi.getDetailUser({ id: userInfo?.id }).then(res => {
+        getUser()
+    }, []);
+    const getUser = async () => {
+        setIsLoading(true);
+        await adminUserApi.getDetailUser({ id: userInfo?.id }).then(res => {
             let data: IAdminGetDetailUserResponse = res?.data;
             if (res?.status === HttpCode.OK) {
                 setCurrentUser(data?.payload);
@@ -31,7 +36,8 @@ export function ProfileManger() {
                 Notify.error(data?.message);
             }
         })
-    }, []);
+        setIsLoading(false)
+    }
     const updateData = (e: any) => {
         setCurrentUser({
             ...user,
@@ -65,6 +71,7 @@ export function ProfileManger() {
                 })
                 localStorage.setItem(LocalStorageKey.USER_INFO, JSON.stringify(user));
                 Notify.success('Cập nhật ảnh đại diện thành công')
+                window.location.reload();
             } else {
                 Notify.error(res?.data?.message)
             }
@@ -120,8 +127,8 @@ export function ProfileManger() {
                     </div>
                 </div>
                 <div className="container-fluid py-4">
-                    <div className="row">
-                        <div className="col-12 col-xl-6">
+                    {/* <div className="row"> */}
+                    {/* <div className="col-12 col-xl-6">
                             <div className="card h-100">
                                 <div className="card-header pb-0 p-3">
                                     <h6 className="mb-0">Platform Settings</h6>
@@ -144,45 +151,46 @@ export function ProfileManger() {
 
                                 </div>
                             </div>
-                        </div>
-                        <div className="col-12 col-xl-6">
-                            <div className="card h-100">
-                                <div className="card-header pb-0 p-3">
-                                    <div className="row">
-                                        <div className="col-md-8 d-flex align-items-center">
-                                            <h6 className="mb-0">Profile Information</h6>
-                                        </div>
-                                        <div className="col-md-4 text-end">
-                                            <i className="fa fa-edit text-secondary text-sm" title="Edit Profile" onClick={() => setEditting(true)}></i>
-                                        </div>
+                        </div> */}
+                    <div className="mx-auto col-12 col-xl-6 ">
+                        <div className="card h-100">
+                            <div className="card-header pb-0 p-3">
+                                <div className="row">
+                                    <div className="col-md-8 d-flex align-items-center">
+                                        <h6 className="mb-0">Profile Information</h6>
+                                    </div>
+                                    <div className="col-md-4 text-end">
+                                        <i className="fa fa-edit text-secondary text-sm" title="Edit Profile" onClick={() => setEditting(true)}></i>
                                     </div>
                                 </div>
-                                <div className="card-body p-3">
-                                    {!editting && <ul className="list-group">
-                                        <li className="list-group-item border-0 ps-0 pt-0 text-sm"><strong className="text-dark">Full Name:</strong> &nbsp; {user?.fullname} </li>
-                                        <li className="list-group-item border-0 ps-0 text-sm"><strong className="text-dark">Phone:</strong> &nbsp; {user?.phone}</li>
-                                        <li className="list-group-item border-0 ps-0 text-sm"><strong className="text-dark">Email:</strong> &nbsp; {user?.email}</li>
+                            </div>
+                            <div className="card-body p-3">
+                                {!editting && <ul className="list-group">
+                                    <li className="list-group-item border-0 ps-0 pt-0 text-sm"><strong className="text-dark">Full Name:</strong> &nbsp; {user?.fullname} </li>
+                                    <li className="list-group-item border-0 ps-0 text-sm"><strong className="text-dark">Phone:</strong> &nbsp; {user?.phone}</li>
+                                    <li className="list-group-item border-0 ps-0 text-sm"><strong className="text-dark">Email:</strong> &nbsp; {user?.email}</li>
+                                    <li className="list-group-item border-0 ps-0 text-sm"><strong className="text-dark">Gender:</strong> &nbsp; {user?.gender}</li>
+                                    <li className="list-group-item border-0 ps-0 text-sm"><strong className="text-dark">Number Shop:</strong> &nbsp; {user?.numberShop}</li>
+                                </ul>}
+                                {
+                                    editting && <form className="list-group" onSubmit={submit}>
+                                        <li className="list-group-item border-0 ps-0 text-sm"><strong className="text-dark">Phone:</strong>  <input name="fullname" type="text" className="form-control" placeholder="Enter name user" value={user?.fullname} onChange={updateData} /></li>
+                                        <li className="list-group-item border-0 ps-0 pt-0 text-sm"><strong className="text-dark">Full Name:</strong> <input name="phone" type="number" className="form-control" placeholder="Phone Number" value={user?.phone} onChange={updateData} />  </li>
+                                        <li className="list-group-item border-0 ps-0 text-sm"><strong className="text-dark">Email:</strong> &nbsp;  <input name="email" type="text" className="form-control" placeholder="Enter name user" value={user?.email} onChange={updateData} /></li>
                                         <li className="list-group-item border-0 ps-0 text-sm"><strong className="text-dark">Gender:</strong> &nbsp; {user?.gender}</li>
                                         <li className="list-group-item border-0 ps-0 text-sm"><strong className="text-dark">Number Shop:</strong> &nbsp; {user?.numberShop}</li>
-                                    </ul>}
-                                    {
-                                        editting && <form className="list-group" onSubmit={submit}>
-                                            <li className="list-group-item border-0 ps-0 text-sm"><strong className="text-dark">Phone:</strong>  <input name="fullname" type="text" className="form-control" placeholder="Enter name user" value={user?.fullname} onChange={updateData} /></li>
-                                            <li className="list-group-item border-0 ps-0 pt-0 text-sm"><strong className="text-dark">Full Name:</strong> <input name="phone" type="number" className="form-control" placeholder="Phone Number" value={user?.phone} onChange={updateData} />  </li>
-                                            <li className="list-group-item border-0 ps-0 text-sm"><strong className="text-dark">Email:</strong> &nbsp;  <input name="email" type="text" className="form-control" placeholder="Enter name user" value={user?.email} onChange={updateData} /></li>
-                                            <li className="list-group-item border-0 ps-0 text-sm"><strong className="text-dark">Gender:</strong> &nbsp; {user?.gender}</li>
-                                            <li className="list-group-item border-0 ps-0 text-sm"><strong className="text-dark">Number Shop:</strong> &nbsp; {user?.numberShop}</li>
-                                            <div className="footer">
-                                                <button type="button" className="btn btn-secondary mr-3" data-bs-dismiss="modal">Close</button>
-                                                <button type="button" className="btn btn-primary" onClick={submit}>Save changes</button>
-                                            </div>
-                                        </form>
-                                    }
-                                </div>
+                                        <div className="footer">
+                                            <button type="button" className="btn btn-secondary mr-3" data-bs-dismiss="modal">Close</button>
+                                            <button type="button" className="btn btn-primary" onClick={submit}>Save changes</button>
+                                        </div>
+                                    </form>
+                                }
                             </div>
                         </div>
                     </div>
+                    {/* </div> */}
                 </div>
+                <Loading loading={isLoading} />
                 <Footer />
             </main >
         </>

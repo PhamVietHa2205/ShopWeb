@@ -98,75 +98,76 @@ export function OrderManager() {
                                     <tbody>
                                         {
                                             orderRecord.map((item, index) => {
-                                                return <tr key={item.id}>
-                                                    <td >
-                                                        <div className="d-flex align-items-center px-2 py-1">
-                                                            <div>
-                                                                <img src={item.avatar} className="avatar avatar-sm me-3" alt="user" />
+                                                if (item.detail.length > 0)
+                                                    return <tr key={item.id}>
+                                                        <td >
+                                                            <div className="d-flex align-items-center px-2 py-1">
+                                                                <div>
+                                                                    <img src={item.avatar} className="avatar avatar-sm me-3" alt="user" />
+                                                                </div>
+                                                                <h6 className="mb-0 text-sm">{item.nameBuyer}</h6>
                                                             </div>
-                                                            <h6 className="mb-0 text-sm">{item.nameBuyer}</h6>
-                                                        </div>
 
-                                                    </td>
-                                                    <td>
-                                                        <div className="d-flex flex-column justify-content-center">
-                                                            {item.detail.map((productOrdered: any) => {
-                                                                return <div key={productOrdered.id}>
-                                                                    {productOrdered.name}
-                                                                </div>
-                                                            })}
-                                                        </div>
-                                                    </td>
-                                                    <td className="align-middle text-center text-sm">
-                                                        {
-                                                            item.status == 'done' && <span className="badge badge-sm bg-gradient-success">Đã đặt</span>
-                                                        }
-                                                        {
-                                                            item.status == 'cancel' && <span className="badge badge-sm bg-gradient-secondary">Bị Hủy</span>
-                                                        }
-                                                        {
-                                                            item.status == 'watting' && <span className="badge badge-sm bg-gradient-info">Đang chờ</span>
-                                                        }
-                                                    </td>
-                                                    <td className="align-middle text-center">
-                                                        <p className="text-xs font-weight-bold mb-0">{formatDate(item.date)}</p>
-                                                    </td>
+                                                        </td>
+                                                        <td>
+                                                            <div className="d-flex flex-column justify-content-center">
+                                                                {item.detail.map((productOrdered: any) => {
+                                                                    return <div key={productOrdered.id}>
+                                                                        {productOrdered.name}
+                                                                    </div>
+                                                                })}
+                                                            </div>
+                                                        </td>
+                                                        <td className="align-middle text-center text-sm">
+                                                            {
+                                                                item.status == 'done' && <span className="badge badge-sm bg-gradient-success">Đã đặt</span>
+                                                            }
+                                                            {
+                                                                item.status == 'cancel' && <span className="badge badge-sm bg-gradient-secondary">Bị Hủy</span>
+                                                            }
+                                                            {
+                                                                item.status == 'watting' && <span className="badge badge-sm bg-gradient-info">Đang chờ</span>
+                                                            }
+                                                        </td>
+                                                        <td className="align-middle text-center">
+                                                            <p className="text-xs font-weight-bold mb-0">{formatDate(item.date)}</p>
+                                                        </td>
 
-                                                    <td className="align-middle text-center">
-                                                        <span className="text-secondary text-xs font-weight-bold">{item.payment ? 'Đã giao' : 'Chưa giao'}</span>
-                                                    </td>
-                                                    <td className="align-middle  text-center">
-                                                        {item.status == 'watting' && <div className="text-secondary font-weight-bold text-xs" onClick={() => getDetailOrder(item.id)}>
-                                                            Edit
-                                                        </div>}
-                                                    </td>
-                                                    <Modal show={stateModal} centered>
-                                                        <div className="modal-content">
-                                                            <div className="modal-header">
-                                                                <h5 className="modal-title">Chỉnh sửa đơn hàng</h5>
-                                                                <button type="button" className="btn-close" aria-label="Close" onClick={() => setModal(false)}> </button>
-                                                            </div>
-                                                            <form className="modal-body" onSubmit={submit}>
-                                                                <div className="form-check form-switch ps-0">
-                                                                    <label className="form-check-label text-body ms-3 text-truncate w-80 mb-0">Trạng thái đơn hàng</label>
-                                                                    <select className="align-self-center form-select mb-4" name="status" onChange={updateData}>
-                                                                        {statusOrder.map((status) => {
-                                                                            return status === orderPram?.status ? <option selected value={status}>{status}</option> : <option value={status}>{status}</option>
-                                                                        })}
-                                                                    </select>
+                                                        <td className="align-middle text-center">
+                                                            <span className="text-secondary text-xs font-weight-bold">{item.payment ? 'Đã giao' : 'Chưa giao'}</span>
+                                                        </td>
+                                                        <td className="align-middle  text-center">
+                                                            {item.status == 'watting' && <div className="text-secondary font-weight-bold text-xs" onClick={() => getDetailOrder(item.id)}>
+                                                                Edit
+                                                            </div>}
+                                                        </td>
+                                                        <Modal show={stateModal} centered>
+                                                            <div className="modal-content">
+                                                                <div className="modal-header">
+                                                                    <h5 className="modal-title">Chỉnh sửa đơn hàng</h5>
+                                                                    <button type="button" className="btn-close" aria-label="Close" onClick={() => setModal(false)}> </button>
                                                                 </div>
-                                                                <div className="form-check form-switch ps-0">
-                                                                    <label className="form-check-label text-body ms-3 text-truncate w-80 mb-0">Trạng thái nhận hàng</label>
-                                                                    <input className="form-check-input ms-auto" type="checkbox" checked={orderPram?.payment} name="payment" onChange={updateData} />
+                                                                <form className="modal-body" onSubmit={submit}>
+                                                                    <div className="form-check form-switch ps-0">
+                                                                        <label className="form-check-label text-body ms-3 text-truncate w-80 mb-0">Trạng thái đơn hàng</label>
+                                                                        <select className="align-self-center form-select mb-4" name="status" onChange={updateData}>
+                                                                            {statusOrder.map((status) => {
+                                                                                return status === orderPram?.status ? <option selected value={status}>{status}</option> : <option value={status}>{status}</option>
+                                                                            })}
+                                                                        </select>
+                                                                    </div>
+                                                                    <div className="form-check form-switch ps-0">
+                                                                        <label className="form-check-label text-body ms-3 text-truncate w-80 mb-0">Trạng thái nhận hàng</label>
+                                                                        <input className="form-check-input ms-auto" type="checkbox" checked={orderPram?.payment} name="payment" onChange={updateData} />
+                                                                    </div>
+                                                                </form>
+                                                                <div className="modal-footer">
+                                                                    <button type="button" className="btn btn-secondary" onClick={() => setModal(false)}>Đóng</button>
+                                                                    <button type="button" className="btn btn-primary" onClick={submit}>Lưu đơn hàng</button>
                                                                 </div>
-                                                            </form>
-                                                            <div className="modal-footer">
-                                                                <button type="button" className="btn btn-secondary" onClick={() => setModal(false)}>Đóng</button>
-                                                                <button type="button" className="btn btn-primary" onClick={submit}>Lưu đơn hàng</button>
                                                             </div>
-                                                        </div>
-                                                    </Modal>
-                                                </tr>
+                                                        </Modal>
+                                                    </tr>
 
                                             })
                                         }
