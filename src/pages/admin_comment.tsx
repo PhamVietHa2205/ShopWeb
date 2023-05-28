@@ -53,32 +53,33 @@ export function CommentManager() {
                                             <tbody>
                                                 {
                                                     commentRecord.map((item, index) => {
-                                                        return <tr key={item.id}>
-                                                            <td>
-                                                                <div className="d-flex align-items-center px-2 py-1">
-                                                                    <div>
-                                                                        <img src={item.avatar} className="avatar avatar-sm me-3" alt="user" />
-                                                                    </div>
-                                                                    <h6 className="mb-0 text-sm">{item.name}</h6>
-                                                                </div>
-                                                            </td>
-                                                            <td>
-                                                                <div className="d-flex flex-column justify-content-center">
-                                                                    {item.orderDetail.map((product: any) => {
-                                                                        return <div className="mb-0 text-sm" key={product.id_product}>
-                                                                            {product.nameProduct}
-                                                                            <p className="text-xs text-secondary mb-0">{product.price} vnđ - {product.orderDate}</p>
+                                                        if (item.orderDetail.length > 0)
+                                                            return <tr key={item.id}>
+                                                                <td>
+                                                                    <div className="d-flex align-items-center px-2 py-1">
+                                                                        <div>
+                                                                            <img src={item.avatar} className="avatar avatar-sm me-3" alt="user" />
                                                                         </div>
-                                                                    })}
-                                                                </div>
-                                                            </td>
-                                                            <td className="align-middle">
-                                                                <span className="text-secondary text-xs font-weight-bold">{item.content}</span>
-                                                            </td>
-                                                            <td className="align-middle text-center">
-                                                                <span className="text-secondary text-xs font-weight-bold">{item.star}</span>
-                                                            </td>
-                                                        </tr>
+                                                                        <h6 className="mb-0 text-sm">{item.name}</h6>
+                                                                    </div>
+                                                                </td>
+                                                                <td>
+                                                                    <div className="d-flex flex-column justify-content-center">
+                                                                        {item.orderDetail.map((product: any) => {
+                                                                            return <div className="mb-0 text-sm" key={product.id_product}>
+                                                                                {product.nameProduct}
+                                                                                <p className="text-xs text-secondary mb-0">{product.price} vnđ - {product.orderDate}</p>
+                                                                            </div>
+                                                                        })}
+                                                                    </div>
+                                                                </td>
+                                                                <td className="align-middle">
+                                                                    <span className="text-secondary text-xs font-weight-bold">{item.content}</span>
+                                                                </td>
+                                                                <td className="align-middle text-center">
+                                                                    <span className="text-secondary text-xs font-weight-bold">{item.star}</span>
+                                                                </td>
+                                                            </tr>
                                                     })
                                                 }
 
